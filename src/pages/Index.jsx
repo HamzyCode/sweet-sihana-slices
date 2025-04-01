@@ -1,13 +1,13 @@
 
 import React from 'react';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import Hero from '../components/home/Hero';
-import Featured from '../components/home/Featured';
-import About from '../components/home/About';
-import Categories from '../components/home/Categories';
-import Testimonials from '../components/home/Testimonials';
-import CallToAction from '../components/home/CallToAction';
+import Header from '../components/layout/Header.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import Hero from '../components/home/Hero.jsx';
+import Featured from '../components/home/Featured.jsx';
+import About from '../components/home/About.jsx';
+import Categories from '../components/home/Categories.jsx';
+import Testimonials from '../components/home/Testimonials.jsx';
+import CallToAction from '../components/home/CallToAction.jsx';
 
 const Index = () => {
   return (

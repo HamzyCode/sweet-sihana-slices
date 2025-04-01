@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Categories.css';
 
 const categories = [
   {
@@ -31,36 +32,36 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className="section-padding bg-white">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">Cakes for Every Occasion</h2>
-          <p className="max-w-2xl mx-auto text-cake-brown/80">
+    <section className="categories-section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">Cakes for Every Occasion</h2>
+          <p className="section-description">
             From birthdays to weddings, we have the perfect cake for all your special moments.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="categories-grid">
           {categories.map((category) => (
             <Link 
               key={category.id}
               to={`/occasions/${category.id}`}
-              className="cake-card group h-full flex flex-col"
+              className="category-card"
             >
-              <div className="relative overflow-hidden h-48">
+              <div className="category-image-container">
                 <img 
                   src={category.image} 
                   alt={category.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="category-image"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-cake-brown/80 to-transparent opacity-70"></div>
-                <h3 className="absolute bottom-4 left-4 text-xl font-bold text-white font-playfair">
+                <div className="category-overlay"></div>
+                <h3 className="category-title">
                   {category.name}
                 </h3>
               </div>
-              <div className="p-5 flex-grow flex flex-col">
-                <p className="text-cake-brown/70 text-sm mb-3 flex-grow">{category.description}</p>
-                <div className="mt-auto text-cake-pink font-medium group-hover:underline">
+              <div className="category-content">
+                <p className="category-description">{category.description}</p>
+                <div className="category-link">
                   Browse Collection
                 </div>
               </div>

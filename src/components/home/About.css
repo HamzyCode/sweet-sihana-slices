@@ -1,0 +1,141 @@
+
+.about-section {
+  background-color: #FFF8F0;
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.rounded-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.about-header {
+  margin-bottom: 1.5rem;
+}
+
+.about-label {
+  color: #E58FB8;
+  font-weight: 500;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1.5rem;
+  color: #5D3A22;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (min-width: 768px) {
+  .about-title {
+    font-size: 2.5rem;
+  }
+}
+
+.about-text {
+  margin-bottom: 1rem;
+  color: #5D3A22;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.feature-icon.premium {
+  background-color: rgba(229, 143, 184, 0.1);
+  color: #E58FB8;
+}
+
+.feature-icon.handmade {
+  background-color: rgba(249, 231, 185, 0.2);
+  color: #5D3A22;
+}
+
+.feature-icon.customers {
+  background-color: rgba(255, 214, 236, 0.3);
+  color: #E58FB8;
+}
+
+.feature-icon.love {
+  background-color: rgba(229, 143, 184, 0.1);
+  color: #E58FB8;
+}
+
+.feature-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #5D3A22;
+}
+
+.feature-text {
+  font-size: 0.875rem;
+  text-align: center;
+  color: rgba(93, 58, 34, 0.7);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+  background-color: #E58FB8;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #d77ba4;
+}

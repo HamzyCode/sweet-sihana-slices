@@ -1,0 +1,173 @@
+
+.featured-section {
+  background-color: white;
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #5D3A22;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+.section-description {
+  max-width: 32rem;
+  margin: 0 auto;
+  color: rgba(93, 58, 34, 0.8);
+}
+
+.cakes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .cakes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cakes-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cake-card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cake-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cake-image-container {
+  position: relative;
+  height: 16rem;
+  overflow: hidden;
+}
+
+.cake-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.cake-card:hover .cake-image {
+  transform: scale(1.1);
+}
+
+.cake-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cake-badge.bestseller {
+  background-color: #E58FB8;
+  color: white;
+}
+
+.cake-badge.new {
+  background-color: #F9E7B9;
+  color: #5D3A22;
+}
+
+.cake-badge.popular {
+  background-color: white;
+  color: #5D3A22;
+}
+
+.cake-details {
+  padding: 1.25rem;
+}
+
+.cake-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #5D3A22;
+  font-family: 'Playfair Display', serif;
+}
+
+.cake-description {
+  font-size: 0.875rem;
+  color: rgba(93, 58, 34, 0.7);
+  margin-bottom: 1rem;
+}
+
+.cake-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cake-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #E58FB8;
+}
+
+.cake-link {
+  color: #5D3A22;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.cake-link:hover {
+  color: #E58FB8;
+}
+
+.section-action {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+  background-color: #E58FB8;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #d77ba4;
+}

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Featured.css';
 
 const featuredCakes = [
   {
@@ -39,39 +40,36 @@ const featuredCakes = [
 
 const Featured = () => {
   return (
-    <section className="section-padding bg-white">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">Our Featured Cakes</h2>
-          <p className="max-w-2xl mx-auto text-cake-brown/80">
+    <section className="featured-section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">Our Featured Cakes</h2>
+          <p className="section-description">
             Discover our most loved and popular cake creations, handcrafted with premium ingredients and a whole lot of love.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="cakes-grid">
           {featuredCakes.map((cake) => (
-            <div key={cake.id} className="cake-card group">
-              <div className="relative overflow-hidden h-64">
+            <div key={cake.id} className="cake-card">
+              <div className="cake-image-container">
                 <img 
                   src={cake.image} 
                   alt={cake.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="cake-image"
                 />
                 {cake.category && (
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium uppercase 
-                    ${cake.category === 'bestseller' ? 'bg-cake-pink text-white' : 
-                      cake.category === 'new' ? 'bg-cake-yellow text-cake-brown' : 
-                      'bg-white text-cake-brown'}`}>
+                  <div className={`cake-badge ${cake.category}`}>
                     {cake.category}
                   </div>
                 )}
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-playfair font-bold mb-2">{cake.name}</h3>
-                <p className="text-cake-brown/70 text-sm mb-3">{cake.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-cake-pink">{cake.price}</span>
-                  <Link to={`/menu/${cake.id}`} className="text-cake-brown hover:text-cake-pink transition-colors">
+              <div className="cake-details">
+                <h3 className="cake-title">{cake.name}</h3>
+                <p className="cake-description">{cake.description}</p>
+                <div className="cake-bottom">
+                  <span className="cake-price">{cake.price}</span>
+                  <Link to={`/menu/${cake.id}`} className="cake-link">
                     View Details
                   </Link>
                 </div>
@@ -80,8 +78,8 @@ const Featured = () => {
           ))}
         </div>
         
-        <div className="mt-12 text-center">
-          <Link to="/menu" className="cake-button cake-button-primary">
+        <div className="section-action">
+          <Link to="/menu" className="primary-button">
             View All Cakes
           </Link>
         </div>

@@ -1,0 +1,49 @@
+
+.not-found-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #FFF8F0;
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.not-found-content h1 {
+  font-size: 6rem;
+  color: #E58FB8;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.not-found-content h2 {
+  font-size: 2rem;
+  color: #5D3A22;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.not-found-content p {
+  margin-bottom: 2rem;
+  color: #5D3A22;
+  font-family: 'Poppins', sans-serif;
+}
+
+.home-button {
+  display: inline-block;
+  background-color: #E58FB8;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #d77ba4;
+}

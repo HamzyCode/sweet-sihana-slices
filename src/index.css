@@ -1,83 +1,97 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 340 33% 97%;
-    --foreground: 20 28% 15%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 20 28% 15%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 28% 15%;
-
-    --primary: 340 65% 73%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 20 28% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 340 20% 93%;
-    --muted-foreground: 20 18% 35%;
-
-    --accent: 40 87% 85%;
-    --accent-foreground: 20 28% 15%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 340 30% 90%;
-    --input: 340 30% 90%;
-    --ring: 340 65% 73%;
-
-    --radius: 0.75rem;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-cake-cream text-cake-brown font-poppins;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
-  }
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@layer components {
-  .cake-button {
-    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center gap-2;
-  }
-  
-  .cake-button-primary {
-    @apply bg-cake-pink text-white hover:bg-opacity-90;
-  }
-  
-  .cake-button-secondary {
-    @apply bg-cake-yellow text-cake-brown hover:bg-opacity-90;
-  }
-  
-  .cake-button-outline {
-    @apply border-2 border-cake-pink text-cake-pink hover:bg-cake-pink hover:text-white;
-  }
-
-  .section-padding {
-    @apply py-16 px-4 md:py-24 md:px-8;
-  }
-
-  .cake-card {
-    @apply bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-lg;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFF8F0;
+  color: #5D3A22;
+  line-height: 1.6;
 }
 
-/* Animation for floating logo */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Common utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+/* Common button styles */
+.primary-button, .outline-button, .secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.primary-button {
+  background-color: #E58FB8;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #d77ba4;
+}
+
+.outline-button {
+  border: 2px solid #E58FB8;
+  color: #E58FB8;
+}
+
+.outline-button:hover {
+  background-color: #E58FB8;
+  color: white;
+}
+
+.secondary-button {
+  background-color: #F9E7B9;
+  color: #5D3A22;
+}
+
+.secondary-button:hover {
+  background-color: #f0dcaa;
+}
+
+/* Common card styles */
+.cake-card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cake-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for floating elements */
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -87,6 +101,6 @@
   }
 }
 
-.animate-float {
+.floating {
   animation: float 6s ease-in-out infinite;
 }
