@@ -5,111 +5,76 @@ import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
-          {/* Logo */}
-          <Link to="/" className="logo-container">
-            <img 
-              src="/lovable-uploads/79ee26b0-cc55-4465-a2a3-f6b24880cd90.png" 
-              alt="Sihana's Cake Logo" 
-              className="logo"
-            />
-          </Link>
+          <div className="logo-container">
+            <Link to="/">
+              <img 
+                src="/lovable-uploads/79ee26b0-cc55-4465-a2a3-f6b24880cd90.png" 
+                alt="Sihana's Cake Logo" 
+                className="logo"
+              />
+            </Link>
+          </div>
           
-          {/* Desktop Navigation */}
           <nav className="desktop-nav">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/menu">Menu</NavLink>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/about" className="nav-link">About</Link>
+            <Link to="/menu" className="nav-link">Menu</Link>
+            <Link to="/gallery" className="nav-link">Gallery</Link>
+            
             <div className="dropdown">
               <button className="dropdown-button">
                 Occasions <span className="dropdown-icon">▼</span>
               </button>
               <div className="dropdown-content">
-                <Link to="/occasions/birthday" className="dropdown-item">
-                  Birthday
-                </Link>
-                <Link to="/occasions/wedding" className="dropdown-item">
-                  Wedding
-                </Link>
-                <Link to="/occasions/anniversary" className="dropdown-item">
-                  Anniversary
-                </Link>
+                <Link to="/occasions/birthday" className="dropdown-item">Birthday</Link>
+                <Link to="/occasions/wedding" className="dropdown-item">Wedding</Link>
+                <Link to="/occasions/anniversary" className="dropdown-item">Anniversary</Link>
+                <Link to="/occasions/custom" className="dropdown-item">Custom</Link>
               </div>
             </div>
-            <NavLink href="/contact">Contact</NavLink>
+            
+            <Link to="/contact" className="nav-link">Contact</Link>
           </nav>
           
-          {/* Action Buttons */}
           <div className="action-buttons">
             <Link to="/cart" className="cart-button">
-              <CartIcon />
-              <span>Cart (0)</span>
+              <CartIcon /> Cart (0)
             </Link>
-            <Link to="/order" className="order-button">
-              Order Now
-            </Link>
+            <Link to="/order" className="order-button">Order Now</Link>
           </div>
           
-          {/* Mobile Menu Button */}
-          <button 
-            className="menu-button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
+          <button className="menu-button" onClick={toggleMenu}>
             {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
-      </div>
-      
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="mobile-menu">
-          <div className="container">
+        
+        {isMenuOpen && (
+          <div className="mobile-menu">
             <nav className="mobile-nav">
-              <MobileNavLink href="/" onClick={() => setIsMenuOpen(false)}>Home</MobileNavLink>
-              <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
-              <MobileNavLink href="/menu" onClick={() => setIsMenuOpen(false)}>Menu</MobileNavLink>
-              <MobileNavLink href="/occasions" onClick={() => setIsMenuOpen(false)}>Occasions</MobileNavLink>
-              <MobileNavLink href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</MobileNavLink>
-              <MobileNavLink href="/cart" onClick={() => setIsMenuOpen(false)} className="cart-link">
+              <Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Home</Link>
+              <Link to="/about" className="mobile-nav-link" onClick={toggleMenu}>About</Link>
+              <Link to="/menu" className="mobile-nav-link" onClick={toggleMenu}>Menu</Link>
+              <Link to="/gallery" className="mobile-nav-link" onClick={toggleMenu}>Gallery</Link>
+              <Link to="/occasions" className="mobile-nav-link" onClick={toggleMenu}>Occasions</Link>
+              <Link to="/contact" className="mobile-nav-link" onClick={toggleMenu}>Contact</Link>
+              <Link to="/cart" className="mobile-nav-link cart-link" onClick={toggleMenu}>
                 <CartIcon /> Cart (0)
-              </MobileNavLink>
-              <Link 
-                to="/order" 
-                className="mobile-order-button"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Order Now
               </Link>
+              <Link to="/order" className="mobile-order-button" onClick={toggleMenu}>Order Now</Link>
             </nav>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
-  );
-};
-
-const NavLink = ({ href, children }) => {
-  return (
-    <Link to={href} className="nav-link">
-      {children}
-    </Link>
-  );
-};
-
-const MobileNavLink = ({ href, children, onClick, className = "" }) => {
-  return (
-    <Link 
-      to={href} 
-      className={`mobile-nav-link ${className}`} 
-      onClick={onClick}
-    >
-      {children}
-    </Link>
   );
 };
 

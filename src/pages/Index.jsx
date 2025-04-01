@@ -7,6 +7,7 @@ import Featured from '../components/home/Featured.jsx';
 import About from '../components/home/About.jsx';
 import Categories from '../components/home/Categories.jsx';
 import Testimonials from '../components/home/Testimonials.jsx';
+import FAQ from '../components/home/FAQ.jsx';
 import CallToAction from '../components/home/CallToAction.jsx';
 
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
         <About />
         <Categories />
         <Testimonials />
+        <FAQ />
         <CallToAction />
       </main>
       <Footer />
