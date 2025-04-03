@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-logo">
             <img 
-              src="/lovable-uploads/79ee26b0-cc55-4465-a2a3-f6b24880cd90.png" 
+              src="/assets/sihanasCakeLogo.png" 
               alt="Sihana's Cake Logo" 
               className="logo"
             />
@@ -41,10 +41,10 @@ const Footer = () => {
             <div className="link-group">
               <h3>Contact Us</h3>
               <ul>
-                <li>123 Cake Street</li>
-                <li>New York, NY 10001</li>
-                <li>Email: info@sihanascake.com</li>
-                <li>Phone: (123) 456-7890</li>
+                <a href="https://maps.app.goo.gl/NJ12A9uZVr1MBbPr5" target="_blank" ><li>Blagoje Parovic</li>
+                <li>North Macedonia, SK 1000</li></a>
+                <li>Email: sihanaskejk@gmail.com</li>
+                <li>Phone: (+389) 75 231 968</li>
               </ul>
             </div>
           </div>

@@ -17,7 +17,8 @@
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 200px;
 }
 
 .logo-container {
@@ -26,7 +27,13 @@
 }
 
 .logo {
-  height: 5rem;
+  width: 120px;  
+  height: 120px; 
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #E58FB8;
+  box-shadow: 0px 0px 10px #E58FB8;
+  
 }
 
 @media (max-width: 768px) {

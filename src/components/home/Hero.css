@@ -33,6 +33,10 @@
   order: 1;
   display: flex;
   justify-content: center;
+  
+  
+
+  
 }
 
 @media (min-width: 768px) {
@@ -124,6 +128,9 @@
   width: 100%;
   max-width: 25rem;
   animation: float 6s ease-in-out infinite;
+  border-radius: 50%;
+  border: 2px solid #E58FB8;
+  box-shadow: 0px 0px 50px #E58FB8;
 }
 
 @keyframes float {

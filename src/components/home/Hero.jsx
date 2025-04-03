@@ -30,7 +30,7 @@ const Hero = () => {
           
           <div className="hero-image">
             <img 
-              src="/lovable-uploads/79ee26b0-cc55-4465-a2a3-f6b24880cd90.png" 
+              src="/assets/sihanasCakeLogo.png" 
               alt="Sihana's Cake Logo" 
               className="floating-image"
             />

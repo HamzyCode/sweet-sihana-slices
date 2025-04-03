@@ -17,7 +17,7 @@ const Header = () => {
           <div className="logo-container">
             <Link to="/">
               <img 
-                src="/lovable-uploads/79ee26b0-cc55-4465-a2a3-f6b24880cd90.png" 
+                src="/assets/sihanasCakeLogo.png" 
                 alt="Sihana's Cake Logo" 
                 className="logo"
               />
@@ -45,12 +45,12 @@ const Header = () => {
             <Link to="/contact" className="nav-link">Contact</Link>
           </nav>
           
-          <div className="action-buttons">
-            <Link to="/cart" className="cart-button">
+          {/* <div className="action-buttons">
+             <Link to="/cart" className="cart-button">
               <CartIcon /> Cart (0)
             </Link>
             <Link to="/order" className="order-button">Order Now</Link>
-          </div>
+          </div> */}
           
           <button className="menu-button" onClick={toggleMenu}>
             {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
