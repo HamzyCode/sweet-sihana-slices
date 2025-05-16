@@ -10,11 +10,15 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),
+    react({
+      include: "**/*.{jsx,js,ts,tsx}",
+      jsxRuntime: "automatic"
+    }),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
 }));
