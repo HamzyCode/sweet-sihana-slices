@@ -26,21 +26,18 @@ const About = () => {
               <div className="story-image">
                 <img 
                   src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-                  alt="Sihana's Cake founder"
+                  alt="Cake shop founder"
                 />
               </div>
               
               <div className="story-content">
                 <h2 className="section-title">The Beginning</h2>
                 <p>
-                  Sihana's Cake was founded in 2010 by pastry chef Sihana Rexhepi, who had a passion for creating beautiful and delicious cakes since childhood. What started as a small home-based business quickly became known throughout the community for exceptional quality and artistic designs.
+                  Our cake shop was founded in 2010 with a passion for creating beautiful and delicious cakes. What started as a small home-based business quickly became known throughout the community for exceptional quality and artistic designs.
                 </p>
                 <p>
-                  Every cake at Sihana's is made with love and attention to detail. We believe that cakes are not just desserts; they are centerpieces of your most precious celebrations and memories.
+                  Every cake is made with love and attention to detail. We believe that cakes are not just desserts; they are centerpieces of your most precious celebrations and memories.
                 </p>
-                <div className="founder-signature">
-                  <span>- Sihana Rexhepi</span>
-                </div>
               </div>
             </div>
           </div>
@@ -127,42 +124,6 @@ const About = () => {
             </div>
             
             <a href="/gallery" className="primary-button">View Our Gallery</a>
-          </div>
-        </section>
-        
-        <section className="team-section">
-          <div className="container">
-            <h2 className="section-title">Meet Our Team</h2>
-            <div className="team-grid">
-              <div className="team-member">
-                <div className="member-image">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sihana Rexhepi" />
-                </div>
-                <h3>Sihana Rexhepi</h3>
-                <p className="member-role">Founder & Head Baker</p>
-              </div>
-              <div className="team-member">
-                <div className="member-image">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Mark Johnson" />
-                </div>
-                <h3>Mark Johnson</h3>
-                <p className="member-role">Cake Designer</p>
-              </div>
-              <div className="team-member">
-                <div className="member-image">
-                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sarah Lee" />
-                </div>
-                <h3>Sarah Lee</h3>
-                <p className="member-role">Pastry Chef</p>
-              </div>
-              <div className="team-member">
-                <div className="member-image">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="David Chen" />
-                </div>
-                <h3>David Chen</h3>
-                <p className="member-role">Customer Service</p>
-              </div>
-            </div>
           </div>
         </section>
       </main>
