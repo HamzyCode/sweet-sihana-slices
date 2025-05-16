@@ -39,5 +39,9 @@ export default defineConfig(({ mode }) => ({
   // Skip TypeScript checking completely since we're using only JSX/JS files
   build: {
     sourcemap: true,
+    // Skip TypeScript checking
+    typescript: {
+      ignoreBuildErrors: true,
+    },
   },
 }));
