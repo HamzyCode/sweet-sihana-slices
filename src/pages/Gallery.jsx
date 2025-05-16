@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
-import useInstagramFeed from '../utils/instagramApi.jsx';
+import useInstagramFeed from '../utils/instagram/index.jsx';
 import InstaPostCard from '../components/instagram/InstaPostCard.jsx';
 import { Instagram } from 'lucide-react';
 import './Gallery.css';

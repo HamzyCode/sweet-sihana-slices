@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useFeaturedInstagramPosts } from '../../utils/instagramApi.jsx';
+import { useFeaturedInstagramPosts } from '../../utils/instagram/index.jsx';
 import InstaPostCard from '../instagram/InstaPostCard.jsx';
 import './Featured.css';
 
