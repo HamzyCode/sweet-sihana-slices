@@ -44,4 +44,10 @@ export default defineConfig(({ mode }) => ({
       ignoreBuildErrors: true,
     },
   },
+  // Define environment variables (empty defaults)
+  define: {
+    'import.meta.env.VITE_INSTAGRAM_APP_ID': JSON.stringify(''),
+    'import.meta.env.VITE_INSTAGRAM_APP_SECRET': JSON.stringify(''),
+    'import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN': JSON.stringify(''),
+  }
 }));
