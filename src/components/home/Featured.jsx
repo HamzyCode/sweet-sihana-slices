@@ -1,69 +1,66 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useFeaturedInstagramPosts } from '../../utils/instagramApi.jsx';
 import './Featured.css';
 
-const featuredCakes = [
-  {
-    id: 1,
-    name: 'Chocolate Delight',
-    description: 'Rich chocolate cake with creamy ganache and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'bestseller',
-    likes: 253,
-    postedDate: '2 days ago',
-    username: 'sihanas_cakery'
-  },
-  {
-    id: 2,
-    name: 'Strawberry Dream',
-    description: 'Light vanilla sponge with fresh strawberries and cream.',
-    image: 'https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'popular',
-    likes: 178,
-    postedDate: '3 days ago',
-    username: 'sihanas_cakery'
-  },
-  {
-    id: 3,
-    name: 'Vanilla Bliss',
-    description: 'Classic vanilla cake with buttercream frosting and sprinkles.',
-    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'new',
-    likes: 201,
-    postedDate: '1 day ago',
-    username: 'sihanas_cakery'
-  },
-  {
-    id: 4,
-    name: 'Red Velvet',
-    description: 'Classic red velvet with cream cheese frosting.',
-    image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'popular',
-    likes: 289,
-    postedDate: '6 days ago',
-    username: 'sihanas_cakery'
-  }
-];
-
 const Featured = () => {
+  const { posts, loading, error } = useFeaturedInstagramPosts(4);
+  
+  if (loading) {
+    return (
+      <section className="featured-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Our Featured Cakes</h2>
+            <p className="section-description">
+              Discover our most loved and popular cake creations from Instagram in the last 90 days.
+            </p>
+          </div>
+          <div className="instagram-loading">
+            <div className="loading-spinner"></div>
+            <span>Loading featured cakes...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+  if (error) {
+    return (
+      <section className="featured-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Our Featured Cakes</h2>
+            <p className="section-description">
+              Discover our most loved and popular cake creations from Instagram in the last 90 days.
+            </p>
+          </div>
+          <div className="instagram-error">
+            <p>{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="featured-section">
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Our Featured Cakes</h2>
           <p className="section-description">
-            Discover our most loved and popular cake creations, handcrafted with premium ingredients and a whole lot of love.
+            Discover our most popular cakes on Instagram in the last 90 days.
           </p>
         </div>
         
         <div className="instagram-featured-grid">
-          {featuredCakes.map((cake) => (
-            <div key={cake.id} className="instagram-post">
+          {posts.map((post) => (
+            <div key={post.id} className="instagram-post">
               <div className="post-header">
                 <div className="post-user">
                   <div className="user-avatar"></div>
-                  <span className="username">{cake.username}</span>
+                  <span className="username">{post.username}</span>
                 </div>
                 <div className="post-more">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,14 +73,12 @@ const Featured = () => {
               
               <div className="post-image-container">
                 <img 
-                  src={cake.image} 
-                  alt={cake.name}
+                  src={post.image} 
+                  alt={post.caption}
                   className="post-image"
                 />
-                {cake.category && (
-                  <div className={`cake-badge ${cake.category}`}>
-                    {cake.category}
-                  </div>
+                {post.isNew && (
+                  <div className="new-tag">New</div>
                 )}
               </div>
               
@@ -103,14 +98,14 @@ const Featured = () => {
               </div>
               
               <div className="post-content">
-                <div className="post-likes">{cake.likes} likes</div>
+                <div className="post-likes">{post.likes} likes</div>
                 <div className="post-caption">
-                  <span className="username">{cake.username}</span> 
-                  <span className="caption-text">{cake.description} #cake #bakery #handmade</span>
+                  <span className="username">{post.username}</span> 
+                  <span className="caption-text">{post.caption}</span>
                 </div>
-                <div className="post-time">{cake.postedDate}</div>
-                <Link to={`/menu/${cake.id}`} className="cake-link">
-                  View Details
+                <div className="post-time">{post.postedDate}</div>
+                <Link to="/gallery" className="cake-link">
+                  View More Photos
                 </Link>
               </div>
             </div>
@@ -118,8 +113,8 @@ const Featured = () => {
         </div>
         
         <div className="section-action">
-          <Link to="/menu" className="primary-button">
-            View All Cakes
+          <Link to="/gallery" className="primary-button">
+            View Our Gallery
           </Link>
         </div>
       </div>
