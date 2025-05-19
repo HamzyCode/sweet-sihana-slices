@@ -1,6 +1,6 @@
 
 .featured-section {
-  background-color: #FAFAFA;
+  background-color: white;
   padding: 4rem 0;
 }
 
@@ -35,152 +35,118 @@
   color: rgba(93, 58, 34, 0.8);
 }
 
-/* Instagram-style Grid */
-.instagram-featured-grid {
+.cakes-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
 @media (min-width: 640px) {
-  .instagram-featured-grid {
+  .cakes-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
-  .instagram-featured-grid {
+  .cakes-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.instagram-post {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.cake-card {
+  background-color: white;
+  border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.instagram-post:hover {
+.cake-card:hover {
   transform: translateY(-0.25rem);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-.post-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
-}
-
-.post-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-}
-
-.username {
-  font-weight: 600;
-  color: #262626;
-}
-
-.post-more {
-  color: #262626;
-  cursor: pointer;
-}
-
-.post-image-container {
-  width: 100%;
+.cake-image-container {
   position: relative;
-  height: 250px;
+  height: 16rem;
   overflow: hidden;
 }
 
-.post-image {
+.cake-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s;
 }
 
-.instagram-post:hover .post-image {
+.cake-card:hover .cake-image {
   transform: scale(1.1);
 }
 
-.new-tag {
+.cake-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  background-color: #0096F6;
-  color: white;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  z-index: 1;
 }
 
-.post-actions {
+.cake-badge.bestseller {
+  background-color: #E58FB8;
+  color: white;
+}
+
+.cake-badge.new {
+  background-color: #F9E7B9;
+  color: #5D3A22;
+}
+
+.cake-badge.popular {
+  background-color: white;
+  color: #5D3A22;
+}
+
+.cake-details {
+  padding: 1.25rem;
+}
+
+.cake-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #5D3A22;
+  font-family: 'Playfair Display', serif;
+}
+
+.cake-description {
+  font-size: 0.875rem;
+  color: rgba(93, 58, 34, 0.7);
+  margin-bottom: 1rem;
+}
+
+.cake-bottom {
   display: flex;
-  padding: 10px 15px;
+  justify-content: space-between;
   align-items: center;
 }
 
-.post-action {
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.post-action-save {
-  margin-left: auto;
-  cursor: pointer;
-}
-
-.post-content {
-  padding: 0 15px 15px;
-}
-
-.post-likes {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.post-caption {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-}
-
-.caption-text {
-  margin-left: 5px;
-  color: #262626;
-}
-
-.post-time {
-  font-size: 0.8rem;
-  color: #8e8e8e;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+.cake-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #E58FB8;
 }
 
 .cake-link {
-  display: inline-block;
-  color: #E58FB8;
-  font-weight: 500;
-  margin-top: 5px;
+  color: #5D3A22;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .cake-link:hover {
-  text-decoration: underline;
+  color: #E58FB8;
 }
 
 .section-action {
@@ -204,31 +170,4 @@
 
 .primary-button:hover {
   background-color: #d77ba4;
-}
-
-/* Loading State */
-.instagram-loading {
-  text-align: center;
-  padding: 2rem;
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  border-left-color: #E58FB8;
-  margin: 0 auto 1rem;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.instagram-error {
-  text-align: center;
-  padding: 2rem;
-  color: #e74c3c;
 }
