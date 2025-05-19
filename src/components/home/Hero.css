@@ -17,11 +17,15 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: center;
+  padding: 0 1rem;
 }
 
 @media (min-width: 768px) {
   .hero-content {
     grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 0 2rem;
+    margin: 2rem auto;
   }
 }
 
@@ -44,10 +48,12 @@
     order: 1;
     align-items: flex-start;
     text-align: left;
+    padding-left: 1rem;
   }
 
   .hero-image {
     order: 2;
+    padding-right: 1rem;
   }
 }
 
