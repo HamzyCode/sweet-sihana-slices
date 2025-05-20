@@ -1,4 +1,3 @@
-
 .featured-section {
   background-color: white;
   padding: 4rem 0;
@@ -74,9 +73,10 @@
 
 .cake-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 100%; /* Changed from height: auto to fill the container */
+  object-fit: cover; /* Changed from contain to cover to fill without gaps */
   transition: transform 0.5s;
+  
 }
 
 .cake-card:hover .cake-image {
