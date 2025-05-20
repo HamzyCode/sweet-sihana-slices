@@ -6,9 +6,9 @@ import './Featured.css';
 const featuredCakes = [
   {
     id: 1,
-    name: 'Chocolate Delight',
+    name: 'Chocolate Deluxe',
     description: 'Rich chocolate cake with creamy ganache and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    image: '/assets/images/products/IMG_7210-Photoroom.jpg',
     category: 'bestseller'
   },
   {
