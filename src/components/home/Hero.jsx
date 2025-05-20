@@ -22,9 +22,6 @@ const Hero = () => {
                 Explore Our Cakes
                 <ArrowRightIcon />
               </Link>
-              <Link to="/order" className="outline-button">
-                Custom Order
-              </Link>
             </div>
           </div>
           

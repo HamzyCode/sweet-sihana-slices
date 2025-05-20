@@ -17,12 +17,9 @@ const CallToAction = () => {
             Whether you're celebrating a birthday, wedding, or special occasion, we're here to create the perfect cake for your memorable moments.
           </p>
           <div className="cta-buttons">
-            <Link to="/order" className="cta-primary-button">
+            <Link to="/contact" className="cta-primary-button">
               Order Now
               <ArrowRightIcon />
-            </Link>
-            <Link to="/contact" className="cta-secondary-button">
-              Contact Us
             </Link>
           </div>
         </div>

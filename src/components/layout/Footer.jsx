@@ -22,7 +22,7 @@ const Footer = () => {
               <h3>Quick Links</h3>
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/#about">About Us</Link></li>
                 <li><Link to="/menu">Our Menu</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
@@ -34,15 +34,16 @@ const Footer = () => {
                 <li><Link to="/occasions/birthday">Birthday Cakes</Link></li>
                 <li><Link to="/occasions/wedding">Wedding Cakes</Link></li>
                 <li><Link to="/occasions/anniversary">Anniversary Cakes</Link></li>
-                <li><Link to="/occasions/custom">Custom Cakes</Link></li>
               </ul>
             </div>
 
             <div className="link-group">
               <h3>Contact Us</h3>
               <ul>
-                <a href="https://maps.app.goo.gl/NJ12A9uZVr1MBbPr5" target="_blank" ><li>Blagoje Parovic</li>
-                <li>North Macedonia, SK 1000</li></a>
+                <a href="https://maps.app.goo.gl/NJ12A9uZVr1MBbPr5" target="_blank" rel="noopener noreferrer">
+                  <li>Makedonsko Kosovska Brigada 12</li>
+                  <li>North Macedonia, SK 1000</li>
+                </a>
                 <li>Email: sihanaskejk@gmail.com</li>
                 <li>Phone: (+389) 75 231 968</li>
               </ul>
