@@ -97,6 +97,11 @@
   transition: transform 0.5s;
 }
 
+.menu-image-link {
+  display: block;
+  cursor: pointer;
+}
+
 .menu-item:hover .menu-image {
   transform: scale(1.05);
 }

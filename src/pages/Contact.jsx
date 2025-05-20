@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import './Contact.css';
@@ -11,6 +11,7 @@ const Contact = () => {
     phone: '',
     message: '',
     occasion: 'general',
+    language: 'en', // Default language
   });
   
   const [formStatus, setFormStatus] = useState({
@@ -18,6 +19,24 @@ const Contact = () => {
     error: false,
     message: '',
   });
+
+  // If product was selected from another page
+  useEffect(() => {
+    const selectedProduct = sessionStorage.getItem('selectedProduct');
+    if (selectedProduct) {
+      try {
+        const product = JSON.parse(selectedProduct);
+        setFormData(prevState => ({
+          ...prevState,
+          message: `I am interested in ordering: ${product.name}\n\n${prevState.message}`
+        }));
+        // Clear the session storage after using it
+        sessionStorage.removeItem('selectedProduct');
+      } catch (e) {
+        console.error("Error parsing selected product:", e);
+      }
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +59,12 @@ const Contact = () => {
       return;
     }
     
-    // Simulate form submission
+    // Form submission logic would go here
+    // In a real implementation, this would use EmailJS or another service
+    
+    console.log('Form submitted:', formData);
+    
+    // Simulate successful form submission
     setFormStatus({
       submitted: true,
       error: false,
@@ -54,11 +78,73 @@ const Contact = () => {
       phone: '',
       message: '',
       occasion: 'general',
+      language: formData.language, // Keep the selected language
     });
-    
-    // In a real application, you would send this data to a backend
-    console.log('Form submitted:', formData);
   };
+
+  // Content translations
+  const translations = {
+    en: {
+      title: 'Contact Us',
+      subtitle: 'Have a question or want to order a custom cake? Get in touch with us!',
+      visitUs: 'Visit Us',
+      callUs: 'Call Us',
+      emailUs: 'Email Us',
+      sendMessage: 'Send us a Message',
+      namePlaceholder: 'Name *',
+      emailPlaceholder: 'Email *',
+      phonePlaceholder: 'Phone Number',
+      occasionPlaceholder: 'Occasion',
+      messagePlaceholder: 'Message *',
+      submit: 'Send Message',
+      generalInquiry: 'General Inquiry',
+      birthdayCake: 'Birthday Cake',
+      weddingCake: 'Wedding Cake',
+      anniversaryCake: 'Anniversary Cake',
+      other: 'Other',
+    },
+    sq: {
+      title: 'Na Kontaktoni',
+      subtitle: 'Keni ndonjë pyetje apo dëshironi të porositni një tortë? Na kontaktoni!',
+      visitUs: 'Na Vizitoni',
+      callUs: 'Na Telefononi',
+      emailUs: 'Na Shkruani',
+      sendMessage: 'Na Dërgoni një Mesazh',
+      namePlaceholder: 'Emri *',
+      emailPlaceholder: 'Email *',
+      phonePlaceholder: 'Numri i Telefonit',
+      occasionPlaceholder: 'Rasti',
+      messagePlaceholder: 'Mesazhi *',
+      submit: 'Dërgo Mesazhin',
+      generalInquiry: 'Pyetje e Përgjithshme',
+      birthdayCake: 'Tortë Ditëlindjeje',
+      weddingCake: 'Tortë Dasme',
+      anniversaryCake: 'Tortë Përvjetori',
+      other: 'Tjetër',
+    },
+    mk: {
+      title: 'Контактирајте нè',
+      subtitle: 'Имате прашање или сакате да нарачате торта? Контактирајте нè!',
+      visitUs: 'Посетете нè',
+      callUs: 'Јавете ни се',
+      emailUs: 'Пишете ни',
+      sendMessage: 'Испратете ни порака',
+      namePlaceholder: 'Име *',
+      emailPlaceholder: 'Емаил *',
+      phonePlaceholder: 'Телефонски број',
+      occasionPlaceholder: 'Повод',
+      messagePlaceholder: 'Порака *',
+      submit: 'Испрати порака',
+      generalInquiry: 'Општо прашање',
+      birthdayCake: 'Роденденска торта',
+      weddingCake: 'Свадбена торта',
+      anniversaryCake: 'Торта за годишнина',
+      other: 'Друго',
+    }
+  };
+
+  // Get current translation based on selected language
+  const t = translations[formData.language];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -67,10 +153,31 @@ const Contact = () => {
         <section className="contact-section">
           <div className="container">
             <div className="contact-header">
-              <h1 className="contact-title">Contact Us</h1>
+              <h1 className="contact-title">{t.title}</h1>
               <p className="contact-subtitle">
-                Have a question or want to order a custom cake? Get in touch with us!
+                {t.subtitle}
               </p>
+              
+              <div className="language-selector">
+                <button 
+                  className={`lang-button ${formData.language === 'en' ? 'active' : ''}`} 
+                  onClick={() => setFormData({...formData, language: 'en'})}
+                >
+                  English
+                </button>
+                <button 
+                  className={`lang-button ${formData.language === 'sq' ? 'active' : ''}`}
+                  onClick={() => setFormData({...formData, language: 'sq'})}
+                >
+                  Shqip
+                </button>
+                <button 
+                  className={`lang-button ${formData.language === 'mk' ? 'active' : ''}`}
+                  onClick={() => setFormData({...formData, language: 'mk'})}
+                >
+                  Македонски
+                </button>
+              </div>
             </div>
             
             <div className="contact-content">
@@ -79,10 +186,10 @@ const Contact = () => {
                   <div className="icon-container">
                     <LocationIcon />
                   </div>
-                  <h3>Visit Us</h3>
+                  <h3>{t.visitUs}</h3>
                   <p>
                     <a 
-                      href="https://maps.app.goo.gl/NJ12A9uZVr1MBbPr5" 
+                      href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
@@ -96,7 +203,7 @@ const Contact = () => {
                   <div className="icon-container">
                     <PhoneIcon />
                   </div>
-                  <h3>Call Us</h3>
+                  <h3>{t.callUs}</h3>
                   <p><a href="tel:+38975231968">(+389) 75 231 968</a></p>
                 </div>
                 
@@ -104,13 +211,13 @@ const Contact = () => {
                   <div className="icon-container">
                     <EmailIcon />
                   </div>
-                  <h3>Email Us</h3>
+                  <h3>{t.emailUs}</h3>
                   <p><a href="mailto:sihanaskejk@gmail.com">sihanaskejk@gmail.com</a></p>
                 </div>
               </div>
               
               <div className="contact-form-container">
-                <h2>Send us a Message</h2>
+                <h2>{t.sendMessage}</h2>
                 
                 {formStatus.submitted ? (
                   <div className="success-message">
@@ -125,7 +232,7 @@ const Contact = () => {
                     )}
                     
                     <div className="form-group">
-                      <label htmlFor="name">Name *</label>
+                      <label htmlFor="name">{t.namePlaceholder}</label>
                       <input
                         type="text"
                         id="name"
@@ -137,7 +244,7 @@ const Contact = () => {
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="email">Email *</label>
+                      <label htmlFor="email">{t.emailPlaceholder}</label>
                       <input
                         type="email"
                         id="email"
@@ -149,7 +256,7 @@ const Contact = () => {
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="phone">Phone Number</label>
+                      <label htmlFor="phone">{t.phonePlaceholder}</label>
                       <input
                         type="tel"
                         id="phone"
@@ -160,23 +267,23 @@ const Contact = () => {
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="occasion">Occasion</label>
+                      <label htmlFor="occasion">{t.occasionPlaceholder}</label>
                       <select
                         id="occasion"
                         name="occasion"
                         value={formData.occasion}
                         onChange={handleChange}
                       >
-                        <option value="general">General Inquiry</option>
-                        <option value="birthday">Birthday Cake</option>
-                        <option value="wedding">Wedding Cake</option>
-                        <option value="anniversary">Anniversary Cake</option>
-                        <option value="other">Other</option>
+                        <option value="general">{t.generalInquiry}</option>
+                        <option value="birthday">{t.birthdayCake}</option>
+                        <option value="wedding">{t.weddingCake}</option>
+                        <option value="anniversary">{t.anniversaryCake}</option>
+                        <option value="other">{t.other}</option>
                       </select>
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="message">Message *</label>
+                      <label htmlFor="message">{t.messagePlaceholder}</label>
                       <textarea
                         id="message"
                         name="message"
@@ -188,7 +295,7 @@ const Contact = () => {
                     </div>
                     
                     <button type="submit" className="submit-button">
-                      Send Message
+                      {t.submit}
                     </button>
                   </form>
                 )}

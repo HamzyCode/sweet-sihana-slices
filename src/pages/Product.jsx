@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
@@ -94,6 +94,11 @@ const Product = () => {
   const navigate = useNavigate();
   const productId = parseInt(id);
   
+  // Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   // Find the current product
   const product = products.find(p => p.id === productId);
   
@@ -122,6 +127,17 @@ const Product = () => {
   const relatedProducts = products
     .filter(p => p.category === product.category && p.id !== product.id)
     .slice(0, 3);
+
+  // Handle "Order Now" button click  
+  const handleOrderClick = () => {
+    // Save product info to session storage to be picked up by contact form
+    sessionStorage.setItem('selectedProduct', JSON.stringify({
+      id: product.id,
+      name: product.name,
+      price: product.price
+    }));
+    navigate('/contact');
+  };
     
   return (
     <div className="min-h-screen flex flex-col">
@@ -156,9 +172,9 @@ const Product = () => {
                   </ul>
                 </div>
                 
-                <Link to="/contact" className="order-button">
+                <button onClick={handleOrderClick} className="order-button">
                   Order Now
-                </Link>
+                </button>
               </div>
             </div>
             

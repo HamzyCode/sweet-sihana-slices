@@ -1,0 +1,90 @@
+
+.reviews-section {
+  padding: 4rem 0;
+  background-color: #FFF8F0;
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.reviews-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #5D3A22;
+  margin-bottom: 1rem;
+}
+
+.reviews-subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #5D3A22;
+}
+
+.reviews-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .reviews-content {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.reviews-image {
+  height: 100%;
+}
+
+.review-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviews-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #5D3A22;
+}
+
+.reviews-text p {
+  color: #5D3A22;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.google-review-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: white;
+  border: 1px solid #4285F4;
+  color: #4285F4;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-self: flex-start;
+}
+
+.google-review-button:hover {
+  background-color: #4285F4;
+  color: white;
+}
+
+.google-review-button:hover svg {
+  fill: white;
+}

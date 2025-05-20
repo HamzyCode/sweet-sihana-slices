@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
@@ -70,11 +70,49 @@ const menuItems = [
     image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     price: '$38.99',
     category: 'specialty'
+  },
+  // Add more menu items with different categories
+  {
+    id: 9,
+    name: 'Fruit Tart',
+    description: 'Fresh seasonal fruits arranged on a sweet pastry base with custard.',
+    image: 'https://images.unsplash.com/photo-1488477304112-4944851de03d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$28.99',
+    category: 'desserts'
+  },
+  {
+    id: 10,
+    name: 'Chocolate Roll',
+    description: 'Soft chocolate sponge rolled with cream filling.',
+    image: 'https://images.unsplash.com/photo-1605807646983-377bc5a76493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$27.99',
+    category: 'rolls'
+  },
+  {
+    id: 11,
+    name: 'Vanilla Roll',
+    description: 'Light vanilla sponge rolled with fruit jam and cream.',
+    image: 'https://images.unsplash.com/photo-1614145121029-83a9f7b68bf4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$26.99',
+    category: 'rolls'
+  },
+  {
+    id: 12,
+    name: 'Chocolate Éclair',
+    description: 'Choux pastry filled with cream and topped with chocolate.',
+    image: 'https://images.unsplash.com/photo-1602351447937-745cb720612f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$4.99',
+    category: 'desserts'
   }
 ];
 
 const Menu = () => {
   const [filter, setFilter] = useState('all');
+  
+  // Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const filteredItems = filter === 'all' 
     ? menuItems 
@@ -98,7 +136,7 @@ const Menu = () => {
                 className={`filter-button ${filter === 'all' ? 'active' : ''}`}
                 onClick={() => setFilter('all')}
               >
-                All Cakes
+                All Items
               </button>
               <button 
                 className={`filter-button ${filter === 'chocolate' ? 'active' : ''}`}
@@ -124,18 +162,32 @@ const Menu = () => {
               >
                 Specialty
               </button>
+              <button 
+                className={`filter-button ${filter === 'desserts' ? 'active' : ''}`}
+                onClick={() => setFilter('desserts')}
+              >
+                Desserts
+              </button>
+              <button 
+                className={`filter-button ${filter === 'rolls' ? 'active' : ''}`}
+                onClick={() => setFilter('rolls')}
+              >
+                Rolls
+              </button>
             </div>
             
             <div className="menu-grid">
               {filteredItems.map((item) => (
                 <div key={item.id} className="menu-item">
-                  <div className="menu-image-container">
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="menu-image"
-                    />
-                  </div>
+                  <Link to={`/product/${item.id}`} className="menu-image-link">
+                    <div className="menu-image-container">
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="menu-image"
+                      />
+                    </div>
+                  </Link>
                   <div className="menu-details">
                     <h3 className="menu-title">{item.name}</h3>
                     <p className="menu-description">{item.description}</p>

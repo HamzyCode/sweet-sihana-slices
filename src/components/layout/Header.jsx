@@ -1,13 +1,40 @@
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  
+  // Function to check if a path is active
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
+  
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  
+  // Handle anchor link scrolling
+  const handleAnchorClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      // If we're not on the home page, navigate there first
+      sessionStorage.setItem('scrollToElement', targetId);
+      window.location.href = '/#' + targetId;
+    }
   };
   
   return (
@@ -25,23 +52,29 @@ const Header = () => {
           </div>
           
           <nav className="desktop-nav">
-            <Link to="/" className="nav-link">Home</Link>
-            <Link to="/#about" className="nav-link">About</Link>
-            <Link to="/menu" className="nav-link">Menu</Link>
-            <Link to="/gallery" className="nav-link">Gallery</Link>
+            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
+            <a 
+              href="/#about" 
+              className={`nav-link ${location.hash === '#about' ? 'active' : ''}`}
+              onClick={(e) => handleAnchorClick(e, 'about')}
+            >
+              About
+            </a>
+            <Link to="/menu" className={`nav-link ${isActive('/menu') ? 'active' : ''}`}>Menu</Link>
+            <Link to="/gallery" className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}>Gallery</Link>
             
             <div className="dropdown">
-              <button className="dropdown-button">
+              <button className={`dropdown-button ${isActive('/occasions') ? 'active' : ''}`}>
                 Occasions <span className="dropdown-icon">▼</span>
               </button>
               <div className="dropdown-content">
-                <Link to="/occasions/birthday" className="dropdown-item">Birthday</Link>
-                <Link to="/occasions/wedding" className="dropdown-item">Wedding</Link>
-                <Link to="/occasions/anniversary" className="dropdown-item">Anniversary</Link>
+                <Link to="/occasions/birthday" className={`dropdown-item ${isActive('/occasions/birthday') ? 'active' : ''}`}>Birthday</Link>
+                <Link to="/occasions/wedding" className={`dropdown-item ${isActive('/occasions/wedding') ? 'active' : ''}`}>Wedding</Link>
+                <Link to="/occasions/anniversary" className={`dropdown-item ${isActive('/occasions/anniversary') ? 'active' : ''}`}>Anniversary</Link>
               </div>
             </div>
             
-            <Link to="/contact" className="nav-link">Contact</Link>
+            <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
           </nav>
           
           <div className="action-buttons">
@@ -56,14 +89,23 @@ const Header = () => {
         {isMenuOpen && (
           <div className="mobile-menu">
             <nav className="mobile-nav">
-              <Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Home</Link>
-              <Link to="/#about" className="mobile-nav-link" onClick={toggleMenu}>About</Link>
-              <Link to="/menu" className="mobile-nav-link" onClick={toggleMenu}>Menu</Link>
-              <Link to="/gallery" className="mobile-nav-link" onClick={toggleMenu}>Gallery</Link>
-              <Link to="/occasions/birthday" className="mobile-nav-link" onClick={toggleMenu}>Birthday Cakes</Link>
-              <Link to="/occasions/wedding" className="mobile-nav-link" onClick={toggleMenu}>Wedding Cakes</Link>
-              <Link to="/occasions/anniversary" className="mobile-nav-link" onClick={toggleMenu}>Anniversary Cakes</Link>
-              <Link to="/contact" className="mobile-nav-link" onClick={toggleMenu}>Contact</Link>
+              <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} onClick={toggleMenu}>Home</Link>
+              <a 
+                href="/#about" 
+                className={`mobile-nav-link ${location.hash === '#about' ? 'active' : ''}`}
+                onClick={(e) => {
+                  handleAnchorClick(e, 'about');
+                  toggleMenu();
+                }}
+              >
+                About
+              </a>
+              <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>Menu</Link>
+              <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
+              <Link to="/occasions/birthday" className={`mobile-nav-link ${isActive('/occasions/birthday') ? 'active' : ''}`} onClick={toggleMenu}>Birthday Cakes</Link>
+              <Link to="/occasions/wedding" className={`mobile-nav-link ${isActive('/occasions/wedding') ? 'active' : ''}`} onClick={toggleMenu}>Wedding Cakes</Link>
+              <Link to="/occasions/anniversary" className={`mobile-nav-link ${isActive('/occasions/anniversary') ? 'active' : ''}`} onClick={toggleMenu}>Anniversary Cakes</Link>
+              <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
               <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>Order Now</Link>
             </nav>
           </div>
