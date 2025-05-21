@@ -8,7 +8,8 @@ import './Gallery.css';
 
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
-  const categories = ['all', ...getCategories(), ...getOccasions()];
+  // Use only standard occasions: all, birthday, wedding, anniversary, custom
+  const occasions = ['all', 'birthday', 'wedding', 'anniversary', 'custom'];
   
   // Scroll to top on component mount
   useEffect(() => {
@@ -18,8 +19,7 @@ const Gallery = () => {
   const filteredItems = filter === 'all' 
     ? products 
     : products.filter(item => (
-        item.category === filter || 
-        (item.occasions && item.occasions.includes(filter))
+        item.occasions && item.occasions.includes(filter)
     ));
     
   return (
@@ -36,13 +36,13 @@ const Gallery = () => {
             </div>
             
             <div className="gallery-filters">
-              {categories.map((category) => (
+              {occasions.map((occasion) => (
                 <button 
-                  key={category}
-                  className={`filter-button ${filter === category ? 'active' : ''}`}
-                  onClick={() => setFilter(category)}
+                  key={occasion}
+                  className={`filter-button ${filter === occasion ? 'active' : ''}`}
+                  onClick={() => setFilter(occasion)}
                 >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {occasion.charAt(0).toUpperCase() + occasion.slice(1)}
                 </button>
               ))}
             </div>

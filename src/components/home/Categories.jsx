@@ -1,25 +1,34 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { products } from '../../utils/productData.js';
 import './Categories.css';
+
+// Get some of our own cake images for the occasion cards
+const birthdayCake = products.find(p => p.occasions && p.occasions.includes('birthday'));
+const weddingCake = products.find(p => p.occasions && p.occasions.includes('wedding'));
+const anniversaryCake = products.find(p => p.occasions && p.occasions.includes('anniversary'));
 
 const categories = [
   {
     id: 'birthday',
     name: 'Birthday Cakes',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    // Use a fallback image if no birthday cake is found
+    image: birthdayCake ? birthdayCake.image : 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     description: 'Make your special day even more memorable with our beautiful birthday cakes.'
   },
   {
     id: 'wedding',
     name: 'Wedding Cakes',
-    image: 'https://images.unsplash.com/photo-1535254973040-607b474867ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    // Use a fallback image if no wedding cake is found
+    image: weddingCake ? weddingCake.image : 'https://images.unsplash.com/photo-1535254973040-607b474867ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     description: 'Elegant and beautiful wedding cakes to make your big day unforgettable.'
   },
   {
     id: 'anniversary',
     name: 'Anniversary Cakes',
-    image: 'https://images.unsplash.com/photo-1535254973040-607b474867ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    // Use a fallback image if no anniversary cake is found
+    image: anniversaryCake ? anniversaryCake.image : 'https://images.unsplash.com/photo-1535254973040-607b474867ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     description: 'Celebrate your love with our specially designed anniversary cakes.'
   },
   {
