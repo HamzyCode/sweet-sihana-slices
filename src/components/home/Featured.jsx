@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import './Featured.css';
 import { products } from '../../utils/productData.js';
 
-// Select 4 featured products from our product data
-const featuredCakes = products.slice(0, 4).map(product => ({
+// Select 6 featured products from our product data (instead of 4)
+const featuredCakes = products.slice(0, 6).map(product => ({
   id: product.id,
   name: product.name,
   description: product.description,
