@@ -1,82 +1,118 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchProducts } from '../../utils/supabaseClient';
+import { CakeSlice, ChevronRight } from 'lucide-react';
 import './Featured.css';
 
-const featuredCakes = [
-  {
-    id: 1,
-    name: 'Chocolate Deluxe',
-    description: 'Rich chocolate cake with creamy ganache and chocolate shavings.',
-    image: '/assets/images/products/IMG_7210-Photoroom.jpg',
-    category: 'bestseller'
-  },
-  {
-    id: 2,
-    name: 'Strawberry Dream',
-    description: 'Light vanilla sponge with fresh strawberries and cream.',
-    image: 'https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'popular'
-  },
-  {
-    id: 3,
-    name: 'Vanilla Bliss',
-    description: 'Classic vanilla cake with buttercream frosting and sprinkles.',
-    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'new'
-  },
-  {
-    id: 4,
-    name: 'Red Velvet',
-    description: 'Classic red velvet with cream cheese frosting.',
-    image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'popular'
-  }
-];
-
 const Featured = () => {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setLoading(true);
+        const products = await fetchProducts();
+        
+        // Extract unique categories
+        const uniqueCategories = [...new Set(products.map(product => product.category))];
+        setCategories(uniqueCategories);
+        
+        // Set initial products
+        setFeaturedProducts(products);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading products:', error);
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, []);
+
+  // Filter products by category
+  const filteredProducts = activeCategory === 'all' 
+    ? featuredProducts
+    : featuredProducts.filter(product => product.category === activeCategory);
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+  };
+
+  // Get category label for display
+  const getCategoryLabel = (category) => {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  };
+
   return (
-    <section className="featured-section">
+    <section className="featured-section" id="products">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Our Featured Cakes</h2>
+          <h2 className="section-title">Our Delectable Collection</h2>
           <p className="section-description">
-            Discover our most loved and popular cake creations, handcrafted with premium ingredients and a whole lot of love.
+            Discover our handcrafted cakes, each made with premium ingredients and decorated with artistic flair.
           </p>
         </div>
         
-        <div className="cakes-grid">
-          {featuredCakes.map((cake) => (
-            <div key={cake.id} className="cake-card">
-              <div className="cake-image-container">
-                <img 
-                  src={cake.image} 
-                  alt={cake.name}
-                  className="cake-image"
-                />
-                {cake.category && (
-                  <div className={`cake-badge ${cake.category}`}>
-                    {cake.category}
-                  </div>
-                )}
-              </div>
-              <div className="cake-details">
-                <h3 className="cake-title">{cake.name}</h3>
-                <p className="cake-description">{cake.description}</p>
-                <div className="cake-bottom">
-                  <span className="cake-price">{cake.price}</span>
-                  <Link to={`/product/${cake.id}`} className="cake-link">
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            </div>
+        {/* Category filters */}
+        <div className="category-filters">
+          <button 
+            className={`category-filter ${activeCategory === 'all' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('all')}
+          >
+            All Cakes
+          </button>
+          {categories.map((category) => (
+            <button 
+              key={category}
+              className={`category-filter ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => handleCategoryChange(category)}
+            >
+              {getCategoryLabel(category)}
+            </button>
           ))}
         </div>
+        
+        {loading ? (
+          <div className="loading-spinner">
+            <CakeSlice className="animate-spin" size={32} />
+            <p>Loading delicious cakes...</p>
+          </div>
+        ) : (
+          <div className="cakes-grid">
+            {filteredProducts.map((cake) => (
+              <div key={cake.id} className="cake-card">
+                <div className="cake-image-container">
+                  <img 
+                    src={cake.image} 
+                    alt={cake.name}
+                    className="cake-image"
+                  />
+                  <div className={`cake-badge ${cake.category}`}>
+                    {getCategoryLabel(cake.category)}
+                  </div>
+                </div>
+                <div className="cake-details">
+                  <h3 className="cake-title">{cake.name}</h3>
+                  <p className="cake-description">{cake.description}</p>
+                  <div className="cake-bottom">
+                    <Link to={`/product/${cake.id}`} className="cake-link">
+                      View Details
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         
         <div className="section-action">
           <Link to="/menu" className="primary-button">
             View All Cakes
+            <ChevronRight size={18} />
           </Link>
         </div>
       </div>
