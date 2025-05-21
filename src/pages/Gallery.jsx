@@ -8,8 +8,8 @@ import './Gallery.css';
 
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
-  // Use only standard occasions: all, birthday, wedding, anniversary, custom
-  const occasions = ['all', 'birthday', 'wedding', 'anniversary', 'custom'];
+  // Use only standard occasions
+  const occasions = getOccasions();
   
   // Scroll to top on component mount
   useEffect(() => {
