@@ -122,18 +122,13 @@
   opacity: 0.8;
   margin-bottom: 1.25rem;
   font-size: 0.95rem;
+  min-height: 3rem;
 }
 
 .menu-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-}
-
-.menu-price {
-  font-weight: 600;
-  color: #5D3A22;
-  font-size: 1.25rem;
 }
 
 .menu-button {

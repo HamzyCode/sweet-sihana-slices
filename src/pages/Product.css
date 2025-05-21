@@ -55,11 +55,20 @@
   margin-bottom: 0.5rem;
 }
 
-.product-price {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #E58FB8;
+.product-occasions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.product-occasion-tag {
+  background-color: #F9E7B9;
+  color: #5D3A22;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .product-description {
@@ -177,12 +186,6 @@
   margin-bottom: 0.5rem;
 }
 
-.related-details p {
-  font-weight: 600;
-  color: #E58FB8;
-  margin-bottom: 1rem;
-}
-
 .view-button {
   display: inline-block;
   background-color: transparent;
@@ -193,6 +196,7 @@
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.3s;
+  margin-top: 1rem;
 }
 
 .view-button:hover {
