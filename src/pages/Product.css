@@ -10,34 +10,6 @@
   padding: 0 1rem;
 }
 
-.product-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem 0;
-  color: #E58FB8;
-}
-
-.product-loading p {
-  margin-top: 1rem;
-  color: #5D3A22;
-  font-size: 1.1rem;
-}
-
-.animate-spin {
-  animation: spin 1.5s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .product-details {
   display: grid;
   grid-template-columns: 1fr;
@@ -83,33 +55,11 @@
   margin-bottom: 0.5rem;
 }
 
-.product-category-badge {
-  display: inline-block;
-  background-color: #E58FB8;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
+.product-price {
+  font-size: 1.5rem;
   font-weight: 600;
-  text-transform: capitalize;
+  color: #E58FB8;
   margin-bottom: 1rem;
-}
-
-.product-category-badge.chocolate {
-  background-color: #8B4513;
-}
-
-.product-category-badge.fruit {
-  background-color: #FF6B6B;
-}
-
-.product-category-badge.vanilla {
-  background-color: #F9E7B9;
-  color: #5D3A22;
-}
-
-.product-category-badge.specialty {
-  background-color: #E58FB8;
 }
 
 .product-description {
@@ -224,6 +174,12 @@
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   color: #5D3A22;
+  margin-bottom: 0.5rem;
+}
+
+.related-details p {
+  font-weight: 600;
+  color: #E58FB8;
   margin-bottom: 1rem;
 }
 
@@ -257,9 +213,7 @@
 }
 
 .back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-block;
   background-color: #E58FB8;
   color: white;
   padding: 0.75rem 1.5rem;
