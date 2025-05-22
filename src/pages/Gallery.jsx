@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
-import { products, getCategories, getOccasions } from '../utils/productData.js';
+import { products, getFrostingTypes } from '../utils/productData.js';
 import './Gallery.css';
 
 const Gallery = () => {
   const [filter, setFilter] = useState('all');
-  // Use only standard occasions
-  const occasions = getOccasions();
+  // Use frosting types for filters
+  const frostingTypes = ['all', ...getFrostingTypes()];
   
   // Scroll to top on component mount
   useEffect(() => {
@@ -18,9 +18,7 @@ const Gallery = () => {
   
   const filteredItems = filter === 'all' 
     ? products 
-    : products.filter(item => (
-        item.occasions && item.occasions.includes(filter)
-    ));
+    : products.filter(item => item.frostingType === filter);
     
   return (
     <div className="min-h-screen flex flex-col">
@@ -31,18 +29,18 @@ const Gallery = () => {
             <div className="section-header">
               <h1 className="section-title">Our Cake Gallery</h1>
               <p className="section-description">
-                Browse through our delicious creations and get inspired for your next celebration.
+                Browse through our delicious creations by frosting type and get inspired for your next celebration.
               </p>
             </div>
             
             <div className="gallery-filters">
-              {occasions.map((occasion) => (
+              {frostingTypes.map((frostingType) => (
                 <button 
-                  key={occasion}
-                  className={`filter-button ${filter === occasion ? 'active' : ''}`}
-                  onClick={() => setFilter(occasion)}
+                  key={frostingType}
+                  className={`filter-button ${filter === frostingType ? 'active' : ''}`}
+                  onClick={() => setFilter(frostingType)}
                 >
-                  {occasion.charAt(0).toUpperCase() + occasion.slice(1)}
+                  {frostingType === 'all' ? 'All Frosting Types' : frostingType}
                 </button>
               ))}
             </div>
@@ -59,7 +57,7 @@ const Gallery = () => {
                   </div>
                   <div className="gallery-overlay">
                     <h3 className="gallery-title">{item.name}</h3>
-                    <span className="gallery-category">{item.category}</span>
+                    <span className="gallery-category">{item.frostingType}</span>
                   </div>
                 </Link>
               ))}

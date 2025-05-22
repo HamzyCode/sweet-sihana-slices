@@ -1,4 +1,3 @@
-
 // Product data generated from images in assets folder
 export const products = [
   // Original products with minimal data
@@ -7,160 +6,240 @@ export const products = [
     name: "Cake 1",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_7210-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Birthday Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 2,
     name: "Cake 2",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4287-Photoroom.jpg",
-    category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Roll Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Round"
   },
   {
     id: 3,
     name: "Cake 3",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4290-Photoroom.jpg",
-    category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Dubai Chocolate",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 4,
     name: "Cake 4",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4293-Photoroom.jpg",
-    category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Mini Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 5,
     name: "Cake 5",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4296-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Desserts in a Cup",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 6,
     name: "Cake 6",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4302-Photoroom.jpg",
-    category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Classic Desserts",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 7,
     name: "Cake 7",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4317-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Custom Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Heart"
   },
   {
     id: 8,
     name: "Cake 8",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4319-Photoroom.jpg",
-    category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Occasion Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Round"
   },
   {
     id: 9,
     name: "Cake 9",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4403-Photoroom.jpg",
-    category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Fruit Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 10,
     name: "Cake 10",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4528-Photoroom.jpg",
-    category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Birthday Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Custom"
   },
   {
     id: 11,
     name: "Cake 11",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4532-Photoroom.jpg",
-    category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Roll Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Round"
   },
   {
     id: 12,
     name: "Cake 12",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_4560-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Dubai Chocolate",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 13,
     name: "Cake 13",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5627-Photoroom.jpg",
-    category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Mini Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Heart"
   },
   {
     id: 14,
     name: "Cake 14",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5283-Photoroom.jpg",
-    category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Desserts in a Cup",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 15,
     name: "Cake 15",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5170-Photoroom.jpg",
-    category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Classic Desserts",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Square"
   },
   {
     id: 16,
     name: "Cake 16",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5351-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Custom Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Round"
   },
   {
     id: 17,
     name: "Cake 17",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5249-Photoroom.jpg",
-    category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Occasion Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Heart"
   },
   {
     id: 18,
     name: "Cake 18",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5795-Photoroom.jpg",
-    category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Fruit Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Square"
   },
   {
     id: 19,
     name: "Cake 19",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5793-Photoroom.jpg",
-    category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Birthday Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Round"
   },
   {
     id: 20,
     name: "Cake 20",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_6018-Photoroom.jpg",
-    category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    category: "Roll Cakes",
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 21,
@@ -168,7 +247,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5290-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 22,
@@ -176,7 +259,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5461-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Square"
   },
   {
     id: 23,
@@ -184,7 +271,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5177-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Heart"
   },
   {
     id: 24,
@@ -192,7 +283,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5854-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 25,
@@ -200,7 +295,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5458-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 26,
@@ -208,7 +307,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_6562-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 27,
@@ -216,7 +319,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5895-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 28,
@@ -224,7 +331,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5515-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 29,
@@ -232,7 +343,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5497-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 30,
@@ -240,16 +355,23 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_5997-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Additional products with minimal data
   {
     id: 31,
     name: "Cake 31",
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1842-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Square"
   },
   {
     id: 32,
@@ -257,7 +379,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1861-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Heart"
   },
   {
     id: 33,
@@ -265,7 +391,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1863-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 34,
@@ -273,7 +403,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1879-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 35,
@@ -281,7 +415,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1884-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 36,
@@ -289,7 +427,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1894-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 37,
@@ -297,7 +439,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1901-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 38,
@@ -305,7 +451,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1906-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 39,
@@ -313,7 +463,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1911-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 40,
@@ -321,7 +475,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1925-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 41,
@@ -329,7 +487,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1945-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 42,
@@ -337,7 +499,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1949-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 43,
@@ -345,7 +511,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1954-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 44,
@@ -353,7 +523,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1956-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 45,
@@ -361,7 +535,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1958-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 46,
@@ -369,7 +547,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1991-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 47,
@@ -377,7 +559,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_1992-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 48,
@@ -385,7 +571,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2015-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 49,
@@ -393,7 +583,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2029-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 50,
@@ -401,7 +595,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2034-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 51,
@@ -409,7 +607,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2055-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 52,
@@ -417,7 +619,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2056-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 53,
@@ -425,7 +631,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2058-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 54,
@@ -433,7 +643,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2071-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 55,
@@ -441,7 +655,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2075-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 56,
@@ -449,7 +667,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2086-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 57,
@@ -457,7 +679,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2089-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 58,
@@ -465,7 +691,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2091-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 59,
@@ -473,7 +703,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2092-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 60,
@@ -481,7 +715,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2094-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 61,
@@ -489,7 +727,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2095-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 62,
@@ -497,7 +739,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2096-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 63,
@@ -505,7 +751,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2101-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 64,
@@ -513,7 +763,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2106-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 65,
@@ -521,7 +775,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2115-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 66,
@@ -529,7 +787,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2116-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 67,
@@ -537,7 +799,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2128-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 68,
@@ -545,7 +811,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2131-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 69,
@@ -553,7 +823,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2151-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 70,
@@ -561,7 +835,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2156-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 71,
@@ -569,7 +847,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2157-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 72,
@@ -577,7 +859,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2159-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 73,
@@ -585,7 +871,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2160-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 74,
@@ -593,7 +883,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2182-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 75,
@@ -601,7 +895,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2186-Photoroom.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 76,
@@ -609,7 +907,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2191-Photoroom.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 77,
@@ -617,7 +919,11 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2194-Photoroom.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 78,
@@ -625,734 +931,1079 @@ export const products = [
     description: "Delicious cake",
     image: "/assets/images/products/IMG_2204-Photoroom.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 79,
     name: "Cake 79",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2210-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2210.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 80,
     name: "Cake 80",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2219-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2219.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 81,
     name: "Cake 81",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2222-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2222.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 82,
     name: "Cake 82",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2224-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2224.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 83,
     name: "Cake 83",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2225-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2225.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 84,
     name: "Cake 84",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2226-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2226.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 85,
     name: "Cake 85",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2227-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2227.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 86,
     name: "Cake 86",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2228-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2228.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 87,
     name: "Cake 87",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2240-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2240.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 88,
     name: "Cake 88",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2241-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2241.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 89,
     name: "Cake 89",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2255-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2255.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 90,
     name: "Cake 90",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2279-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2279.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 91,
     name: "Cake 91",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_2281-Photoroom.jpg",
+    image: "/assets/images/products/IMG_2281.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 92,
     name: "Cake 92",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3927-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3927.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 93,
     name: "Cake 93",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3928-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3928.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 94,
     name: "Cake 94",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3929-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3929.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 95,
     name: "Cake 95",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3930-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3930.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 96,
     name: "Cake 96",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3949-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3949.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 97,
     name: "Cake 97",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3962-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3962.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 98,
     name: "Cake 98",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3965-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3965.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 99,
     name: "Cake 99",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3980-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3980.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 100,
     name: "Cake 100",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_3990-Photoroom.jpg",
+    image: "/assets/images/products/IMG_3990.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
-  // Additional products with minimal data - continuing to 500 (showing more examples)
   {
     id: 101,
     name: "Cake 101",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4561-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4561.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 102,
     name: "Cake 102",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4570-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4570.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 103,
     name: "Cake 103",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4571-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4571.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 104,
     name: "Cake 104",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4588-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4588.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 105,
     name: "Cake 105",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4589-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4589.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Continuing with more products
   {
     id: 106,
     name: "Cake 106",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4598-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4598.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 107,
     name: "Cake 107",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4602-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4602.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 108,
     name: "Cake 108",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4603-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4603.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 109,
     name: "Cake 109",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4604-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4604.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 110,
     name: "Cake 110",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4638-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4638.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
-  // Continuing with more products to reach 500
-  // The pattern continues with more products
   {
     id: 111,
     name: "Cake 111",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4642-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4642.jpg",
     category: "chocolate", 
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Continue with products 112-500 following the same pattern
   {
     id: 112,
     name: "Cake 112",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4658-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4658.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 113,
     name: "Cake 113",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4662-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4662.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 114,
     name: "Cake 114",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4695-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4695.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 115,
     name: "Cake 115",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4701-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4701.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 116,
     name: "Cake 116",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4703-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4703.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 117,
     name: "Cake 117",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4705-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4705.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 118,
     name: "Cake 118",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4712-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4712.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 119,
     name: "Cake 119",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4721-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4721.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 120,
     name: "Cake 120",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4729-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4729.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Continuing with more products
   {
     id: 121,
     name: "Cake 121",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4743-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4743.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 122,
     name: "Cake 122",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4753-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4753.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 123,
     name: "Cake 123",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4754-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4754.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 124,
     name: "Cake 124",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4756-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4756.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 125,
     name: "Cake 125",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4757-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4757.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
-  // Continue pattern for cakes 126-500
   {
     id: 126,
     name: "Cake 126",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4770-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4770.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 127,
     name: "Cake 127",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4783-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4783.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 128,
     name: "Cake 128",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4784-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4784.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 129,
     name: "Cake 129",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4785-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4785.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 130,
     name: "Cake 130",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4802-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4802.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
-  // Continue with more products (showing selections to reach 500)
   {
     id: 131,
     name: "Cake 131",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4804-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4804.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 132,
     name: "Cake 132",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4805-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4805.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 133,
     name: "Cake 133",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4818-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4818.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 134,
     name: "Cake 134",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4820-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4820.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 135,
     name: "Cake 135",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4822-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4822.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Continuing with more products
   {
     id: 136,
     name: "Cake 136",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4823-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4823.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 137,
     name: "Cake 137",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4835-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4835.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 138,
     name: "Cake 138",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4836-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4836.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 139,
     name: "Cake 139",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4841-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4841.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 140,
     name: "Cake 140",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4851-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4851.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
-  // More products
   {
     id: 141,
     name: "Cake 141",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4867-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4867.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 142,
     name: "Cake 142",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4873-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4873.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 143,
     name: "Cake 143",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4898-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4898.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 144,
     name: "Cake 144",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4901-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4901.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 145,
     name: "Cake 145",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4907-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4907.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
-  // Continuing with more products
   {
     id: 146,
     name: "Cake 146",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4910-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4910.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 147,
     name: "Cake 147",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4924-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4924.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 148,
     name: "Cake 148",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4940-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4940.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 149,
     name: "Cake 149",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4942-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4942.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 150,
     name: "Cake 150",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4955-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4955.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
-  // Continuing with many more products in the same pattern 
-  // to reach 500 total products
-  // (showing selections of products)
   {
     id: 151,
     name: "Cake 151",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_4962-Photoroom.jpg",
+    image: "/assets/images/products/IMG_4962.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
-  // More products continuing pattern (showing selections)
   {
     id: 200,
     name: "Cake 200",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5129-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5129.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 250,
     name: "Cake 250",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5254-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5254.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 300,
     name: "Cake 300",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5308-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5308.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 350,
     name: "Cake 350",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5398-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5398.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 400,
     name: "Cake 400",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5552-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5552.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 450,
     name: "Cake 450",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_5873-Photoroom.jpg",
+    image: "/assets/images/products/IMG_5873.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 475,
     name: "Cake 475",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6432-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6432.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 480,
     name: "Cake 480",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6570-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6570.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 485,
     name: "Cake 485",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6673-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6673.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 490,
     name: "Cake 490",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6726-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6726.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 495,
     name: "Cake 495",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6777-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6777.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 496,
     name: "Cake 496",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6807-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6807.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 497,
     name: "Cake 497",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6843-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6843.jpg",
     category: "vanilla",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   },
   {
     id: 498,
     name: "Cake 498",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_6868-Photoroom.jpg",
+    image: "/assets/images/products/IMG_6868.jpg",
     category: "fruit",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Buttercream",
+    cakeShape: "Round"
   },
   {
     id: 499,
     name: "Cake 499",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_7017-Photoroom.jpg",
+    image: "/assets/images/products/IMG_7017.jpg",
     category: "specialty",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Whipped Cream",
+    cakeShape: "Custom"
   },
   {
     id: 500,
     name: "Cake 500",
     description: "Delicious cake",
-    image: "/assets/images/products/IMG_7173-Photoroom.jpg",
+    image: "/assets/images/products/IMG_7173.jpg",
     category: "chocolate",
-    occasions: ["all", "birthday", "wedding", "anniversary", "custom"]
+    occasions: ["all", "birthday", "wedding", "anniversary", "custom"],
+    longDescription: "",
+    ingredients: [],
+    frostingType: "Fondant",
+    cakeShape: "Square"
   }
 ];
 
@@ -1370,7 +2021,7 @@ export const getProductById = (id) => {
 };
 
 // Function to get related products (same category, excluding current product)
-export const getRelatedProducts = (productId, categoryFilter) => {
+export const getRelatedProducts = (productId) => {
   const currentProduct = getProductById(productId);
   
   if (!currentProduct) return [];
@@ -1382,12 +2033,63 @@ export const getRelatedProducts = (productId, categoryFilter) => {
 
 // Get unique categories for filter buttons
 export const getCategories = () => {
-  const categories = new Set(products.map(product => product.category));
-  return Array.from(categories);
+  const categories = [
+    'Birthday Cakes',
+    'Roll Cakes',
+    'Dubai Chocolate',
+    'Mini Cakes',
+    'Desserts in a Cup',
+    'Classic Desserts',
+    'Custom Cakes',
+    'Occasion Cakes',
+    'Fruit Cakes'
+  ];
+  return categories;
+};
+
+// Get unique cake shapes for filter buttons
+export const getCakeShapes = () => {
+  const shapes = ['Round', 'Square', 'Heart', 'Custom'];
+  return shapes;
+};
+
+// Get unique frosting types for filter buttons
+export const getFrostingTypes = () => {
+  const frostingTypes = ['Fondant', 'Whipped Cream', 'Buttercream'];
+  return frostingTypes;
 };
 
 // Get unique occasions
 export const getOccasions = () => {
   const occasions = ['all', 'birthday', 'wedding', 'anniversary', 'custom'];
   return occasions;
+};
+
+// Get products by frosting type
+export const getProductsByFrostingType = (frostingType) => {
+  return frostingType === 'all' 
+    ? products 
+    : products.filter(product => product.frostingType === frostingType);
+};
+
+// Get products by cake shape
+export const getProductsByShape = (shape) => {
+  return shape === 'all' 
+    ? products 
+    : products.filter(product => product.cakeShape === shape);
+};
+
+// Function to get products by both category and shape
+export const getProductsByCategoryAndShape = (category, shape) => {
+  let filteredProducts = products;
+  
+  if (category !== 'all') {
+    filteredProducts = filteredProducts.filter(product => product.category === category);
+  }
+  
+  if (shape !== 'all') {
+    filteredProducts = filteredProducts.filter(product => product.cakeShape === shape);
+  }
+  
+  return filteredProducts;
 };

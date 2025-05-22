@@ -3,24 +3,33 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
-import { getProductsByCategory, getCategories } from '../utils/productData.js';
+import { getProductsByCategoryAndShape, getCategories, getCakeShapes } from '../utils/productData.js';
 import './Menu.css';
 
 const Menu = () => {
-  const [filter, setFilter] = useState('all');
+  const [showFilters, setShowFilters] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [shapeFilter, setShapeFilter] = useState('all');
   const [filteredItems, setFilteredItems] = useState([]);
-  const categories = ['all', ...getCategories()];
   
-  // Set filtered items when filter changes
+  const categories = ['all', ...getCategories()];
+  const cakeShapes = ['all', ...getCakeShapes()];
+  
+  // Update filtered items when filters change
   useEffect(() => {
-    setFilteredItems(getProductsByCategory(filter));
-  }, [filter]);
+    setFilteredItems(getProductsByCategoryAndShape(categoryFilter, shapeFilter));
+  }, [categoryFilter, shapeFilter]);
   
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-    
+  
+  // Toggle filter visibility
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -34,16 +43,47 @@ const Menu = () => {
               </p>
             </div>
             
-            <div className="menu-filters">
-              {categories.map((category) => (
-                <button 
-                  key={category}
-                  className={`filter-button ${filter === category ? 'active' : ''}`}
-                  onClick={() => setFilter(category)}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
+            <div className="menu-filter-container">
+              <button 
+                className="filter-toggle-button"
+                onClick={toggleFilters}
+              >
+                {showFilters ? 'Hide Filters' : 'Select Category'}
+              </button>
+              
+              {showFilters && (
+                <div className="filter-panels">
+                  <div className="category-filters">
+                    <h3 className="filter-heading">Categories</h3>
+                    <div className="menu-filters">
+                      {categories.map((category) => (
+                        <button 
+                          key={category}
+                          className={`filter-button ${categoryFilter === category ? 'active' : ''}`}
+                          onClick={() => setCategoryFilter(category)}
+                        >
+                          {category === 'all' ? 'All Categories' : category}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="shape-filters">
+                    <h3 className="filter-heading">Cake Shape</h3>
+                    <div className="menu-filters">
+                      {cakeShapes.map((shape) => (
+                        <button 
+                          key={shape}
+                          className={`filter-button ${shapeFilter === shape ? 'active' : ''}`}
+                          onClick={() => setShapeFilter(shape)}
+                        >
+                          {shape === 'all' ? 'All Shapes' : shape}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
             <div className="menu-grid">
@@ -70,6 +110,21 @@ const Menu = () => {
                 </div>
               ))}
             </div>
+            
+            {filteredItems.length === 0 && (
+              <div className="no-products">
+                <p>No products found matching your selected filters.</p>
+                <button 
+                  className="reset-filters-button"
+                  onClick={() => {
+                    setCategoryFilter('all');
+                    setShapeFilter('all');
+                  }}
+                >
+                  Reset Filters
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>

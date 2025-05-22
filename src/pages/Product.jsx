@@ -79,16 +79,29 @@ const Product = () => {
                   ))}
                 </div>
                 <div className="product-description">
-                  <p>{product.longDescription}</p>
+                  <p>{product.description}</p>
                 </div>
                 
+                {/* Long Description Section */}
+                {product.longDescription && (
+                  <div className="product-long-description">
+                    <h3>About this Cake</h3>
+                    <p>{product.longDescription}</p>
+                  </div>
+                )}
+                
+                {/* Ingredients Section */}
                 <div className="product-ingredients">
                   <h3>Ingredients:</h3>
-                  <ul>
-                    {product.ingredients && product.ingredients.map((ingredient, index) => (
-                      <li key={index}>{ingredient}</li>
-                    ))}
-                  </ul>
+                  {product.ingredients && product.ingredients.length > 0 ? (
+                    <ul>
+                      {product.ingredients.map((ingredient, index) => (
+                        <li key={index}>{ingredient}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="no-ingredients">Information coming soon.</p>
+                  )}
                 </div>
                 
                 <button onClick={handleOrderClick} className="order-button">
