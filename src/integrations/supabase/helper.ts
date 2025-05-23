@@ -4,11 +4,12 @@ import { supabase } from "./client";
 // Function to check if a user has admin role
 export const checkIsAdmin = async (userId: string): Promise<boolean> => {
   try {
+    // Using maybeSingle to avoid errors when no profile is found
     const { data, error } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', userId)
-      .single();
+      .maybeSingle();
     
     if (error) {
       console.error('Error checking admin status:', error);
@@ -25,11 +26,11 @@ export const checkIsAdmin = async (userId: string): Promise<boolean> => {
 // Function to set admin role for a specific email
 export const setAdminForEmail = async (email: string): Promise<boolean> => {
   try {
-    const { data, error } = await supabase
+    // Using an update query with proper typing
+    const { error } = await supabase
       .from('profiles')
       .update({ role: 'admin' })
-      .eq('email', email)
-      .select();
+      .eq('email', email);
     
     if (error) {
       console.error('Error setting admin role:', error);
