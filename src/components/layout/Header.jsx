@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -36,7 +38,7 @@ const Header = () => {
       window.location.href = '/#' + targetId;
     }
   };
-  
+
   return (
     <header className="header">
       <div className="container">
@@ -78,6 +80,27 @@ const Header = () => {
           </nav>
           
           <div className="action-buttons">
+            {user ? (
+              <div className="user-menu-container">
+                <div className="dropdown">
+                  <button className="dropdown-button user-button">
+                    Account <span className="dropdown-icon">▼</span>
+                  </button>
+                  <div className="dropdown-content user-dropdown">
+                    {isAdmin && (
+                      <Link to="/admin" className="dropdown-item">
+                        Admin Dashboard
+                      </Link>
+                    )}
+                    <button onClick={signOut} className="dropdown-item sign-out">
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link to="/login" className="login-button">Sign In</Link>
+            )}
             <Link to="/contact" className="order-button">Order Now</Link>
           </div>
           
@@ -106,6 +129,24 @@ const Header = () => {
               <Link to="/occasions/wedding" className={`mobile-nav-link ${isActive('/occasions/wedding') ? 'active' : ''}`} onClick={toggleMenu}>Wedding Cakes</Link>
               <Link to="/occasions/anniversary" className={`mobile-nav-link ${isActive('/occasions/anniversary') ? 'active' : ''}`} onClick={toggleMenu}>Anniversary Cakes</Link>
               <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
+              
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Link to="/admin" className="mobile-nav-link" onClick={toggleMenu}>
+                      Admin Dashboard
+                    </Link>
+                  )}
+                  <button onClick={signOut} className="mobile-nav-link sign-out-mobile">
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <Link to="/login" className="mobile-nav-link" onClick={toggleMenu}>
+                  Sign In
+                </Link>
+              )}
+              
               <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>Order Now</Link>
             </nav>
           </div>
