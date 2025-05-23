@@ -1,6 +1,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { supabase } from '../integrations/supabase/client';
+import { checkIsAdmin, setAdminForEmail } from '../integrations/supabase/helper';
 
 const AuthContext = createContext();
 
@@ -13,15 +14,20 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     // Set up the auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, currentSession) => {
+      async (event, currentSession) => {
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
         
         if (currentSession?.user) {
           // Check if user is admin
-          setTimeout(() => {
-            checkUserRole(currentSession.user.id);
-          }, 0);
+          const adminStatus = await checkIsAdmin(currentSession.user.id);
+          setIsAdmin(adminStatus);
+          
+          // If this is the specific admin email, ensure admin role
+          if (currentSession.user.email === 'hamzaademi460@gmail.com') {
+            await setAdminForEmail('hamzaademi460@gmail.com');
+            setIsAdmin(true);
+          }
         } else {
           setIsAdmin(false);
         }
@@ -29,38 +35,25 @@ export function AuthProvider({ children }) {
     );
 
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+    supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
       
       if (currentSession?.user) {
-        checkUserRole(currentSession.user.id);
+        const adminStatus = await checkIsAdmin(currentSession.user.id);
+        setIsAdmin(adminStatus);
+        
+        // If this is the specific admin email, ensure admin role
+        if (currentSession.user.email === 'hamzaademi460@gmail.com') {
+          await setAdminForEmail('hamzaademi460@gmail.com');
+          setIsAdmin(true);
+        }
       }
       setLoading(false);
     });
 
     return () => subscription.unsubscribe();
   }, []);
-
-  const checkUserRole = async (userId) => {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', userId)
-        .single();
-
-      if (error) {
-        console.error('Error fetching user role:', error);
-        setIsAdmin(false);
-      } else {
-        setIsAdmin(data.role === 'admin');
-      }
-    } catch (error) {
-      console.error('Error checking user role:', error);
-      setIsAdmin(false);
-    }
-  };
 
   const signInWithGoogle = async () => {
     try {
@@ -76,6 +69,42 @@ export function AuthProvider({ children }) {
       }
     } catch (error) {
       console.error('Unexpected error during Google sign-in:', error);
+    }
+  };
+
+  const signInWithEmail = async (email, password) => {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      
+      if (error) {
+        throw error;
+      }
+      
+      return { data, error: null };
+    } catch (error) {
+      console.error('Error signing in with email:', error);
+      return { data: null, error };
+    }
+  };
+
+  const signUpWithEmail = async (email, password) => {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      
+      if (error) {
+        throw error;
+      }
+      
+      return { data, error: null };
+    } catch (error) {
+      console.error('Error signing up with email:', error);
+      return { data: null, error };
     }
   };
 
@@ -96,6 +125,8 @@ export function AuthProvider({ children }) {
     isAdmin,
     loading,
     signInWithGoogle,
+    signInWithEmail,
+    signUpWithEmail,
     signOut,
   };
 

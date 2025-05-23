@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './CallToAction.css';
 
 const CallToAction = () => {
+  const { user } = useAuth();
+  
   return (
     <section className="cta-section">
       <div className="cta-background"></div>
@@ -11,16 +14,26 @@ const CallToAction = () => {
       <div className="container">
         <div className="cta-content">
           <h2 className="cta-title">
-            Ready to Order Your Perfect Cake?
+            {user ? "Ready to Order Your Perfect Cake?" : "Join Our Sweet Community"}
           </h2>
           <p className="cta-description">
-            Whether you're celebrating a birthday, wedding, or special occasion, we're here to create the perfect cake for your memorable moments.
+            {user 
+              ? "Whether you're celebrating a birthday, wedding, or special occasion, we're here to create the perfect cake for your memorable moments."
+              : "Sign in to explore our full collection, save your favorite designs, and place custom orders for your special occasions."
+            }
           </p>
           <div className="cta-buttons">
-            <Link to="/contact" className="cta-primary-button">
-              Order Now
-              <ArrowRightIcon />
-            </Link>
+            {user ? (
+              <Link to="/contact" className="cta-primary-button">
+                Contact Us
+                <ArrowRightIcon />
+              </Link>
+            ) : (
+              <Link to="/login" className="cta-primary-button">
+                Sign In
+                <ArrowRightIcon />
+              </Link>
+            )}
           </div>
         </div>
       </div>
