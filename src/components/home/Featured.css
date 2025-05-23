@@ -77,7 +77,7 @@
 
 .cake-image-container {
   position: relative;
-  height: 200px; /* Reduced height */
+  height: 250px; /* Reduced height */
   overflow: hidden;
   background-color: white; /* Ensures white background */
   display: flex;
@@ -86,7 +86,7 @@
 }
 
 .cake-image {
-  max-width: 100%;
+  max-width: 75%;
   max-height: 100%; /* Ensures image fits within container */
   object-fit: contain; /* Changed to contain to show full cake */
   transition: transform 0.5s;
