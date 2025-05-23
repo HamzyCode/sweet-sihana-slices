@@ -1,5 +1,6 @@
 
 import { supabase } from "./client";
+import { Database } from "./types";
 
 // Function to check if a user has admin role
 export const checkIsAdmin = async (userId: string): Promise<boolean> => {
