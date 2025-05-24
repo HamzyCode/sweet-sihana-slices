@@ -1,4 +1,5 @@
 
+
 // Mock product data with categories and shapes
 const products = [
   // Birthday Cakes
@@ -147,6 +148,17 @@ export const getProductsByCategoryAndShape = (category, shape) => {
   return filtered;
 };
 
+export const getRelatedProducts = (productId) => {
+  const currentProduct = getProductById(productId);
+  if (!currentProduct) return [];
+  
+  // Find products in the same category, excluding the current product
+  return products.filter(product => 
+    product.category === currentProduct.category && 
+    product.id !== parseInt(productId)
+  ).slice(0, 3); // Limit to 3 related products
+};
+
 export const getCategories = () => {
   const categories = [...new Set(products.map(product => product.category))];
   return categories;
@@ -164,3 +176,4 @@ export const getFrostingTypes = () => {
 
 // For backwards compatibility, export products as default
 export { products };
+
