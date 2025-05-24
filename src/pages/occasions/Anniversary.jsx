@@ -3,33 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/layout/Header.jsx';
 import Footer from '../../components/layout/Footer.jsx';
+import { getProductsByOccasion } from '../../utils/productData.js';
 import '../Occasion.css';
 
-const anniversaryCakes = [
-  {
-    id: 4,
-    name: 'Red Velvet',
-    description: 'Classic red velvet with cream cheese frosting.',
-    image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$33.99',
-  },
-  {
-    id: 7,
-    name: 'Black Forest',
-    description: 'Chocolate cake with cherries, whipped cream, and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$36.99',
-  },
-  {
-    id: 8,
-    name: 'Tiramisu Cake',
-    description: 'Coffee-soaked layers with mascarpone cream and cocoa.',
-    image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$38.99',
-  }
-];
-
 const Anniversary = () => {
+  const anniversaryCakes = getProductsByOccasion('anniversary');
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -62,7 +41,6 @@ const Anniversary = () => {
                     <h3 className="cake-title">{cake.name}</h3>
                     <p className="cake-description">{cake.description}</p>
                     <div className="cake-bottom">
-                      <span className="cake-price">{cake.price}</span>
                       <Link to={`/product/${cake.id}`} className="cake-link">
                         View Details
                       </Link>

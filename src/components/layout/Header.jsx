@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -99,14 +98,10 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="sign-in-button">Sign In</Link>
+              <Link to="/login" className="order-button">Login</Link>
             )}
             
-            {user ? (
-              <Link to="/contact" className="order-button">Contact Us</Link>
-            ) : (
-              <Link to="/contact" className="order-button">Order Now</Link>
-            )}
+            <Link to="/contact" className="order-button">Order Now</Link>
           </div>
           
           <button className="menu-button" onClick={toggleMenu}>
@@ -148,12 +143,12 @@ const Header = () => {
                 </>
               ) : (
                 <Link to="/login" className="mobile-nav-link" onClick={toggleMenu}>
-                  Sign In
+                  Login
                 </Link>
               )}
               
               <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>
-                {user ? 'Contact Us' : 'Order Now'}
+                Order Now
               </Link>
             </nav>
           </div>

@@ -80,7 +80,7 @@ const Login = () => {
     <AuthLayout 
       title={authMode === 'login' ? "Welcome Back" : "Create Account"}
       subtitle={authMode === 'login' 
-        ? "Sign in to your account to continue" 
+        ? "Login to your account to continue" 
         : "Create a new account to get started"
       }
     >
@@ -89,7 +89,7 @@ const Login = () => {
           className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
           onClick={() => switchMode('login')}
         >
-          Sign In
+          Login
         </button>
         <button 
           className={`auth-tab ${authMode === 'signup' ? 'active' : ''}`}
@@ -148,7 +148,7 @@ const Login = () => {
           className="auth-btn"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Processing...' : authMode === 'login' ? 'Sign In' : 'Sign Up'}
+          {isSubmitting ? 'Processing...' : authMode === 'login' ? 'Login' : 'Sign Up'}
         </button>
       </form>
 
@@ -166,7 +166,7 @@ const Login = () => {
           alt="Google logo" 
           className="google-logo"
         />
-        Sign in with Google
+        Login with Google
       </button>
     </AuthLayout>
   );

@@ -3,40 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/layout/Header.jsx';
 import Footer from '../../components/layout/Footer.jsx';
+import { getProductsByOccasion } from '../../utils/productData.js';
 import '../Occasion.css';
 
-const birthdayCakes = [
-  {
-    id: 1,
-    name: 'Chocolate Delight',
-    description: 'Rich chocolate cake with creamy ganache and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$35.99',
-  },
-  {
-    id: 3,
-    name: 'Vanilla Bliss',
-    description: 'Classic vanilla cake with buttercream frosting and sprinkles.',
-    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$29.99',
-  },
-  {
-    id: 4,
-    name: 'Red Velvet',
-    description: 'Classic red velvet with cream cheese frosting.',
-    image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$33.99',
-  },
-  {
-    id: 6,
-    name: 'Lemon Blueberry',
-    description: 'Tangy lemon cake with fresh blueberries and lemon glaze.',
-    image: 'https://images.unsplash.com/photo-1519915745176-7a5064701189?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    price: '$34.99',
-  }
-];
-
 const Birthday = () => {
+  const birthdayCakes = getProductsByOccasion('birthday');
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -69,7 +41,6 @@ const Birthday = () => {
                     <h3 className="cake-title">{cake.name}</h3>
                     <p className="cake-description">{cake.description}</p>
                     <div className="cake-bottom">
-                      <span className="cake-price">{cake.price}</span>
                       <Link to={`/product/${cake.id}`} className="cake-link">
                         View Details
                       </Link>
