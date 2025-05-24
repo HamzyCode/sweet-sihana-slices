@@ -66,11 +66,9 @@ export function AuthProvider({ children }) {
       
       if (error) {
         console.error('Error signing in with Google:', error);
-        throw error;
       }
     } catch (error) {
       console.error('Unexpected error during Google sign-in:', error);
-      throw error;
     }
   };
 
@@ -110,50 +108,14 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const resetPassword = async (email) => {
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      return { error: null };
-    } catch (error) {
-      console.error('Error sending password reset email:', error);
-      return { error };
-    }
-  };
-
-  const updatePassword = async (newPassword) => {
-    try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      return { error: null };
-    } catch (error) {
-      console.error('Error updating password:', error);
-      return { error };
-    }
-  };
-
   const signOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Error signing out:', error);
-        throw error;
       }
     } catch (error) {
       console.error('Unexpected error during sign-out:', error);
-      throw error;
     }
   };
 
@@ -165,8 +127,6 @@ export function AuthProvider({ children }) {
     signInWithGoogle,
     signInWithEmail,
     signUpWithEmail,
-    resetPassword,
-    updatePassword,
     signOut,
   };
 
