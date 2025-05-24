@@ -2,9 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Featured.css';
-import { products } from '../../utils/productData.js';
+import { getAllProducts } from '../../utils/productData.js';
 
 // Select 6 featured products from our product data (instead of 4)
+const products = getAllProducts();
 const featuredCakes = products.slice(0, 6).map(product => ({
   id: product.id,
   name: product.name,
