@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
+import { supabase } from '../integrations/supabase/client';
 import './Contact.css';
 
 const Contact = () => {
@@ -10,141 +11,72 @@ const Contact = () => {
     email: '',
     phone: '',
     message: '',
-    occasion: 'general',
-    language: 'en', // Default language
+    eventDate: '',
+    eventType: '',
+    servings: ''
   });
-  
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false,
-    message: '',
-  });
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  // If product was selected from another page
+  // Check for selected product from session storage
   useEffect(() => {
-    const selectedProduct = sessionStorage.getItem('selectedProduct');
-    if (selectedProduct) {
-      try {
-        const product = JSON.parse(selectedProduct);
-        setFormData(prevState => ({
-          ...prevState,
-          message: `I am interested in ordering: ${product.name}\n\n${prevState.message}`
-        }));
-        // Clear the session storage after using it
-        sessionStorage.removeItem('selectedProduct');
-      } catch (e) {
-        console.error("Error parsing selected product:", e);
-      }
+    const productData = sessionStorage.getItem('selectedProduct');
+    if (productData) {
+      const product = JSON.parse(productData);
+      setSelectedProduct(product);
+      setFormData(prev => ({
+        ...prev,
+        message: `I'm interested in ordering the ${product.name}. `
+      }));
+      // Clear the session storage
+      sessionStorage.removeItem('selectedProduct');
     }
   }, []);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Please fill out all required fields.'
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          ...formData,
+          selectedProduct
+        }
       });
-      return;
-    }
-    
-    // Form submission logic would go here
-    // In a real implementation, this would use EmailJS or another service
-    
-    console.log('Form submitted:', formData);
-    
-    // Simulate successful form submission
-    setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Thank you for your message! We will get back to you soon.'
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      occasion: 'general',
-      language: formData.language, // Keep the selected language
-    });
-  };
 
-  // Content translations
-  const translations = {
-    en: {
-      title: 'Contact Us',
-      subtitle: 'Have a question or want to order a custom cake? Get in touch with us!',
-      visitUs: 'Visit Us',
-      callUs: 'Call Us',
-      emailUs: 'Email Us',
-      sendMessage: 'Send us a Message',
-      namePlaceholder: 'Name *',
-      emailPlaceholder: 'Email *',
-      phonePlaceholder: 'Phone Number',
-      occasionPlaceholder: 'Occasion',
-      messagePlaceholder: 'Message *',
-      submit: 'Send Message',
-      generalInquiry: 'General Inquiry',
-      birthdayCake: 'Birthday Cake',
-      weddingCake: 'Wedding Cake',
-      anniversaryCake: 'Anniversary Cake',
-      other: 'Other',
-    },
-    sq: {
-      title: 'Na Kontaktoni',
-      subtitle: 'Keni ndonjë pyetje apo dëshironi të porositni një tortë? Na kontaktoni!',
-      visitUs: 'Na Vizitoni',
-      callUs: 'Na Telefononi',
-      emailUs: 'Na Shkruani',
-      sendMessage: 'Na Dërgoni një Mesazh',
-      namePlaceholder: 'Emri *',
-      emailPlaceholder: 'Email *',
-      phonePlaceholder: 'Numri i Telefonit',
-      occasionPlaceholder: 'Rasti',
-      messagePlaceholder: 'Mesazhi *',
-      submit: 'Dërgo Mesazhin',
-      generalInquiry: 'Pyetje e Përgjithshme',
-      birthdayCake: 'Tortë Ditëlindjeje',
-      weddingCake: 'Tortë Dasme',
-      anniversaryCake: 'Tortë Përvjetori',
-      other: 'Tjetër',
-    },
-    mk: {
-      title: 'Контактирајте нè',
-      subtitle: 'Имате прашање или сакате да нарачате торта? Контактирајте нè!',
-      visitUs: 'Посетете нè',
-      callUs: 'Јавете ни се',
-      emailUs: 'Пишете ни',
-      sendMessage: 'Испратете ни порака',
-      namePlaceholder: 'Име *',
-      emailPlaceholder: 'Емаил *',
-      phonePlaceholder: 'Телефонски број',
-      occasionPlaceholder: 'Повод',
-      messagePlaceholder: 'Порака *',
-      submit: 'Испрати порака',
-      generalInquiry: 'Општо прашање',
-      birthdayCake: 'Роденденска торта',
-      weddingCake: 'Свадбена торта',
-      anniversaryCake: 'Торта за годишнина',
-      other: 'Друго',
+      if (error) {
+        throw error;
+      }
+
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        eventDate: '',
+        eventType: '',
+        servings: ''
+      });
+      setSelectedProduct(null);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  // Get current translation based on selected language
-  const t = translations[formData.language];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -153,152 +85,195 @@ const Contact = () => {
         <section className="contact-section">
           <div className="container">
             <div className="contact-header">
-              <h1 className="contact-title">{t.title}</h1>
+              <h1 className="contact-title">Get in Touch</h1>
               <p className="contact-subtitle">
-                {t.subtitle}
+                Ready to make your special occasion sweeter? Let's discuss your custom cake needs!
               </p>
-              
-              <div className="language-selector">
-                <button 
-                  className={`lang-button ${formData.language === 'en' ? 'active' : ''}`} 
-                  onClick={() => setFormData({...formData, language: 'en'})}
-                >
-                  English
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'sq' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'sq'})}
-                >
-                  Shqip
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'mk' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'mk'})}
-                >
-                  Македонски
-                </button>
-              </div>
             </div>
             
             <div className="contact-content">
               <div className="contact-info">
-                <div className="info-card">
-                  <div className="icon-container">
-                    <LocationIcon />
-                  </div>
-                  <h3>{t.visitUs}</h3>
-                  <p>
-                    <a 
-                      href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      Makedonsko Kosovska Brigada 12<br />
-                      North Macedonia, SK 1000
-                    </a>
-                  </p>
-                </div>
+                <h2>Contact Information</h2>
                 
-                <div className="info-card">
-                  <div className="icon-container">
+                <div className="info-item">
+                  <div className="info-icon">
                     <PhoneIcon />
                   </div>
-                  <h3>{t.callUs}</h3>
-                  <p><a href="tel:+38975231968">(+389) 75 231 968</a></p>
+                  <div className="info-details">
+                    <h3>Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                  </div>
                 </div>
                 
-                <div className="info-card">
-                  <div className="icon-container">
+                <div className="info-item">
+                  <div className="info-icon">
                     <EmailIcon />
                   </div>
-                  <h3>{t.emailUs}</h3>
-                  <p><a href="mailto:sihanaskejk@gmail.com">sihanaskejk@gmail.com</a></p>
+                  <div className="info-details">
+                    <h3>Email</h3>
+                    <p>orders@sihanascake.com</p>
+                  </div>
+                </div>
+                
+                <div className="info-item">
+                  <div className="info-icon">
+                    <LocationIcon />
+                  </div>
+                  <div className="info-details">
+                    <h3>Location</h3>
+                    <p>123 Sweet Street<br />Bakery District, BD 12345</p>
+                  </div>
+                </div>
+                
+                <div className="info-item">
+                  <div className="info-icon">
+                    <ClockIcon />
+                  </div>
+                  <div className="info-details">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br />
+                       Saturday: 10:00 AM - 4:00 PM<br />
+                       Sunday: Closed</p>
+                  </div>
                 </div>
               </div>
               
               <div className="contact-form-container">
-                <h2>{t.sendMessage}</h2>
-                
-                {formStatus.submitted ? (
-                  <div className="success-message">
-                    <p>{formStatus.message}</p>
+                {selectedProduct && (
+                  <div className="selected-product-notice">
+                    <h3>Inquiry for: {selectedProduct.name}</h3>
+                    <p>We're excited to help you with this cake!</p>
                   </div>
-                ) : (
-                  <form className="contact-form" onSubmit={handleSubmit}>
-                    {formStatus.error && (
-                      <div className="error-message">
-                        <p>{formStatus.message}</p>
-                      </div>
-                    )}
-                    
+                )}
+                
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="name">{t.namePlaceholder}</label>
+                      <label htmlFor="name" className="form-label">Full Name *</label>
                       <input
                         type="text"
                         id="name"
                         name="name"
                         value={formData.name}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
+                        className="form-input"
                         required
                       />
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="email">{t.emailPlaceholder}</label>
+                      <label htmlFor="email" className="form-label">Email Address *</label>
                       <input
                         type="email"
                         id="email"
                         name="email"
                         value={formData.email}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
+                        className="form-input"
                         required
                       />
                     </div>
-                    
+                  </div>
+                  
+                  <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="phone">{t.phonePlaceholder}</label>
+                      <label htmlFor="phone" className="form-label">Phone Number</label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
                         value={formData.phone}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
+                        className="form-input"
                       />
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="occasion">{t.occasionPlaceholder}</label>
+                      <label htmlFor="eventDate" className="form-label">Event Date</label>
+                      <input
+                        type="date"
+                        id="eventDate"
+                        name="eventDate"
+                        value={formData.eventDate}
+                        onChange={handleInputChange}
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="eventType" className="form-label">Event Type</label>
                       <select
-                        id="occasion"
-                        name="occasion"
-                        value={formData.occasion}
-                        onChange={handleChange}
+                        id="eventType"
+                        name="eventType"
+                        value={formData.eventType}
+                        onChange={handleInputChange}
+                        className="form-input"
                       >
-                        <option value="general">{t.generalInquiry}</option>
-                        <option value="birthday">{t.birthdayCake}</option>
-                        <option value="wedding">{t.weddingCake}</option>
-                        <option value="anniversary">{t.anniversaryCake}</option>
-                        <option value="other">{t.other}</option>
+                        <option value="">Select an event type</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="graduation">Graduation</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="other">Other</option>
                       </select>
                     </div>
                     
                     <div className="form-group">
-                      <label htmlFor="message">{t.messagePlaceholder}</label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows="5"
-                        required
-                      ></textarea>
+                      <label htmlFor="servings" className="form-label">Number of Servings</label>
+                      <select
+                        id="servings"
+                        name="servings"
+                        value={formData.servings}
+                        onChange={handleInputChange}
+                        className="form-input"
+                      >
+                        <option value="">Select serving size</option>
+                        <option value="10-20">10-20 people</option>
+                        <option value="20-30">20-30 people</option>
+                        <option value="30-50">30-50 people</option>
+                        <option value="50-100">50-100 people</option>
+                        <option value="100+">100+ people</option>
+                      </select>
                     </div>
-                    
-                    <button type="submit" className="submit-button">
-                      {t.submit}
-                    </button>
-                  </form>
-                )}
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="message" className="form-label">Message *</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="form-textarea"
+                      rows="5"
+                      placeholder="Tell us about your vision, any special requirements, dietary restrictions, or questions you have..."
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  {submitStatus === 'success' && (
+                    <div className="form-success">
+                      <p>Thank you for your inquiry! We'll get back to you within 24 hours.</p>
+                    </div>
+                  )}
+                  
+                  {submitStatus === 'error' && (
+                    <div className="form-error">
+                      <p>Sorry, there was an error sending your message. Please try again or contact us directly.</p>
+                    </div>
+                  )}
+                  
+                  <button
+                    type="submit"
+                    className="submit-button"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -309,13 +284,7 @@ const Contact = () => {
   );
 };
 
-const LocationIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-    <circle cx="12" cy="10" r="3"></circle>
-  </svg>
-);
-
+// Icon components
 const PhoneIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -326,6 +295,20 @@ const EmailIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
     <polyline points="22,6 12,13 2,6"></polyline>
+  </svg>
+);
+
+const LocationIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+    <circle cx="12" cy="10" r="3"></circle>
+  </svg>
+);
+
+const ClockIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12,6 12,12 16,14"></polyline>
   </svg>
 );
 
