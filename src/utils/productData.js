@@ -9,7 +9,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Birthday',
     shape: 'Round',
-    occasion: 'birthday'
+    occasion: 'birthday',
+    frostingType: 'Chocolate Ganache'
   },
   {
     id: 3,
@@ -18,7 +19,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Birthday',
     shape: 'Round',
-    occasion: 'birthday'
+    occasion: 'birthday',
+    frostingType: 'Buttercream'
   },
   {
     id: 6,
@@ -27,7 +29,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1519915745176-7a5064701189?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Birthday',
     shape: 'Square',
-    occasion: 'birthday'
+    occasion: 'birthday',
+    frostingType: 'Lemon Glaze'
   },
 
   // Wedding Cakes
@@ -38,7 +41,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Wedding',
     shape: 'Tiered',
-    occasion: 'wedding'
+    occasion: 'wedding',
+    frostingType: 'Whipped Cream'
   },
   {
     id: 9,
@@ -47,7 +51,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Wedding',
     shape: 'Tiered',
-    occasion: 'wedding'
+    occasion: 'wedding',
+    frostingType: 'Fondant'
   },
 
   // Anniversary Cakes
@@ -58,7 +63,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Anniversary',
     shape: 'Heart',
-    occasion: 'anniversary'
+    occasion: 'anniversary',
+    frostingType: 'Cream Cheese'
   },
   {
     id: 7,
@@ -67,7 +73,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Anniversary',
     shape: 'Round',
-    occasion: 'anniversary'
+    occasion: 'anniversary',
+    frostingType: 'Whipped Cream'
   },
   {
     id: 8,
@@ -76,7 +83,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Anniversary',
     shape: 'Square',
-    occasion: 'anniversary'
+    occasion: 'anniversary',
+    frostingType: 'Mascarpone'
   },
 
   // Custom Cakes
@@ -87,7 +95,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1557985045-e5c2b3c3b93e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Custom',
     shape: 'Custom',
-    occasion: 'custom'
+    occasion: 'custom',
+    frostingType: 'Custom'
   },
   {
     id: 11,
@@ -96,7 +105,8 @@ const products = [
     image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     category: 'Custom',
     shape: 'Custom',
-    occasion: 'custom'
+    occasion: 'custom',
+    frostingType: 'Buttercream'
   }
 ];
 
@@ -146,3 +156,11 @@ export const getCakeShapes = () => {
   const shapes = [...new Set(products.map(product => product.shape))];
   return shapes;
 };
+
+export const getFrostingTypes = () => {
+  const frostingTypes = [...new Set(products.map(product => product.frostingType))];
+  return frostingTypes;
+};
+
+// For backwards compatibility, export products as default
+export { products };
