@@ -99,13 +99,13 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="login-button">Sign In</Link>
+              <Link to="/login" className="sign-in-button">Sign In</Link>
             )}
-            {/* Replace the Order button with Contact if logged in */}
+            
             {user ? (
               <Link to="/contact" className="order-button">Contact Us</Link>
             ) : (
-              <Link to="/login" className="order-button">Sign In</Link>
+              <Link to="/contact" className="order-button">Order Now</Link>
             )}
           </div>
           
@@ -152,11 +152,9 @@ const Header = () => {
                 </Link>
               )}
               
-              {user ? (
-                <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>Contact Us</Link>
-              ) : (
-                <Link to="/login" className="mobile-order-button" onClick={toggleMenu}>Sign In</Link>
-              )}
+              <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>
+                {user ? 'Contact Us' : 'Order Now'}
+              </Link>
             </nav>
           </div>
         )}

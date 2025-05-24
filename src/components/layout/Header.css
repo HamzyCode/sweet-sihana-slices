@@ -1,3 +1,4 @@
+
 .header {
   position: sticky;
   top: 0;
@@ -178,10 +179,32 @@
   text-decoration: none;
   font-weight: 500;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .order-button:hover {
   background-color: #d77ba4;
+}
+
+.sign-in-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: #5D3A22;
+  text-decoration: none;
+  border: 2px solid #E58FB8;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.sign-in-button:hover {
+  background-color: #E58FB8;
+  color: white;
 }
 
 .menu-button {
@@ -252,21 +275,6 @@
   font-weight: 500;
   text-align: center;
   margin-top: 0.5rem;
-}
-
-.login-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  color: #5D3A22;
-  text-decoration: none;
-  border-radius: 0.25rem;
-  transition: all 0.3s;
-}
-
-.login-button:hover {
-  background-color: rgba(229, 143, 184, 0.1);
 }
 
 .user-menu-container {

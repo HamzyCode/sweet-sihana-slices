@@ -11,6 +11,8 @@ import Birthday from "./pages/occasions/Birthday.jsx";
 import Wedding from "./pages/occasions/Wedding.jsx";
 import Anniversary from "./pages/occasions/Anniversary.jsx";
 import Login from "./pages/Login.jsx";
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
 import Products from "./pages/admin/Products.jsx";
 import Categories from "./pages/admin/Categories.jsx";
@@ -32,6 +34,8 @@ const App = () => (
         <Route path="/occasions/wedding" element={<Wedding />} />
         <Route path="/occasions/anniversary" element={<Anniversary />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         
         {/* Admin Routes - Protected */}
         <Route 

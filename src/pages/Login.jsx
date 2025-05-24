@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import AuthLayout from '../components/auth/AuthLayout';
 
 const Login = () => {
@@ -127,6 +127,21 @@ const Login = () => {
             minLength={6}
           />
         </div>
+
+        {authMode === 'login' && (
+          <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+            <Link 
+              to="/forgot-password" 
+              style={{ 
+                color: '#E58FB8', 
+                textDecoration: 'none', 
+                fontSize: '0.9rem' 
+              }}
+            >
+              Forgot your password?
+            </Link>
+          </div>
+        )}
 
         <button 
           type="submit" 
