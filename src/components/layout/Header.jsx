@@ -101,7 +101,9 @@ const Header = () => {
               <Link to="/login" className="order-button">Login</Link>
             )}
             
-            <Link to="/contact" className="order-button">Order Now</Link>
+            {user && (
+              <Link to="/contact" className="order-button">Order Now</Link>
+            )}
           </div>
           
           <button className="menu-button" onClick={toggleMenu}>
@@ -147,9 +149,11 @@ const Header = () => {
                 </Link>
               )}
               
-              <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>
-                Order Now
-              </Link>
+              {user && (
+                <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>
+                  Order Now
+                </Link>
+              )}
             </nav>
           </div>
         )}

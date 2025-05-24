@@ -4,11 +4,13 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import { getProductById, getRelatedProducts } from '../utils/productData.js';
+import { useAuth } from '../context/AuthContext';
 import './Product.css';
 
 const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   // Scroll to top on component mount
   useEffect(() => {
@@ -44,6 +46,10 @@ const Product = () => {
 
   // Handle "Order Now" button click  
   const handleOrderClick = () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     // Save product info to session storage to be picked up by contact form
     sessionStorage.setItem('selectedProduct', JSON.stringify({
       id: product.id,
@@ -104,9 +110,15 @@ const Product = () => {
                   )}
                 </div>
                 
-                <button onClick={handleOrderClick} className="order-button">
-                  Order Now
-                </button>
+                {user ? (
+                  <button onClick={handleOrderClick} className="order-button">
+                    Order Now
+                  </button>
+                ) : (
+                  <div className="login-prompt">
+                    <p>Please <Link to="/login" className="login-link">sign in</Link> to place an order.</p>
+                  </div>
+                )}
               </div>
             </div>
             

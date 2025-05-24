@@ -1,4 +1,3 @@
-
 .header {
   position: sticky;
   top: 0;
@@ -31,14 +30,17 @@
   height: 120px; 
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   border: 2px solid #E58FB8;
   box-shadow: 0px 0px 10px #E58FB8;
-  
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
   .logo {
-    height: 4rem;
+    width: 80px;
+    height: 80px;
   }
 }
 
