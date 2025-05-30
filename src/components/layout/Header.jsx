@@ -13,7 +13,6 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  // Function to check if a path is active
   const isActive = (path) => {
     if (path === '/') {
       return location.pathname === '/';
@@ -21,19 +20,16 @@ const Header = () => {
     return location.pathname.startsWith(path);
   };
   
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
-  // Handle anchor link scrolling
   const handleAnchorClick = (e, targetId) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else if (location.pathname !== '/') {
-      // If we're not on the home page, navigate there first
       sessionStorage.setItem('scrollToElement', targetId);
       window.location.href = '/#' + targetId;
     }
@@ -81,31 +77,28 @@ const Header = () => {
           
           <div className="action-buttons">
             {user ? (
-              <div className="user-menu-container">
-                <div className="dropdown">
-                  <button className="dropdown-button user-button">
-                    Account <span className="dropdown-icon">▼</span>
-                  </button>
-                  <div className="dropdown-content user-dropdown">
-                    {isAdmin && (
-                      <Link to="/admin" className="dropdown-item">
-                        Admin Dashboard
-                      </Link>
-                    )}
-                    <button onClick={signOut} className="dropdown-item sign-out">
-                      Sign Out
+              <>
+                <div className="user-menu-container">
+                  <div className="dropdown">
+                    <button className="dropdown-button user-button">
+                      Account <span className="dropdown-icon">▼</span>
                     </button>
+                    <div className="dropdown-content user-dropdown">
+                      {isAdmin && (
+                        <Link to="/admin" className="dropdown-item">
+                          Admin Dashboard
+                        </Link>
+                      )}
+                      <button onClick={signOut} className="dropdown-item sign-out">
+                        Sign Out
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <Link to="/contact" className="primary-button">Order Now</Link>
+              </>
             ) : (
-              <Link to="/login" className="sign-in-button">Sign In</Link>
-            )}
-            
-            {user ? (
-              <Link to="/contact" className="order-button">Contact Us</Link>
-            ) : (
-              <Link to="/contact" className="order-button">Order Now</Link>
+              <Link to="/login" className="primary-button">Log In</Link>
             )}
           </div>
           
@@ -145,16 +138,15 @@ const Header = () => {
                   <button onClick={signOut} className="mobile-nav-link sign-out-mobile">
                     Sign Out
                   </button>
+                  <Link to="/contact" className="mobile-primary-button" onClick={toggleMenu}>
+                    Order Now
+                  </Link>
                 </>
               ) : (
-                <Link to="/login" className="mobile-nav-link" onClick={toggleMenu}>
-                  Sign In
+                <Link to="/login" className="mobile-primary-button" onClick={toggleMenu}>
+                  Log In
                 </Link>
               )}
-              
-              <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>
-                {user ? 'Contact Us' : 'Order Now'}
-              </Link>
             </nav>
           </div>
         )}

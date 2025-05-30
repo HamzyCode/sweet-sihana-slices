@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
+import LanguageSelector from '../components/contact/LanguageSelector.jsx';
 import './Contact.css';
 
 const Contact = () => {
@@ -11,7 +11,7 @@ const Contact = () => {
     phone: '',
     message: '',
     occasion: 'general',
-    language: 'en', // Default language
+    language: 'en',
   });
   
   const [formStatus, setFormStatus] = useState({
@@ -20,7 +20,6 @@ const Contact = () => {
     message: '',
   });
 
-  // If product was selected from another page
   useEffect(() => {
     const selectedProduct = sessionStorage.getItem('selectedProduct');
     if (selectedProduct) {
@@ -30,7 +29,6 @@ const Contact = () => {
           ...prevState,
           message: `I am interested in ordering: ${product.name}\n\n${prevState.message}`
         }));
-        // Clear the session storage after using it
         sessionStorage.removeItem('selectedProduct');
       } catch (e) {
         console.error("Error parsing selected product:", e);
@@ -46,10 +44,16 @@ const Contact = () => {
     }));
   };
 
+  const handleLanguageChange = (language) => {
+    setFormData(prevState => ({
+      ...prevState,
+      language
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validate form
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus({
         submitted: false,
@@ -59,30 +63,24 @@ const Contact = () => {
       return;
     }
     
-    // Form submission logic would go here
-    // In a real implementation, this would use EmailJS or another service
-    
     console.log('Form submitted:', formData);
     
-    // Simulate successful form submission
     setFormStatus({
       submitted: true,
       error: false,
       message: 'Thank you for your message! We will get back to you soon.'
     });
     
-    // Reset form
     setFormData({
       name: '',
       email: '',
       phone: '',
       message: '',
       occasion: 'general',
-      language: formData.language, // Keep the selected language
+      language: formData.language,
     });
   };
 
-  // Content translations
   const translations = {
     en: {
       title: 'Contact Us',
@@ -143,7 +141,6 @@ const Contact = () => {
     }
   };
 
-  // Get current translation based on selected language
   const t = translations[formData.language];
 
   return (
@@ -158,26 +155,10 @@ const Contact = () => {
                 {t.subtitle}
               </p>
               
-              <div className="language-selector">
-                <button 
-                  className={`lang-button ${formData.language === 'en' ? 'active' : ''}`} 
-                  onClick={() => setFormData({...formData, language: 'en'})}
-                >
-                  English
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'sq' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'sq'})}
-                >
-                  Shqip
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'mk' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'mk'})}
-                >
-                  Македонски
-                </button>
-              </div>
+              <LanguageSelector 
+                selectedLanguage={formData.language}
+                onLanguageChange={handleLanguageChange}
+              />
             </div>
             
             <div className="contact-content">
@@ -240,6 +221,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        placeholder={t.namePlaceholder}
                       />
                     </div>
                     
@@ -252,6 +234,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        placeholder={t.emailPlaceholder}
                       />
                     </div>
                     
@@ -263,6 +246,7 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        placeholder={t.phonePlaceholder}
                       />
                     </div>
                     
@@ -291,6 +275,7 @@ const Contact = () => {
                         onChange={handleChange}
                         rows="5"
                         required
+                        placeholder={t.messagePlaceholder}
                       ></textarea>
                     </div>
                     

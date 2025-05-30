@@ -1,3 +1,4 @@
+
 /* App styles */
 body {
   font-family: 'Poppins', sans-serif;
@@ -6,6 +7,14 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .min-h-screen {
@@ -45,4 +54,33 @@ button {
 
 .section-padding {
   padding: 4rem 0;
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .section-padding {
+    padding: 2rem 0;
+  }
+  
+  h1 {
+    font-size: 1.875rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

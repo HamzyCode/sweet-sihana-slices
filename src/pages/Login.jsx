@@ -15,7 +15,6 @@ const Login = () => {
   const [authSuccess, setAuthSuccess] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Get the page the user was trying to access
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
@@ -70,105 +69,120 @@ const Login = () => {
 
   if (loading) {
     return (
-      <AuthLayout>
-        <div className="loading-spinner"></div>
-      </AuthLayout>
+      <div className="auth-container">
+        <div className="auth-card">
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+            <div style={{ 
+              border: '4px solid rgba(229, 143, 184, 0.3)',
+              borderRadius: '50%',
+              borderTop: '4px solid #E58FB8',
+              width: '40px',
+              height: '40px',
+              animation: 'spin 1s linear infinite'
+            }}></div>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <AuthLayout 
-      title={authMode === 'login' ? "Welcome Back" : "Create Account"}
-      subtitle={authMode === 'login' 
-        ? "Sign in to your account to continue" 
-        : "Create a new account to get started"
-      }
-    >
-      <div className="auth-tabs">
-        <button 
-          className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
-          onClick={() => switchMode('login')}
-        >
-          Sign In
-        </button>
-        <button 
-          className={`auth-tab ${authMode === 'signup' ? 'active' : ''}`}
-          onClick={() => switchMode('signup')}
-        >
-          Sign Up
-        </button>
-      </div>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">
+          {authMode === 'login' ? "Welcome Back" : "Create Account"}
+        </h2>
+        <p className="auth-description">
+          {authMode === 'login' 
+            ? "Log in to your account to continue" 
+            : "Create a new account to get started"
+          }
+        </p>
 
-      {authError && <div className="auth-error">{authError}</div>}
-      {authSuccess && <div className="auth-success">{authSuccess}</div>}
-
-      <form className="auth-form" onSubmit={handleEmailAuth}>
-        <div className="form-group">
-          <label htmlFor="email" className="form-label">Email Address</label>
-          <input
-            id="email"
-            type="email"
-            className="form-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        <div className="auth-tabs">
+          <button 
+            className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
+            onClick={() => switchMode('login')}
+          >
+            Log In
+          </button>
+          <button 
+            className={`auth-tab ${authMode === 'signup' ? 'active' : ''}`}
+            onClick={() => switchMode('signup')}
+          >
+            Sign Up
+          </button>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input
-            id="password"
-            type="password"
-            className="form-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </div>
+        {authError && <div className="auth-error">{authError}</div>}
+        {authSuccess && <div className="auth-success">{authSuccess}</div>}
 
-        {authMode === 'login' && (
-          <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
-            <Link 
-              to="/forgot-password" 
-              style={{ 
-                color: '#E58FB8', 
-                textDecoration: 'none', 
-                fontSize: '0.9rem' 
-              }}
-            >
-              Forgot your password?
-            </Link>
+        <form className="auth-form" onSubmit={handleEmailAuth}>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter your email"
+            />
           </div>
-        )}
 
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              id="password"
+              type="password"
+              className="form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+              placeholder="Enter your password"
+            />
+          </div>
+
+          {authMode === 'login' && (
+            <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+              <Link 
+                to="/forgot-password" 
+                className="forgot-password-link"
+              >
+                Forgot your password?
+              </Link>
+            </div>
+          )}
+
+          <button 
+            type="submit" 
+            className="auth-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Processing...' : authMode === 'login' ? 'Log In' : 'Sign Up'}
+          </button>
+        </form>
+
+        <div className="auth-divider">
+          <span className="auth-divider-text">OR</span>
+        </div>
+        
         <button 
-          type="submit" 
-          className="auth-btn"
+          className="google-signin-button" 
+          onClick={handleGoogleSignIn}
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Processing...' : authMode === 'login' ? 'Sign In' : 'Sign Up'}
+          <img 
+            src="https://developers.google.com/identity/images/g-logo.png" 
+            alt="Google logo" 
+            className="google-logo"
+          />
+          Log in with Google
         </button>
-      </form>
-
-      <div className="auth-divider">
-        <span className="auth-divider-text">OR</span>
       </div>
-      
-      <button 
-        className="google-signin-button" 
-        onClick={handleGoogleSignIn}
-        disabled={isSubmitting}
-      >
-        <img 
-          src="https://developers.google.com/identity/images/g-logo.png" 
-          alt="Google logo" 
-          className="google-logo"
-        />
-        Sign in with Google
-      </button>
-    </AuthLayout>
+    </div>
   );
 };
 

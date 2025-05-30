@@ -19,18 +19,18 @@ const CallToAction = () => {
           <p className="cta-description">
             {user 
               ? "Whether you're celebrating a birthday, wedding, or special occasion, we're here to create the perfect cake for your memorable moments."
-              : "Sign in to explore our full collection, save your favorite designs, and place custom orders for your special occasions."
+              : "Log in to explore our full collection, save your favorite designs, and place custom orders for your special occasions."
             }
           </p>
           <div className="cta-buttons">
             {user ? (
               <Link to="/contact" className="cta-primary-button">
-                Contact Us
+                Order Now
                 <ArrowRightIcon />
               </Link>
             ) : (
               <Link to="/login" className="cta-primary-button">
-                Sign In
+                Log In
                 <ArrowRightIcon />
               </Link>
             )}
