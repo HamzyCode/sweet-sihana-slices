@@ -1,113 +1,256 @@
 
-
-// Mock product data with categories and shapes
+// Real product data with actual images from the assets directory
 const products = [
   // Birthday Cakes
   {
     id: 1,
-    name: 'Chocolate Delight',
-    description: 'Rich chocolate cake with creamy ganache and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    name: 'Chocolate Birthday Delight',
+    description: 'Rich chocolate cake with creamy ganache, perfect for birthday celebrations.',
+    image: '/assets/images/products/IMG_1842-Photoroom.jpg',
     category: 'Birthday',
     shape: 'Round',
     occasion: 'birthday',
     frostingType: 'Chocolate Ganache'
   },
   {
-    id: 3,
-    name: 'Vanilla Bliss',
-    description: 'Classic vanilla cake with buttercream frosting and sprinkles.',
-    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 2,
+    name: 'Vanilla Birthday Bliss',
+    description: 'Classic vanilla cake with buttercream frosting and colorful decorations.',
+    image: '/assets/images/products/IMG_1861-Photoroom.jpg',
     category: 'Birthday',
     shape: 'Round',
     occasion: 'birthday',
     frostingType: 'Buttercream'
   },
   {
-    id: 6,
-    name: 'Lemon Blueberry',
-    description: 'Tangy lemon cake with fresh blueberries and lemon glaze.',
-    image: 'https://images.unsplash.com/photo-1519915745176-7a5064701189?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 3,
+    name: 'Strawberry Birthday Dream',
+    description: 'Light vanilla sponge with fresh strawberries and cream.',
+    image: '/assets/images/products/IMG_1863-Photoroom.jpg',
     category: 'Birthday',
     shape: 'Square',
     occasion: 'birthday',
-    frostingType: 'Lemon Glaze'
+    frostingType: 'Whipped Cream'
+  },
+  {
+    id: 4,
+    name: 'Rainbow Birthday Cake',
+    description: 'Colorful layers with rainbow buttercream and sprinkles.',
+    image: '/assets/images/products/IMG_1879-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Round',
+    occasion: 'birthday',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 5,
+    name: 'Unicorn Birthday Magic',
+    description: 'Magical unicorn-themed cake with pastel colors and edible decorations.',
+    image: '/assets/images/products/IMG_1884-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 6,
+    name: 'Princess Birthday Castle',
+    description: 'Beautiful princess castle cake with pink and gold decorations.',
+    image: '/assets/images/products/IMG_1894-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Fondant'
   },
 
   // Wedding Cakes
   {
-    id: 2,
-    name: 'Strawberry Dream',
-    description: 'Light vanilla sponge with fresh strawberries and cream.',
-    image: 'https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
-    category: 'Wedding',
-    shape: 'Tiered',
-    occasion: 'wedding',
-    frostingType: 'Whipped Cream'
-  },
-  {
-    id: 9,
-    name: 'Elegant Wedding Cake',
-    description: 'Multi-tiered wedding cake with elegant decorations.',
-    image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 7,
+    name: 'Classic White Wedding Cake',
+    description: 'Elegant three-tier wedding cake with white fondant and floral decorations.',
+    image: '/assets/images/products/IMG_1901-Photoroom.jpg',
     category: 'Wedding',
     shape: 'Tiered',
     occasion: 'wedding',
     frostingType: 'Fondant'
   },
+  {
+    id: 8,
+    name: 'Romantic Rose Wedding Cake',
+    description: 'Beautiful wedding cake adorned with sugar roses and elegant piping.',
+    image: '/assets/images/products/IMG_1906-Photoroom.jpg',
+    category: 'Wedding',
+    shape: 'Tiered',
+    occasion: 'wedding',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 9,
+    name: 'Gold Accent Wedding Cake',
+    description: 'Sophisticated wedding cake with gold accents and modern design.',
+    image: '/assets/images/products/IMG_1911-Photoroom.jpg',
+    category: 'Wedding',
+    shape: 'Tiered',
+    occasion: 'wedding',
+    frostingType: 'Fondant'
+  },
+  {
+    id: 10,
+    name: 'Floral Garden Wedding Cake',
+    description: 'Nature-inspired wedding cake with cascading sugar flowers.',
+    image: '/assets/images/products/IMG_1925-Photoroom.jpg',
+    category: 'Wedding',
+    shape: 'Tiered',
+    occasion: 'wedding',
+    frostingType: 'Buttercream'
+  },
 
   // Anniversary Cakes
   {
-    id: 4,
-    name: 'Red Velvet',
-    description: 'Classic red velvet with cream cheese frosting.',
-    image: 'https://images.unsplash.com/photo-1586788680399-b6409fcf1c90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 11,
+    name: 'Red Velvet Anniversary',
+    description: 'Classic red velvet with cream cheese frosting, perfect for anniversaries.',
+    image: '/assets/images/products/IMG_1945-Photoroom.jpg',
     category: 'Anniversary',
     shape: 'Heart',
     occasion: 'anniversary',
     frostingType: 'Cream Cheese'
   },
   {
-    id: 7,
-    name: 'Black Forest',
-    description: 'Chocolate cake with cherries, whipped cream, and chocolate shavings.',
-    image: 'https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 12,
+    name: 'Golden Anniversary Celebration',
+    description: 'Elegant anniversary cake with golden decorations and fresh flowers.',
+    image: '/assets/images/products/IMG_1949-Photoroom.jpg',
     category: 'Anniversary',
     shape: 'Round',
     occasion: 'anniversary',
-    frostingType: 'Whipped Cream'
+    frostingType: 'Buttercream'
   },
   {
-    id: 8,
-    name: 'Tiramisu Cake',
-    description: 'Coffee-soaked layers with mascarpone cream and cocoa.',
-    image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 13,
+    name: 'Silver Anniversary Elegance',
+    description: 'Sophisticated silver-themed anniversary cake with pearl accents.',
+    image: '/assets/images/products/IMG_1954-Photoroom.jpg',
     category: 'Anniversary',
     shape: 'Square',
     occasion: 'anniversary',
-    frostingType: 'Mascarpone'
+    frostingType: 'Fondant'
+  },
+  {
+    id: 14,
+    name: 'Romantic Heart Anniversary',
+    description: 'Heart-shaped anniversary cake with romantic decorations and roses.',
+    image: '/assets/images/products/IMG_1956-Photoroom.jpg',
+    category: 'Anniversary',
+    shape: 'Heart',
+    occasion: 'anniversary',
+    frostingType: 'Buttercream'
   },
 
   // Custom Cakes
   {
-    id: 10,
+    id: 15,
     name: 'Custom Designer Cake',
-    description: 'Fully customizable cake designed to your specifications.',
-    image: 'https://images.unsplash.com/photo-1557985045-e5c2b3c3b93e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    description: 'Fully customizable cake designed to your exact specifications.',
+    image: '/assets/images/products/IMG_1958-Photoroom.jpg',
     category: 'Custom',
     shape: 'Custom',
     occasion: 'custom',
     frostingType: 'Custom'
   },
   {
-    id: 11,
-    name: 'Character Theme Cake',
-    description: 'Custom character-themed cake for special occasions.',
-    image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    id: 16,
+    name: 'Character Theme Custom',
+    description: 'Custom character-themed cake for special occasions and celebrations.',
+    image: '/assets/images/products/IMG_1991-Photoroom.jpg',
     category: 'Custom',
     shape: 'Custom',
     occasion: 'custom',
     frostingType: 'Buttercream'
+  },
+  {
+    id: 17,
+    name: 'Sports Theme Custom',
+    description: 'Custom sports-themed cake perfect for sports enthusiasts.',
+    image: '/assets/images/products/IMG_1992-Photoroom.jpg',
+    category: 'Custom',
+    shape: 'Custom',
+    occasion: 'custom',
+    frostingType: 'Fondant'
+  },
+  {
+    id: 18,
+    name: 'Corporate Custom Cake',
+    description: 'Professional custom cake for corporate events and celebrations.',
+    image: '/assets/images/products/IMG_2015-Photoroom.jpg',
+    category: 'Custom',
+    shape: 'Custom',
+    occasion: 'custom',
+    frostingType: 'Custom'
+  },
+
+  // Additional Birthday Cakes
+  {
+    id: 19,
+    name: 'Superhero Birthday Adventure',
+    description: 'Action-packed superhero themed birthday cake.',
+    image: '/assets/images/products/IMG_2029-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 20,
+    name: 'Dinosaur Birthday Expedition',
+    description: 'Prehistoric dinosaur-themed cake for adventurous birthdays.',
+    image: '/assets/images/products/IMG_2034-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Fondant'
+  },
+  {
+    id: 21,
+    name: 'Mermaid Birthday Ocean',
+    description: 'Underwater mermaid-themed birthday cake with ocean decorations.',
+    image: '/assets/images/products/IMG_2055-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 22,
+    name: 'Car Racing Birthday',
+    description: 'Fast-paced car racing themed birthday cake.',
+    image: '/assets/images/products/IMG_2056-Photoroom.jpg',
+    category: 'Birthday',
+    shape: 'Custom',
+    occasion: 'birthday',
+    frostingType: 'Fondant'
+  },
+
+  // More Wedding Cakes
+  {
+    id: 23,
+    name: 'Rustic Wedding Charm',
+    description: 'Rustic-style wedding cake with natural decorations and burlap accents.',
+    image: '/assets/images/products/IMG_2058-Photoroom.jpg',
+    category: 'Wedding',
+    shape: 'Tiered',
+    occasion: 'wedding',
+    frostingType: 'Buttercream'
+  },
+  {
+    id: 24,
+    name: 'Modern Minimalist Wedding',
+    description: 'Clean, modern wedding cake with minimalist design and geometric elements.',
+    image: '/assets/images/products/IMG_2071-Photoroom.jpg',
+    category: 'Wedding',
+    shape: 'Tiered',
+    occasion: 'wedding',
+    frostingType: 'Fondant'
   }
 ];
 
@@ -176,4 +319,3 @@ export const getFrostingTypes = () => {
 
 // For backwards compatibility, export products as default
 export { products };
-
