@@ -1,10 +1,10 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getAllProducts } from '../../utils/productData.js';
+import { products } from '../../utils/productData.js';
 import './Categories.css';
 
 // Get some of our own cake images for the occasion cards
-const products = getAllProducts();
 const birthdayCake = products.find(p => p.occasions && p.occasions.includes('birthday'));
 const weddingCake = products.find(p => p.occasions && p.occasions.includes('wedding'));
 const anniversaryCake = products.find(p => p.occasions && p.occasions.includes('anniversary'));

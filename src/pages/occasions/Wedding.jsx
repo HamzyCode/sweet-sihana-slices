@@ -3,12 +3,33 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/layout/Header.jsx';
 import Footer from '../../components/layout/Footer.jsx';
-import { getProductsByOccasion } from '../../utils/productData.js';
 import '../Occasion.css';
 
-const Wedding = () => {
-  const weddingCakes = getProductsByOccasion('wedding');
+const weddingCakes = [
+  {
+    id: 2,
+    name: 'Strawberry Dream',
+    description: 'Light vanilla sponge with fresh strawberries and cream.',
+    image: 'https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$32.99',
+  },
+  {
+    id: 3,
+    name: 'Vanilla Bliss',
+    description: 'Classic vanilla cake with buttercream frosting and sprinkles.',
+    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$29.99',
+  },
+  {
+    id: 8,
+    name: 'Tiramisu Cake',
+    description: 'Coffee-soaked layers with mascarpone cream and cocoa.',
+    image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
+    price: '$38.99',
+  }
+];
 
+const Wedding = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -41,6 +62,7 @@ const Wedding = () => {
                     <h3 className="cake-title">{cake.name}</h3>
                     <p className="cake-description">{cake.description}</p>
                     <div className="cake-bottom">
+                      <span className="cake-price">{cake.price}</span>
                       <Link to={`/product/${cake.id}`} className="cake-link">
                         View Details
                       </Link>

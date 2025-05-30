@@ -1,3 +1,4 @@
+
 .product-section {
   padding: 4rem 0;
   background-color: #FFF8F0;
@@ -142,29 +143,6 @@
 
 .order-button:hover {
   background-color: #d77ba4;
-}
-
-.login-prompt {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgba(229, 143, 184, 0.1);
-  border-radius: 0.5rem;
-  text-align: center;
-}
-
-.login-prompt p {
-  color: #5D3A22;
-  margin: 0;
-}
-
-.login-link {
-  color: #E58FB8;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.login-link:hover {
-  text-decoration: underline;
 }
 
 .related-products {
