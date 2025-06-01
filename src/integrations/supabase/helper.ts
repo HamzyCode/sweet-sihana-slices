@@ -27,15 +27,47 @@ export const checkIsAdmin = async (userId: string): Promise<boolean> => {
 // Function to set admin role for a specific email
 export const setAdminForEmail = async (email: string): Promise<boolean> => {
   try {
-    // Using an update query with proper typing
-    const { error } = await supabase
+    // First check if user exists in profiles table
+    const { data: existingProfile, error: selectError } = await supabase
       .from('profiles')
-      .update({ role: 'admin' })
-      .eq('email', email);
-    
-    if (error) {
-      console.error('Error setting admin role:', error);
+      .select('id, role')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (selectError) {
+      console.error('Error checking existing profile:', selectError);
       return false;
+    }
+
+    if (existingProfile) {
+      // Update existing profile to admin
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ role: 'admin' })
+        .eq('email', email);
+      
+      if (updateError) {
+        console.error('Error setting admin role:', updateError);
+        return false;
+      }
+    } else {
+      // Get user ID from auth.users if profile doesn't exist yet
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && user.email === email) {
+        // Insert new profile with admin role
+        const { error: insertError } = await supabase
+          .from('profiles')
+          .insert({ 
+            id: user.id,
+            email: email, 
+            role: 'admin' 
+          });
+        
+        if (insertError) {
+          console.error('Error creating admin profile:', insertError);
+          return false;
+        }
+      }
     }
     
     return true;

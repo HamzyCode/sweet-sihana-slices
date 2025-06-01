@@ -31,6 +31,7 @@ export function AuthProvider({ children }) {
         } else {
           setIsAdmin(false);
         }
+        setLoading(false);
       }
     );
 
@@ -66,9 +67,11 @@ export function AuthProvider({ children }) {
       
       if (error) {
         console.error('Error signing in with Google:', error);
+        throw error;
       }
     } catch (error) {
       console.error('Unexpected error during Google sign-in:', error);
+      throw error;
     }
   };
 
@@ -95,6 +98,9 @@ export function AuthProvider({ children }) {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: window.location.origin,
+        },
       });
       
       if (error) {
