@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import './Login.css';
 
 const Login = () => {
   const { user, loading, signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
@@ -20,6 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
+      console.log('User authenticated, redirecting to:', from);
       navigate(from, { replace: true });
     }
   }, [user, navigate, from]);
@@ -28,10 +30,15 @@ const Login = () => {
     try {
       setAuthError(null);
       setIsSubmitting(true);
+      console.log('Starting Google sign in...');
       await signInWithGoogle();
     } catch (error) {
       console.error("Google sign in error:", error);
-      setAuthError("Failed to sign in with Google. Please try again.");
+      if (error.message?.includes('invalid') || error.message?.includes('path')) {
+        setAuthError("Google sign-in configuration issue. Please contact support or try email login.");
+      } else {
+        setAuthError("Failed to sign in with Google. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -44,22 +51,36 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
+      console.log(`Starting ${authMode} for:`, email);
+      
       if (authMode === 'login') {
         const { error } = await signInWithEmail(email, password);
         if (error) {
           throw error;
         }
+        console.log('Email login successful');
       } else {
         const { error } = await signUpWithEmail(email, password);
         if (error) {
           throw error;
         }
+        console.log('Email signup successful');
         setAuthSuccess("Account created successfully! Please check your email to confirm your registration.");
         setAuthMode('login');
       }
     } catch (error) {
       console.error("Authentication error:", error);
-      setAuthError(error.message || "Authentication failed. Please try again.");
+      let errorMessage = "Authentication failed. Please try again.";
+      
+      if (error.message?.includes('Invalid login credentials')) {
+        errorMessage = "Invalid email or password. Please check your credentials.";
+      } else if (error.message?.includes('User already registered')) {
+        errorMessage = "This email is already registered. Try logging in instead.";
+      } else if (error.message?.includes('Password should be at least')) {
+        errorMessage = "Password should be at least 6 characters long.";
+      }
+      
+      setAuthError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
