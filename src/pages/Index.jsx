@@ -6,7 +6,6 @@ import Footer from '../components/layout/Footer.jsx';
 import Hero from '../components/home/Hero.jsx';
 import Featured from '../components/home/Featured.jsx';
 import About from '../components/home/About.jsx';
-import Categories from '../components/home/Categories.jsx';
 import FAQ from '../components/home/FAQ.jsx';
 import CallToAction from '../components/home/CallToAction.jsx';
 import CustomerReviews from '../components/home/CustomerReviews.jsx';
@@ -45,7 +44,6 @@ const Index = () => {
         <Hero />
         <Featured />
         <About />
-        <Categories />
         <CustomerReviews />
         <FAQ />
         <CallToAction />

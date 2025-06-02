@@ -15,6 +15,33 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errors, setErrors] = useState({});
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email address is required';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +49,23 @@ const Contact = () => {
       ...prev,
       [name]: value
     }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -36,7 +76,7 @@ const Contact = () => {
         {
           from_name: formData.name,
           from_email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone || 'Not provided',
           message: formData.message,
           to_email: 'sihanaskejk@gmail.com'
         },
@@ -120,9 +160,18 @@ const Contact = () => {
                     <img 
                       src="/lovable-uploads/0cb5ed58-8ec7-4ef4-9f35-9c70cf595309.png" 
                       alt="Wolt" 
-                      className="wolt-logo"
+                      className="wolt-logo-large"
                     />
                     Order via Wolt
+                  </a>
+                  
+                  <a 
+                    href="https://maps.app.goo.gl/Fh37Y61hD72fFfc2A"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="review-button"
+                  >
+                    ⭐ Leave a Google Review
                   </a>
                 </div>
               </div>
@@ -132,27 +181,31 @@ const Contact = () => {
               <h2>Send us a Message</h2>
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
-                  <label htmlFor="name">Full Name</label>
+                  <label htmlFor="name">Full Name *</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
+                    className={errors.name ? 'error' : ''}
                     required
                   />
+                  {errors.name && <span className="error-text">{errors.name}</span>}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
+                  <label htmlFor="email">Email Address *</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    className={errors.email ? 'error' : ''}
                     required
                   />
+                  {errors.email && <span className="error-text">{errors.email}</span>}
                 </div>
 
                 <div className="form-group">
@@ -167,7 +220,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="message">Message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -175,8 +228,10 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Tell us about your cake requirements..."
+                    className={errors.message ? 'error' : ''}
                     required
                   ></textarea>
+                  {errors.message && <span className="error-text">{errors.message}</span>}
                 </div>
 
                 {submitStatus === 'success' && (

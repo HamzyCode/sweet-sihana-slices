@@ -100,15 +100,8 @@ const Login = () => {
         <main className="flex-grow flex items-center justify-center">
           <div className="auth-container">
             <div className="auth-card">
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
-                <div style={{ 
-                  border: '4px solid rgba(229, 143, 184, 0.3)',
-                  borderRadius: '50%',
-                  borderTop: '4px solid #E58FB8',
-                  width: '40px',
-                  height: '40px',
-                  animation: 'spin 1s linear infinite'
-                }}></div>
+              <div className="loading-spinner-container">
+                <div className="loading-spinner"></div>
               </div>
             </div>
           </div>

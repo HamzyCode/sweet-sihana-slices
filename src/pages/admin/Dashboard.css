@@ -73,18 +73,52 @@
 
 .dashboard-help h3 {
   color: #5D3A22;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.dashboard-help p {
+.guide-section {
+  margin-bottom: 1.5rem;
+}
+
+.guide-section h4 {
   color: #5D3A22;
-  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.guide-section p {
+  color: #5D3A22;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.guide-section ul {
+  color: #5D3A22;
+  margin-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.guide-section li {
+  margin-bottom: 0.5rem;
+}
+
+.guide-section strong {
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
   .dashboard-cards {
     grid-template-columns: 1fr;
+  }
+  
+  .dashboard-help {
+    padding: 1rem;
+  }
+  
+  .dashboard-title {
+    font-size: 1.5rem;
   }
 }

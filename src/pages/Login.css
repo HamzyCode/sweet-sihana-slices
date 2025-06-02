@@ -2,6 +2,7 @@
 .auth-container {
   width: 100%;
   max-width: 500px;
+  margin: 0 auto;
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -194,6 +195,13 @@
 
 .forgot-password-link:hover {
   text-decoration: underline;
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 }
 
 .loading-spinner {
