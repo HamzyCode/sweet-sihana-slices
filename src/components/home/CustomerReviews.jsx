@@ -1,8 +1,9 @@
+
 import React from 'react';
 import './CustomerReviews.css';
 
 const CustomerReviews = () => {
-  // Function to open Google Review in new tab
+  // Updated Google Review function with correct link
   const openGoogleReview = () => {
     window.open('https://maps.app.goo.gl/Fh37Y61hD72fFfc2A', '_blank');
   };

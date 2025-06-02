@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -41,6 +42,9 @@ const Header = () => {
       const { error } = await signOut();
       if (error) {
         console.error('Sign out failed:', error);
+      } else {
+        console.log('Sign out successful, redirecting...');
+        window.location.href = '/';
       }
     } catch (err) {
       console.error('Sign out error:', err);
@@ -133,7 +137,7 @@ const Header = () => {
                       Admin Dashboard
                     </Link>
                   )}
-                  <button onClick={handleSignOut} className="mobile-nav-link sign-out-mobile">
+                  <button onClick={() => { handleSignOut(); toggleMenu(); }} className="mobile-nav-link sign-out-mobile">
                     Sign Out
                   </button>
                   <Link to="/contact" className="mobile-primary-button" onClick={toggleMenu}>

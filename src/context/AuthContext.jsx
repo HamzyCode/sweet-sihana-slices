@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Initial session:', session?.user?.email);
       setSession(session);
       setUser(session?.user ?? null);
       
@@ -53,14 +54,17 @@ export const AuthProvider = ({ children }) => {
 
   const checkAdminStatus = async (userId, email) => {
     try {
+      console.log('Checking admin status for:', email);
+      
       // Ensure admin setup for the specific email
       if (email === 'hamzaademi460@gmail.com') {
+        console.log('Setting up admin for:', email);
         await ensureAdminSetup(email);
       }
       
       // Check admin status
       const adminStatus = await checkIsAdmin(userId);
-      console.log('Admin status for user:', email, adminStatus);
+      console.log('Admin status result:', adminStatus);
       setIsAdmin(adminStatus);
     } catch (error) {
       console.error('Error checking admin status:', error);
@@ -72,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      console.log('Signing out...');
+      console.log('AuthContext: Signing out...');
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Error signing out:', error);

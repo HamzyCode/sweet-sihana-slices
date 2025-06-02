@@ -69,10 +69,9 @@ const Contact = () => {
     setFormStatus(prev => ({ ...prev, loading: true, error: false }));
     
     try {
-      // EmailJS configuration - you'll need to set these up in EmailJS
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_7qiw07x',
+        'template_1nnkkii',
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -81,7 +80,7 @@ const Contact = () => {
           message: formData.message,
           to_email: 'sihanaskejk@gmail.com',
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        '3ESLHOit32HCXF-GY'
       );
 
       console.log('Email sent successfully:', result);
@@ -130,7 +129,7 @@ const Contact = () => {
       occasionPlaceholder: 'Occasion',
       messagePlaceholder: 'Message *',
       submit: 'Send Message',
-      orderWolt: 'Order via Wolt (Fast Delivery)',
+      orderWolt: '🚚 Order via Wolt (Fast Delivery)',
       generalInquiry: 'General Inquiry',
       birthdayCake: 'Birthday Cake',
       weddingCake: 'Wedding Cake',
@@ -150,7 +149,7 @@ const Contact = () => {
       occasionPlaceholder: 'Rasti',
       messagePlaceholder: 'Mesazhi *',
       submit: 'Dërgo Mesazhin',
-      orderWolt: 'Porosit me Wolt (Dorëzim i Shpejtë)',
+      orderWolt: '🚚 Porosit me Wolt (Dorëzim i Shpejtë)',
       generalInquiry: 'Pyetje e Përgjithshme',
       birthdayCake: 'Tortë Ditëlindjeje',
       weddingCake: 'Tortë Dasme',
@@ -170,7 +169,7 @@ const Contact = () => {
       occasionPlaceholder: 'Повод',
       messagePlaceholder: 'Порака *',
       submit: 'Испрати порака',
-      orderWolt: 'Нарачај преку Wolt (Брза достава)',
+      orderWolt: '🚚 Нарачај преку Wolt (Брза достава)',
       generalInquiry: 'Општо прашање',
       birthdayCake: 'Роденденска торта',
       weddingCake: 'Свадбена торта',
@@ -244,7 +243,6 @@ const Contact = () => {
                     onClick={openWoltOrder}
                     type="button"
                   >
-                    <WoltIcon />
                     {t.orderWolt}
                   </button>
                 </div>
