@@ -1,17 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import LanguageSwitcher from '../common/LanguageSwitcher';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  // Function to check if a path is active
   const isActive = (path) => {
     if (path === '/') {
       return location.pathname === '/';
@@ -19,24 +21,36 @@ const Header = () => {
     return location.pathname.startsWith(path);
   };
   
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
-  // Handle anchor link scrolling
   const handleAnchorClick = (e, targetId) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else if (location.pathname !== '/') {
-      // If we're not on the home page, navigate there first
       sessionStorage.setItem('scrollToElement', targetId);
       window.location.href = '/#' + targetId;
     }
   };
-  
+
+  const handleSignOut = async () => {
+    console.log('Header: Sign out clicked');
+    try {
+      const { error } = await signOut();
+      if (error) {
+        console.error('Sign out failed:', error);
+      } else {
+        console.log('Sign out successful, redirecting...');
+        window.location.href = '/';
+      }
+    } catch (err) {
+      console.error('Sign out error:', err);
+    }
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -62,23 +76,35 @@ const Header = () => {
             </a>
             <Link to="/menu" className={`nav-link ${isActive('/menu') ? 'active' : ''}`}>Menu</Link>
             <Link to="/gallery" className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}>Gallery</Link>
-            
-            <div className="dropdown">
-              <button className={`dropdown-button ${isActive('/occasions') ? 'active' : ''}`}>
-                Occasions <span className="dropdown-icon">▼</span>
-              </button>
-              <div className="dropdown-content">
-                <Link to="/occasions/birthday" className={`dropdown-item ${isActive('/occasions/birthday') ? 'active' : ''}`}>Birthday</Link>
-                <Link to="/occasions/wedding" className={`dropdown-item ${isActive('/occasions/wedding') ? 'active' : ''}`}>Wedding</Link>
-                <Link to="/occasions/anniversary" className={`dropdown-item ${isActive('/occasions/anniversary') ? 'active' : ''}`}>Anniversary</Link>
-              </div>
-            </div>
-            
             <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
           </nav>
           
           <div className="action-buttons">
-            <Link to="/contact" className="order-button">Order Now</Link>
+            <LanguageSwitcher />
+            {user ? (
+              <>
+                <div className="user-menu-container">
+                  <div className="dropdown">
+                    <button className="dropdown-button user-button">
+                      Account <span className="dropdown-icon">▼</span>
+                    </button>
+                    <div className="dropdown-content user-dropdown">
+                      {isAdmin && (
+                        <Link to="/admin" className="dropdown-item">
+                          Admin Dashboard
+                        </Link>
+                      )}
+                      <button onClick={handleSignOut} className="dropdown-item sign-out">
+                        Sign Out
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <Link to="/contact" className="primary-button">Order Now</Link>
+              </>
+            ) : (
+              <Link to="/login" className="primary-button">Log In</Link>
+            )}
           </div>
           
           <button className="menu-button" onClick={toggleMenu}>
@@ -102,11 +128,27 @@ const Header = () => {
               </a>
               <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>Menu</Link>
               <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
-              <Link to="/occasions/birthday" className={`mobile-nav-link ${isActive('/occasions/birthday') ? 'active' : ''}`} onClick={toggleMenu}>Birthday Cakes</Link>
-              <Link to="/occasions/wedding" className={`mobile-nav-link ${isActive('/occasions/wedding') ? 'active' : ''}`} onClick={toggleMenu}>Wedding Cakes</Link>
-              <Link to="/occasions/anniversary" className={`mobile-nav-link ${isActive('/occasions/anniversary') ? 'active' : ''}`} onClick={toggleMenu}>Anniversary Cakes</Link>
               <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
-              <Link to="/contact" className="mobile-order-button" onClick={toggleMenu}>Order Now</Link>
+              
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Link to="/admin" className="mobile-nav-link" onClick={toggleMenu}>
+                      Admin Dashboard
+                    </Link>
+                  )}
+                  <button onClick={() => { handleSignOut(); toggleMenu(); }} className="mobile-nav-link sign-out-mobile">
+                    Sign Out
+                  </button>
+                  <Link to="/contact" className="mobile-primary-button" onClick={toggleMenu}>
+                    Order Now
+                  </Link>
+                </>
+              ) : (
+                <Link to="/login" className="mobile-primary-button" onClick={toggleMenu}>
+                  Log In
+                </Link>
+              )}
             </nav>
           </div>
         )}

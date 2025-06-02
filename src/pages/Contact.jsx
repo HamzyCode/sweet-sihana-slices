@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
+import LanguageSelector from '../components/contact/LanguageSelector.jsx';
 import './Contact.css';
 
 const Contact = () => {
@@ -11,16 +12,16 @@ const Contact = () => {
     phone: '',
     message: '',
     occasion: 'general',
-    language: 'en', // Default language
+    language: 'en',
   });
   
   const [formStatus, setFormStatus] = useState({
     submitted: false,
     error: false,
     message: '',
+    loading: false,
   });
 
-  // If product was selected from another page
   useEffect(() => {
     const selectedProduct = sessionStorage.getItem('selectedProduct');
     if (selectedProduct) {
@@ -30,7 +31,6 @@ const Contact = () => {
           ...prevState,
           message: `I am interested in ordering: ${product.name}\n\n${prevState.message}`
         }));
-        // Clear the session storage after using it
         sessionStorage.removeItem('selectedProduct');
       } catch (e) {
         console.error("Error parsing selected product:", e);
@@ -46,43 +46,75 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleLanguageChange = (language) => {
+    setFormData(prevState => ({
+      ...prevState,
+      language
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validate form
     if (!formData.name || !formData.email || !formData.message) {
       setFormStatus({
         submitted: false,
         error: true,
-        message: 'Please fill out all required fields.'
+        message: 'Please fill out all required fields.',
+        loading: false,
       });
       return;
     }
     
-    // Form submission logic would go here
-    // In a real implementation, this would use EmailJS or another service
+    setFormStatus(prev => ({ ...prev, loading: true, error: false }));
     
-    console.log('Form submitted:', formData);
-    
-    // Simulate successful form submission
-    setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Thank you for your message! We will get back to you soon.'
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      occasion: 'general',
-      language: formData.language, // Keep the selected language
-    });
+    try {
+      const result = await emailjs.send(
+        'service_7qiw07x',
+        'template_1nnkkii',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          occasion: formData.occasion,
+          message: formData.message,
+          to_email: 'sihanaskejk@gmail.com',
+        },
+        '3ESLHOit32HCXF-GY'
+      );
+
+      console.log('Email sent successfully:', result);
+      
+      setFormStatus({
+        submitted: true,
+        error: false,
+        message: 'Thank you for your message! We will get back to you soon.',
+        loading: false,
+      });
+      
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        occasion: 'general',
+        language: formData.language,
+      });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setFormStatus({
+        submitted: false,
+        error: true,
+        message: 'Failed to send message. Please try again or contact us directly.',
+        loading: false,
+      });
+    }
   };
 
-  // Content translations
+  const openWoltOrder = () => {
+    window.open('https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D', '_blank');
+  };
+
   const translations = {
     en: {
       title: 'Contact Us',
@@ -97,6 +129,7 @@ const Contact = () => {
       occasionPlaceholder: 'Occasion',
       messagePlaceholder: 'Message *',
       submit: 'Send Message',
+      orderWolt: '🚚 Order via Wolt (Fast Delivery)',
       generalInquiry: 'General Inquiry',
       birthdayCake: 'Birthday Cake',
       weddingCake: 'Wedding Cake',
@@ -116,6 +149,7 @@ const Contact = () => {
       occasionPlaceholder: 'Rasti',
       messagePlaceholder: 'Mesazhi *',
       submit: 'Dërgo Mesazhin',
+      orderWolt: '🚚 Porosit me Wolt (Dorëzim i Shpejtë)',
       generalInquiry: 'Pyetje e Përgjithshme',
       birthdayCake: 'Tortë Ditëlindjeje',
       weddingCake: 'Tortë Dasme',
@@ -135,6 +169,7 @@ const Contact = () => {
       occasionPlaceholder: 'Повод',
       messagePlaceholder: 'Порака *',
       submit: 'Испрати порака',
+      orderWolt: '🚚 Нарачај преку Wolt (Брза достава)',
       generalInquiry: 'Општо прашање',
       birthdayCake: 'Роденденска торта',
       weddingCake: 'Свадбена торта',
@@ -143,7 +178,6 @@ const Contact = () => {
     }
   };
 
-  // Get current translation based on selected language
   const t = translations[formData.language];
 
   return (
@@ -158,26 +192,10 @@ const Contact = () => {
                 {t.subtitle}
               </p>
               
-              <div className="language-selector">
-                <button 
-                  className={`lang-button ${formData.language === 'en' ? 'active' : ''}`} 
-                  onClick={() => setFormData({...formData, language: 'en'})}
-                >
-                  English
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'sq' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'sq'})}
-                >
-                  Shqip
-                </button>
-                <button 
-                  className={`lang-button ${formData.language === 'mk' ? 'active' : ''}`}
-                  onClick={() => setFormData({...formData, language: 'mk'})}
-                >
-                  Македонски
-                </button>
-              </div>
+              <LanguageSelector 
+                selectedLanguage={formData.language}
+                onLanguageChange={handleLanguageChange}
+              />
             </div>
             
             <div className="contact-content">
@@ -219,6 +237,16 @@ const Contact = () => {
               <div className="contact-form-container">
                 <h2>{t.sendMessage}</h2>
                 
+                <div className="order-options">
+                  <button 
+                    className="wolt-order-button"
+                    onClick={openWoltOrder}
+                    type="button"
+                  >
+                    {t.orderWolt}
+                  </button>
+                </div>
+                
                 {formStatus.submitted ? (
                   <div className="success-message">
                     <p>{formStatus.message}</p>
@@ -240,6 +268,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        placeholder={t.namePlaceholder}
                       />
                     </div>
                     
@@ -252,6 +281,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        placeholder={t.emailPlaceholder}
                       />
                     </div>
                     
@@ -263,6 +293,7 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        placeholder={t.phonePlaceholder}
                       />
                     </div>
                     
@@ -291,11 +322,16 @@ const Contact = () => {
                         onChange={handleChange}
                         rows="5"
                         required
+                        placeholder={t.messagePlaceholder}
                       ></textarea>
                     </div>
                     
-                    <button type="submit" className="submit-button">
-                      {t.submit}
+                    <button 
+                      type="submit" 
+                      className="submit-button"
+                      disabled={formStatus.loading}
+                    >
+                      {formStatus.loading ? 'Sending...' : t.submit}
                     </button>
                   </form>
                 )}
@@ -308,6 +344,12 @@ const Contact = () => {
     </div>
   );
 };
+
+const WoltIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm6.343 16.343c-.391.391-1.023.391-1.414 0L12 11.414l-4.929 4.929c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414L10.586 10 5.657 5.071c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0L12 8.586l4.929-4.929c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414L13.414 10l4.929 4.929c.391.391.391 1.023 0 1.414z"/>
+  </svg>
+);
 
 const LocationIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

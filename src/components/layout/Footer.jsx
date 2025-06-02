@@ -29,15 +29,6 @@ const Footer = () => {
             </div>
 
             <div className="link-group">
-              <h3>Occasions</h3>
-              <ul>
-                <li><Link to="/occasions/birthday">Birthday Cakes</Link></li>
-                <li><Link to="/occasions/wedding">Wedding Cakes</Link></li>
-                <li><Link to="/occasions/anniversary">Anniversary Cakes</Link></li>
-              </ul>
-            </div>
-
-            <div className="link-group">
               <h3>Contact Us</h3>
               <ul>
                 <a href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" target="_blank" rel="noopener noreferrer">

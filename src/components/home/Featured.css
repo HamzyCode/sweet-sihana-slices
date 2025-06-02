@@ -47,9 +47,15 @@
   }
 }
 
+@media (min-width: 768px) {
+  .cakes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (min-width: 1024px) {
   .cakes-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -59,6 +65,9 @@
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .cake-card:hover {
@@ -68,19 +77,23 @@
 
 .cake-image-container {
   position: relative;
-  height: 16rem;
+  height: 250px; /* Reduced height */
   overflow: hidden;
+  background-color: white; /* Ensures white background */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center alignment */
 }
 
 .cake-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 75%;
+  max-height: 100%; /* Ensures image fits within container */
+  object-fit: contain; /* Changed to contain to show full cake */
   transition: transform 0.5s;
 }
 
 .cake-card:hover .cake-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .cake-badge {
@@ -111,6 +124,9 @@
 
 .cake-details {
   padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .cake-title {
@@ -125,18 +141,14 @@
   font-size: 0.875rem;
   color: rgba(93, 58, 34, 0.7);
   margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .cake-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.cake-price {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #E58FB8;
+  margin-top: auto;
 }
 
 .cake-link {
