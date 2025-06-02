@@ -3,6 +3,9 @@
   width: 100%;
   max-width: 500px;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .auth-card {
@@ -11,6 +14,7 @@
   padding: 2.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 100%;
 }
 
 .auth-title {
@@ -204,4 +208,19 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1rem;
+  }
+  
+  .auth-card {
+    padding: 1.5rem;
+  }
+  
+  .auth-title {
+    font-size: 1.5rem;
+  }
 }

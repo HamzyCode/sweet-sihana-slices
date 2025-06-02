@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
-import Header from '../components/layout/Header.jsx';
-import Footer from '../components/layout/Footer.jsx';
-import LanguageSelector from '../components/contact/LanguageSelector.jsx';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import './Contact.css';
 
 const Contact = () => {
@@ -10,64 +11,24 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    message: '',
-    occasion: 'general',
-    language: 'en',
+    message: ''
   });
-  
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false,
-    message: '',
-    loading: false,
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  useEffect(() => {
-    const selectedProduct = sessionStorage.getItem('selectedProduct');
-    if (selectedProduct) {
-      try {
-        const product = JSON.parse(selectedProduct);
-        setFormData(prevState => ({
-          ...prevState,
-          message: `I am interested in ordering: ${product.name}\n\n${prevState.message}`
-        }));
-        sessionStorage.removeItem('selectedProduct');
-      } catch (e) {
-        console.error("Error parsing selected product:", e);
-      }
-    }
-  }, []);
-
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
-    }));
-  };
-
-  const handleLanguageChange = (language) => {
-    setFormData(prevState => ({
-      ...prevState,
-      language
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Please fill out all required fields.',
-        loading: false,
-      });
-      return;
-    }
-    
-    setFormStatus(prev => ({ ...prev, loading: true, error: false }));
-    
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
     try {
       const result = await emailjs.send(
         'service_7qiw07x',
@@ -76,299 +37,175 @@ const Contact = () => {
           from_name: formData.name,
           from_email: formData.email,
           phone: formData.phone,
-          occasion: formData.occasion,
           message: formData.message,
-          to_email: 'sihanaskejk@gmail.com',
+          to_email: 'sihanaskejk@gmail.com'
         },
         '3ESLHOit32HCXF-GY'
       );
 
       console.log('Email sent successfully:', result);
-      
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: 'Thank you for your message! We will get back to you soon.',
-        loading: false,
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        occasion: 'general',
-        language: formData.language,
-      });
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Email sending failed:', error);
-      setFormStatus({
-        submitted: false,
-        error: true,
-        message: 'Failed to send message. Please try again or contact us directly.',
-        loading: false,
-      });
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const openWoltOrder = () => {
-    window.open('https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D', '_blank');
-  };
-
-  const translations = {
-    en: {
-      title: 'Contact Us',
-      subtitle: 'Have a question or want to order a custom cake? Get in touch with us!',
-      visitUs: 'Visit Us',
-      callUs: 'Call Us',
-      emailUs: 'Email Us',
-      sendMessage: 'Send us a Message',
-      namePlaceholder: 'Name *',
-      emailPlaceholder: 'Email *',
-      phonePlaceholder: 'Phone Number',
-      occasionPlaceholder: 'Occasion',
-      messagePlaceholder: 'Message *',
-      submit: 'Send Message',
-      orderWolt: '🚚 Order via Wolt (Fast Delivery)',
-      generalInquiry: 'General Inquiry',
-      birthdayCake: 'Birthday Cake',
-      weddingCake: 'Wedding Cake',
-      anniversaryCake: 'Anniversary Cake',
-      other: 'Other',
-    },
-    sq: {
-      title: 'Na Kontaktoni',
-      subtitle: 'Keni ndonjë pyetje apo dëshironi të porositni një tortë? Na kontaktoni!',
-      visitUs: 'Na Vizitoni',
-      callUs: 'Na Telefononi',
-      emailUs: 'Na Shkruani',
-      sendMessage: 'Na Dërgoni një Mesazh',
-      namePlaceholder: 'Emri *',
-      emailPlaceholder: 'Email *',
-      phonePlaceholder: 'Numri i Telefonit',
-      occasionPlaceholder: 'Rasti',
-      messagePlaceholder: 'Mesazhi *',
-      submit: 'Dërgo Mesazhin',
-      orderWolt: '🚚 Porosit me Wolt (Dorëzim i Shpejtë)',
-      generalInquiry: 'Pyetje e Përgjithshme',
-      birthdayCake: 'Tortë Ditëlindjeje',
-      weddingCake: 'Tortë Dasme',
-      anniversaryCake: 'Tortë Përvjetori',
-      other: 'Tjetër',
-    },
-    mk: {
-      title: 'Контактирајте нè',
-      subtitle: 'Имате прашање или сакате да нарачате торта? Контактирајте нè!',
-      visitUs: 'Посетете нè',
-      callUs: 'Јавете ни се',
-      emailUs: 'Пишете ни',
-      sendMessage: 'Испратете ни порака',
-      namePlaceholder: 'Име *',
-      emailPlaceholder: 'Емаил *',
-      phonePlaceholder: 'Телефонски број',
-      occasionPlaceholder: 'Повод',
-      messagePlaceholder: 'Порака *',
-      submit: 'Испрати порака',
-      orderWolt: '🚚 Нарачај преку Wolt (Брза достава)',
-      generalInquiry: 'Општо прашање',
-      birthdayCake: 'Роденденска торта',
-      weddingCake: 'Свадбена торта',
-      anniversaryCake: 'Торта за годишнина',
-      other: 'Друго',
-    }
-  };
-
-  const t = translations[formData.language];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        <section className="contact-section">
+        <div className="contact-hero">
           <div className="container">
-            <div className="contact-header">
-              <h1 className="contact-title">{t.title}</h1>
-              <p className="contact-subtitle">
-                {t.subtitle}
-              </p>
+            <h1 className="contact-title">Get in Touch</h1>
+            <p className="contact-subtitle">
+              Ready to order your perfect cake? We'd love to hear from you!
+            </p>
+          </div>
+        </div>
+
+        <div className="container contact-content">
+          <div className="contact-grid">
+            <div className="contact-info">
+              <h2>Contact Information</h2>
               
-              <LanguageSelector 
-                selectedLanguage={formData.language}
-                onLanguageChange={handleLanguageChange}
-              />
-            </div>
-            
-            <div className="contact-content">
-              <div className="contact-info">
-                <div className="info-card">
-                  <div className="icon-container">
-                    <LocationIcon />
-                  </div>
-                  <h3>{t.visitUs}</h3>
-                  <p>
-                    <a 
-                      href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      Makedonsko Kosovska Brigada 12<br />
-                      North Macedonia, SK 1000
-                    </a>
-                  </p>
-                </div>
-                
-                <div className="info-card">
-                  <div className="icon-container">
-                    <PhoneIcon />
-                  </div>
-                  <h3>{t.callUs}</h3>
-                  <p><a href="tel:+38975231968">(+389) 75 231 968</a></p>
-                </div>
-                
-                <div className="info-card">
-                  <div className="icon-container">
-                    <EmailIcon />
-                  </div>
-                  <h3>{t.emailUs}</h3>
-                  <p><a href="mailto:sihanaskejk@gmail.com">sihanaskejk@gmail.com</a></p>
-                </div>
-              </div>
-              
-              <div className="contact-form-container">
-                <h2>{t.sendMessage}</h2>
-                
-                <div className="order-options">
-                  <button 
-                    className="wolt-order-button"
-                    onClick={openWoltOrder}
-                    type="button"
+              <div className="contact-item">
+                <div className="contact-icon">📍</div>
+                <div>
+                  <h3>Visit Our Shop</h3>
+                  <a 
+                    href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="contact-link"
                   >
-                    {t.orderWolt}
-                  </button>
+                    Makedonsko Kosovska Brigada 12<br />
+                    North Macedonia, SK 1000
+                  </a>
                 </div>
-                
-                {formStatus.submitted ? (
-                  <div className="success-message">
-                    <p>{formStatus.message}</p>
-                  </div>
-                ) : (
-                  <form className="contact-form" onSubmit={handleSubmit}>
-                    {formStatus.error && (
-                      <div className="error-message">
-                        <p>{formStatus.message}</p>
-                      </div>
-                    )}
-                    
-                    <div className="form-group">
-                      <label htmlFor="name">{t.namePlaceholder}</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder={t.namePlaceholder}
-                      />
-                    </div>
-                    
-                    <div className="form-group">
-                      <label htmlFor="email">{t.emailPlaceholder}</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder={t.emailPlaceholder}
-                      />
-                    </div>
-                    
-                    <div className="form-group">
-                      <label htmlFor="phone">{t.phonePlaceholder}</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder={t.phonePlaceholder}
-                      />
-                    </div>
-                    
-                    <div className="form-group">
-                      <label htmlFor="occasion">{t.occasionPlaceholder}</label>
-                      <select
-                        id="occasion"
-                        name="occasion"
-                        value={formData.occasion}
-                        onChange={handleChange}
-                      >
-                        <option value="general">{t.generalInquiry}</option>
-                        <option value="birthday">{t.birthdayCake}</option>
-                        <option value="wedding">{t.weddingCake}</option>
-                        <option value="anniversary">{t.anniversaryCake}</option>
-                        <option value="other">{t.other}</option>
-                      </select>
-                    </div>
-                    
-                    <div className="form-group">
-                      <label htmlFor="message">{t.messagePlaceholder}</label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows="5"
-                        required
-                        placeholder={t.messagePlaceholder}
-                      ></textarea>
-                    </div>
-                    
-                    <button 
-                      type="submit" 
-                      className="submit-button"
-                      disabled={formStatus.loading}
-                    >
-                      {formStatus.loading ? 'Sending...' : t.submit}
-                    </button>
-                  </form>
-                )}
               </div>
+
+              <div className="contact-item">
+                <div className="contact-icon">📧</div>
+                <div>
+                  <h3>Email Us</h3>
+                  <a href="mailto:sihanaskejk@gmail.com" className="contact-link">
+                    sihanaskejk@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="contact-item">
+                <div className="contact-icon">📱</div>
+                <div>
+                  <h3>Call Us</h3>
+                  <a href="tel:+38975231968" className="contact-link">
+                    (+389) 75 231 968
+                  </a>
+                </div>
+              </div>
+
+              <div className="order-options">
+                <h3>Order Options</h3>
+                <div className="order-buttons">
+                  <a 
+                    href="https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="wolt-button"
+                  >
+                    <img 
+                      src="/lovable-uploads/0cb5ed58-8ec7-4ef4-9f35-9c70cf595309.png" 
+                      alt="Wolt" 
+                      className="wolt-logo"
+                    />
+                    Order via Wolt
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-form-container">
+              <h2>Send us a Message</h2>
+              <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-group">
+                  <label htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us about your cake requirements..."
+                    required
+                  ></textarea>
+                </div>
+
+                {submitStatus === 'success' && (
+                  <div className="success-message">
+                    Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="error-message">
+                    Sorry, there was an error sending your message. Please try again.
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  className="submit-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
             </div>
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </div>
   );
 };
-
-const WoltIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm6.343 16.343c-.391.391-1.023.391-1.414 0L12 11.414l-4.929 4.929c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414L10.586 10 5.657 5.071c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0L12 8.586l4.929-4.929c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414L13.414 10l4.929 4.929c.391.391.391 1.023 0 1.414z"/>
-  </svg>
-);
-
-const LocationIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-    <circle cx="12" cy="10" r="3"></circle>
-  </svg>
-);
-
-const PhoneIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-  </svg>
-);
-
-const EmailIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-    <polyline points="22,6 12,13 2,6"></polyline>
-  </svg>
-);
 
 export default Contact;

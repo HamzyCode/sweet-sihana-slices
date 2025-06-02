@@ -1,7 +1,6 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../integrations/supabase/client';
-import { checkIsAdmin, ensureAdminSetup } from '../integrations/supabase/helper';
 
 const AuthContext = createContext({});
 
@@ -27,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        checkAdminStatus(session.user.id, session.user.email);
+        checkAdminStatus(session.user.email);
       } else {
         setIsAdmin(false);
         setLoading(false);
@@ -42,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        await checkAdminStatus(session.user.id, session.user.email);
+        await checkAdminStatus(session.user.email);
       } else {
         setIsAdmin(false);
         setLoading(false);
@@ -52,18 +51,12 @@ export const AuthProvider = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkAdminStatus = async (userId, email) => {
+  const checkAdminStatus = async (email) => {
     try {
       console.log('Checking admin status for:', email);
       
-      // Ensure admin setup for the specific email
-      if (email === 'hamzaademi460@gmail.com') {
-        console.log('Setting up admin for:', email);
-        await ensureAdminSetup(email);
-      }
-      
-      // Check admin status
-      const adminStatus = await checkIsAdmin(userId);
+      // Check if user is admin based on email
+      const adminStatus = email === 'hamzaademi460@gmail.com';
       console.log('Admin status result:', adminStatus);
       setIsAdmin(adminStatus);
     } catch (error) {
@@ -77,6 +70,8 @@ export const AuthProvider = ({ children }) => {
   const signOut = async () => {
     try {
       console.log('AuthContext: Signing out...');
+      setLoading(true);
+      
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Error signing out:', error);
@@ -93,6 +88,8 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Sign out error:', error);
       return { error };
+    } finally {
+      setLoading(false);
     }
   };
 

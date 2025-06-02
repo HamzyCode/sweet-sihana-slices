@@ -7,7 +7,7 @@ import Footer from '../components/layout/Footer';
 import './Login.css';
 
 const Login = () => {
-  const { user, loading, signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
+  const { user, loading, signInWithGoogle, signIn, signUp } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [authMode, setAuthMode] = useState('login');
@@ -20,18 +20,19 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) {
+    if (user && !loading) {
       console.log('User authenticated, redirecting to:', from);
       navigate(from, { replace: true });
     }
-  }, [user, navigate, from]);
+  }, [user, loading, navigate, from]);
 
   const handleGoogleSignIn = async () => {
     try {
       setAuthError(null);
       setIsSubmitting(true);
       console.log('Starting Google sign in...');
-      await signInWithGoogle();
+      const { error } = await signInWithGoogle();
+      if (error) throw error;
     } catch (error) {
       console.error("Google sign in error:", error);
       if (error.message?.includes('invalid') || error.message?.includes('path')) {
@@ -54,13 +55,13 @@ const Login = () => {
       console.log(`Starting ${authMode} for:`, email);
       
       if (authMode === 'login') {
-        const { error } = await signInWithEmail(email, password);
+        const { error } = await signIn(email, password);
         if (error) {
           throw error;
         }
         console.log('Email login successful');
       } else {
-        const { error } = await signUpWithEmail(email, password);
+        const { error } = await signUp(email, password);
         if (error) {
           throw error;
         }
@@ -120,7 +121,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow flex items-center justify-center">
+      <main className="flex-grow flex items-center justify-center px-4 py-8">
         <div className="auth-container">
           <div className="auth-card">
             <h2 className="auth-title">

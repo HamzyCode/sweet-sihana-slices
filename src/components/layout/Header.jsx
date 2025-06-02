@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import LanguageSwitcher from '../common/LanguageSwitcher';
 import './Header.css';
@@ -9,6 +8,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
+  const navigate = useNavigate();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,7 +44,8 @@ const Header = () => {
         console.error('Sign out failed:', error);
       } else {
         console.log('Sign out successful, redirecting...');
-        window.location.href = '/';
+        setIsMenuOpen(false); // Close mobile menu
+        navigate('/');
       }
     } catch (err) {
       console.error('Sign out error:', err);
@@ -80,7 +81,11 @@ const Header = () => {
           </nav>
           
           <div className="action-buttons">
-            <LanguageSwitcher />
+            <div className="language-flags">
+              <button className="flag-button" title="Albanian">🇦🇱</button>
+              <button className="flag-button" title="Macedonian">🇲🇰</button>
+              <button className="flag-button" title="English">🇬🇧</button>
+            </div>
             {user ? (
               <>
                 <div className="user-menu-container">
@@ -129,6 +134,12 @@ const Header = () => {
               <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>Menu</Link>
               <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
               <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
+              
+              <div className="mobile-language-flags">
+                <button className="flag-button" title="Albanian">🇦🇱</button>
+                <button className="flag-button" title="Macedonian">🇲🇰</button>
+                <button className="flag-button" title="English">🇬🇧</button>
+              </div>
               
               {user ? (
                 <>

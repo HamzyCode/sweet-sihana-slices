@@ -43,6 +43,27 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+
+            <div className="link-group">
+              <h3>Order Online</h3>
+              <ul>
+                <li>
+                  <a 
+                    href="https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="wolt-footer-link"
+                  >
+                    <img 
+                      src="/lovable-uploads/0cb5ed58-8ec7-4ef4-9f35-9c70cf595309.png" 
+                      alt="Wolt" 
+                      className="wolt-footer-logo"
+                    />
+                    Order via Wolt
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

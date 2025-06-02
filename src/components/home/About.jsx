@@ -9,8 +9,8 @@ const About = () => {
         <div className="about-grid">
           <div className="about-image">
             <img 
-              src="/assets/images/products/IMG_1884-Photoroom.jpg" 
-              alt="Sihana working on a beautiful cake" 
+              src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              alt="Beautiful cake display" 
               className="rounded-image"
             />
           </div>
@@ -19,12 +19,12 @@ const About = () => {
               <span className="about-label">ABOUT US</span>
               <h2 className="about-title">Crafting Sweet Memories Since 2010</h2>
             </div>
-            <p className="about-text">
+            <p className="about-description">
               Welcome to Sihana's Cake, where every celebration becomes sweeter! Founded with passion and 
               dedication, we specialize in creating extraordinary cakes that turn your special moments into 
               unforgettable memories.
             </p>
-            <p className="about-text">
+            <p className="about-description">
               Our talented team of bakers and decorators brings years of experience and creativity to every 
               project. From intimate birthday celebrations to grand wedding receptions, we craft each cake 
               with the finest ingredients and meticulous attention to detail.
