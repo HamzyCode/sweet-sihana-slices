@@ -1,182 +1,72 @@
 
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../integrations/supabase/client';
 import { checkIsAdmin, ensureAdminSetup } from '../integrations/supabase/helper';
 
-const AuthContext = createContext();
+const AuthContext = createContext({});
 
-export function AuthProvider({ children }) {
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Setting up auth state listener...');
-    
-    // Set up the auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, currentSession) => {
-        console.log('Auth state changed:', event, currentSession?.user?.email);
-        
-        setSession(currentSession);
-        setUser(currentSession?.user ?? null);
-        
-        if (currentSession?.user) {
-          // Defer admin checks to avoid potential RLS issues
-          setTimeout(async () => {
-            try {
-              // If this is the specific admin email, ensure admin role first
-              if (currentSession.user.email === 'hamzaademi460@gmail.com') {
-                console.log('Admin email detected, ensuring admin setup...');
-                await ensureAdminSetup('hamzaademi460@gmail.com');
-                setIsAdmin(true);
-              } else {
-                // Check if user is admin for other users
-                const adminStatus = await checkIsAdmin(currentSession.user.id);
-                setIsAdmin(adminStatus);
-              }
-            } catch (error) {
-              console.error('Error checking admin status:', error);
-              setIsAdmin(false);
-            }
-          }, 100);
-        } else {
-          setIsAdmin(false);
-        }
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        checkAdminStatus(session.user.id, session.user.email);
+      } else {
+        setIsAdmin(false);
         setLoading(false);
       }
-    );
+    });
 
-    // Check for existing session
-    supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
-      console.log('Initial session check:', currentSession?.user?.email);
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('Auth state changed:', event, session?.user?.email);
       
-      setSession(currentSession);
-      setUser(currentSession?.user ?? null);
+      setSession(session);
+      setUser(session?.user ?? null);
       
-      if (currentSession?.user) {
-        // Defer admin checks to avoid potential RLS issues
-        setTimeout(async () => {
-          try {
-            // If this is the specific admin email, ensure admin role first
-            if (currentSession.user.email === 'hamzaademi460@gmail.com') {
-              console.log('Admin email detected in initial session, ensuring admin setup...');
-              await ensureAdminSetup('hamzaademi460@gmail.com');
-              setIsAdmin(true);
-            } else {
-              // Check if user is admin for other users
-              const adminStatus = await checkIsAdmin(currentSession.user.id);
-              setIsAdmin(adminStatus);
-            }
-          } catch (error) {
-            console.error('Error checking admin status in initial session:', error);
-            setIsAdmin(false);
-          }
-        }, 100);
+      if (session?.user) {
+        await checkAdminStatus(session.user.id, session.user.email);
+      } else {
+        setIsAdmin(false);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
+  const checkAdminStatus = async (userId, email) => {
     try {
-      console.log('Attempting Google sign in...');
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: window.location.origin,
-        },
-      });
-      
-      if (error) {
-        console.error('Error signing in with Google:', error);
-        throw error;
-      }
-    } catch (error) {
-      console.error('Unexpected error during Google sign-in:', error);
-      throw error;
-    }
-  };
-
-  const signInWithEmail = async (email, password) => {
-    try {
-      console.log('Attempting email sign in for:', email);
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-      
-      if (error) {
-        console.error('Email sign in error:', error);
-        throw error;
+      // Ensure admin setup for the specific email
+      if (email === 'hamzaademi460@gmail.com') {
+        await ensureAdminSetup(email);
       }
       
-      console.log('Email sign in successful:', data.user?.email);
-      return { data, error: null };
+      // Check admin status
+      const adminStatus = await checkIsAdmin(userId);
+      console.log('Admin status for user:', email, adminStatus);
+      setIsAdmin(adminStatus);
     } catch (error) {
-      console.error('Error signing in with email:', error);
-      return { data: null, error };
-    }
-  };
-
-  const signUpWithEmail = async (email, password) => {
-    try {
-      console.log('Attempting email sign up for:', email);
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: window.location.origin,
-        },
-      });
-      
-      if (error) {
-        console.error('Email sign up error:', error);
-        throw error;
-      }
-      
-      console.log('Email sign up successful:', data.user?.email);
-      return { data, error: null };
-    } catch (error) {
-      console.error('Error signing up with email:', error);
-      return { data: null, error };
-    }
-  };
-
-  const resetPassword = async (email) => {
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/reset-password`,
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      return { error: null };
-    } catch (error) {
-      console.error('Error resetting password:', error);
-      return { error };
-    }
-  };
-
-  const updatePassword = async (newPassword) => {
-    try {
-      const { error } = await supabase.auth.updateUser({
-        password: newPassword
-      });
-      
-      if (error) {
-        throw error;
-      }
-      
-      return { error: null };
-    } catch (error) {
-      console.error('Error updating password:', error);
-      return { error };
+      console.error('Error checking admin status:', error);
+      setIsAdmin(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -186,9 +76,70 @@ export function AuthProvider({ children }) {
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error('Error signing out:', error);
+        throw error;
       }
+      
+      // Reset state immediately
+      setUser(null);
+      setSession(null);
+      setIsAdmin(false);
+      
+      console.log('Successfully signed out');
+      return { error: null };
     } catch (error) {
-      console.error('Unexpected error during sign-out:', error);
+      console.error('Sign out error:', error);
+      return { error };
+    }
+  };
+
+  const signUp = async (email, password) => {
+    try {
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: redirectUrl
+        }
+      });
+      
+      return { data, error };
+    } catch (error) {
+      console.error('Sign up error:', error);
+      return { error };
+    }
+  };
+
+  const signIn = async (email, password) => {
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      
+      return { data, error };
+    } catch (error) {
+      console.error('Sign in error:', error);
+      return { error };
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectUrl
+        }
+      });
+      
+      return { data, error };
+    } catch (error) {
+      console.error('Google sign in error:', error);
+      return { error };
     }
   };
 
@@ -197,17 +148,15 @@ export function AuthProvider({ children }) {
     session,
     isAdmin,
     loading,
+    signUp,
+    signIn,
     signInWithGoogle,
-    signInWithEmail,
-    signUpWithEmail,
-    resetPassword,
-    updatePassword,
-    signOut,
+    signOut
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
-}
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

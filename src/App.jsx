@@ -7,9 +7,6 @@ import Gallery from "./pages/Gallery.jsx";
 import Contact from "./pages/Contact.jsx";
 import Menu from "./pages/Menu.jsx";
 import Product from "./pages/Product.jsx";
-import Birthday from "./pages/occasions/Birthday.jsx";
-import Wedding from "./pages/occasions/Wedding.jsx";
-import Anniversary from "./pages/occasions/Anniversary.jsx";
 import Login from "./pages/Login.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
@@ -30,9 +27,6 @@ const App = () => (
         <Route path="/contact" element={<Contact />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/occasions/birthday" element={<Birthday />} />
-        <Route path="/occasions/wedding" element={<Wedding />} />
-        <Route path="/occasions/anniversary" element={<Anniversary />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />

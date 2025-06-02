@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
@@ -25,15 +24,6 @@ const Footer = () => {
                 <li><Link to="/#about">About Us</Link></li>
                 <li><Link to="/menu">Our Menu</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-              </ul>
-            </div>
-
-            <div className="link-group">
-              <h3>Occasions</h3>
-              <ul>
-                <li><Link to="/occasions/birthday">Birthday Cakes</Link></li>
-                <li><Link to="/occasions/wedding">Wedding Cakes</Link></li>
-                <li><Link to="/occasions/anniversary">Anniversary Cakes</Link></li>
               </ul>
             </div>
 
