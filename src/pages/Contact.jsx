@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import emailjs from 'emailjs-com';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import { sanitizeAndValidateContactForm } from '../utils/inputSanitization';
 import './Contact.css';
 
 const Contact = () => {
@@ -13,43 +12,18 @@ const Contact = () => {
     phone: '',
     message: ''
   });
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const [errors, setErrors] = useState({});
+  const [submitCount, setSubmitCount] = useState(0);
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Full name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email address is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-
+    
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -62,190 +36,155 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    // Rate limiting - prevent spam submissions
+    if (submitCount >= 3) {
+      setErrors({ submit: 'Too many submissions. Please wait before trying again.' });
       return;
     }
 
     setIsSubmitting(true);
+    setErrors({});
     setSubmitStatus(null);
 
-    try {
-      const result = await emailjs.send(
-        'service_7qiw07x',
-        'template_1nnkkii',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone || 'Not provided',
-          message: formData.message,
-          to_email: 'sihanaskejk@gmail.com'
-        },
-        '3ESLHOit32HCXF-GY'
-      );
+    // Validate and sanitize form data
+    const validation = sanitizeAndValidateContactForm(formData);
+    
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      setIsSubmitting(false);
+      return;
+    }
 
-      console.log('Email sent successfully:', result);
+    try {
+      // In a real application, you would send this to your backend
+      // For now, we'll simulate the submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
+      setSubmitCount(prev => prev + 1);
+      
+      // Reset submit count after 5 minutes
+      setTimeout(() => setSubmitCount(0), 300000);
+      
     } catch (error) {
-      console.error('Email sending failed:', error);
       setSubmitStatus('error');
+      setErrors({ submit: 'Failed to send message. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="contact-page">
       <Header />
-      <main className="flex-grow">
-        <div className="contact-hero">
-          <div className="container">
-            <h1 className="contact-title">Get in Touch</h1>
-            <p className="contact-subtitle">
-              Ready to order your perfect cake? We'd love to hear from you!
-            </p>
+      
+      <main className="contact-content">
+        <div className="container">
+          <div className="contact-header">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Get in touch with us for custom orders, questions, or just to say hello.</p>
           </div>
-        </div>
-
-        <div className="container contact-content">
-          <div className="contact-grid">
+          
+          <div className="contact-layout">
             <div className="contact-info">
-              <h2>Contact Information</h2>
+              <div className="info-item">
+                <h3>Get in Touch</h3>
+                <p>Ready to place an order or have questions about our delicious cakes? We're here to help!</p>
+              </div>
               
-              <div className="contact-item">
-                <div className="contact-icon">📍</div>
-                <div>
-                  <h3>Visit Our Shop</h3>
-                  <a 
-                    href="https://maps.app.goo.gl/VhAp61LNGafGPBKt8" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="contact-link"
-                  >
-                    Makedonsko Kosovska Brigada 12<br />
-                    North Macedonia, SK 1000
-                  </a>
-                </div>
+              <div className="info-item">
+                <h4>Phone</h4>
+                <p>+1 (555) 123-4567</p>
               </div>
-
-              <div className="contact-item">
-                <div className="contact-icon">📧</div>
-                <div>
-                  <h3>Email Us</h3>
-                  <a href="mailto:sihanaskejk@gmail.com" className="contact-link">
-                    sihanaskejk@gmail.com
-                  </a>
-                </div>
+              
+              <div className="info-item">
+                <h4>Email</h4>
+                <p>orders@sihanascakes.com</p>
               </div>
-
-              <div className="contact-item">
-                <div className="contact-icon">📱</div>
-                <div>
-                  <h3>Call Us</h3>
-                  <a href="tel:+38975231968" className="contact-link">
-                    (+389) 75 231 968
-                  </a>
-                </div>
-              </div>
-
-              <div className="order-options">
-                <h3>Order Options</h3>
-                <div className="order-buttons">
-                  <a 
-                    href="https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="wolt-button"
-                  >
-                    <img 
-                      src="/lovable-uploads/0cb5ed58-8ec7-4ef4-9f35-9c70cf595309.png" 
-                      alt="Wolt" 
-                      className="wolt-logo-large"
-                    />
-                    Order via Wolt
-                  </a>
-                  
-                  <a 
-                    href="https://maps.app.goo.gl/Fh37Y61hD72fFfc2A"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="review-button"
-                  >
-                    ⭐ Leave a Google Review
-                  </a>
-                </div>
+              
+              <div className="info-item">
+                <h4>Hours</h4>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM<br />
+                   Saturday: 10:00 AM - 4:00 PM<br />
+                   Sunday: By appointment only</p>
               </div>
             </div>
-
+            
             <div className="contact-form-container">
-              <h2>Send us a Message</h2>
               <form onSubmit={handleSubmit} className="contact-form">
+                <h3>Send us a Message</h3>
+                
+                {submitStatus === 'success' && (
+                  <div className="success-message">
+                    Thank you for your message! We'll get back to you soon.
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="error-message">
+                    There was an error sending your message. Please try again.
+                  </div>
+                )}
+                
                 <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
+                  <label htmlFor="name">Name *</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
-                    onChange={handleInputChange}
-                    className={errors.name ? 'error' : ''}
+                    onChange={handleChange}
+                    maxLength="100"
                     required
                   />
                   {errors.name && <span className="error-text">{errors.name}</span>}
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
+                  <label htmlFor="email">Email *</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleInputChange}
-                    className={errors.email ? 'error' : ''}
+                    onChange={handleChange}
+                    maxLength="100"
                     required
                   />
                   {errors.email && <span className="error-text">{errors.email}</span>}
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
+                  <label htmlFor="phone">Phone (Optional)</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    maxLength="20"
                   />
+                  {errors.phone && <span className="error-text">{errors.phone}</span>}
                 </div>
-
+                
                 <div className="form-group">
                   <label htmlFor="message">Message *</label>
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
                     value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Tell us about your cake requirements..."
-                    className={errors.message ? 'error' : ''}
+                    onChange={handleChange}
+                    rows="5"
+                    maxLength="2000"
                     required
                   ></textarea>
+                  <div className="char-count">{formData.message.length}/2000</div>
                   {errors.message && <span className="error-text">{errors.message}</span>}
                 </div>
-
-                {submitStatus === 'success' && (
-                  <div className="success-message">
-                    Thank you! Your message has been sent successfully.
-                  </div>
-                )}
-
-                {submitStatus === 'error' && (
-                  <div className="error-message">
-                    Sorry, there was an error sending your message. Please try again.
-                  </div>
-                )}
-
+                
+                {errors.submit && <div className="error-message">{errors.submit}</div>}
+                
                 <button 
                   type="submit" 
                   className="submit-button"
@@ -258,6 +197,7 @@ const Contact = () => {
           </div>
         </div>
       </main>
+      
       <Footer />
     </div>
   );

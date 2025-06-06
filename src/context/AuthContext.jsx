@@ -14,28 +14,30 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // Admin emails list
-  const adminEmails = [
-    'hamzaademi460@gmail.com',
-    'sihanaskejk@gmail.com'
-  ];
-
-  const checkAdminStatus = (userEmail) => {
-    return adminEmails.includes(userEmail);
+  const checkAdminStatus = async (userId) => {
+    try {
+      const { data, error } = await supabase.rpc('get_current_user_admin_status');
+      if (error) {
+        console.error('Error checking admin status:', error);
+        return false;
+      }
+      return data || false;
+    } catch (error) {
+      console.error('Error in checkAdminStatus:', error);
+      return false;
+    }
   };
 
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('Auth state changed:', event, session);
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          const adminStatus = checkAdminStatus(session.user.email);
+          const adminStatus = await checkAdminStatus(session.user.id);
           setIsAdmin(adminStatus);
-          console.log('Admin status for', session.user.email, ':', adminStatus);
         } else {
           setIsAdmin(false);
         }
@@ -45,14 +47,13 @@ export const AuthProvider = ({ children }) => {
     );
 
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        const adminStatus = checkAdminStatus(session.user.email);
+        const adminStatus = await checkAdminStatus(session.user.id);
         setIsAdmin(adminStatus);
-        console.log('Initial admin status for', session.user.email, ':', adminStatus);
       }
       
       setLoading(false);
@@ -63,10 +64,21 @@ export const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password) => {
     try {
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return { data: null, error: { message: 'Invalid email format' } };
+      }
+
+      // Password strength validation
+      if (password.length < 8) {
+        return { data: null, error: { message: 'Password must be at least 8 characters long' } };
+      }
+
       const redirectUrl = `${window.location.origin}/`;
       
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: email.trim().toLowerCase(),
         password,
         options: {
           emailRedirectTo: redirectUrl
@@ -75,21 +87,25 @@ export const AuthProvider = ({ children }) => {
 
       return { data, error };
     } catch (error) {
-      console.error('Sign up error:', error);
       return { data: null, error };
     }
   };
 
   const signIn = async (email, password) => {
     try {
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return { data: null, error: { message: 'Invalid email format' } };
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: email.trim().toLowerCase(),
         password,
       });
 
       return { data, error };
     } catch (error) {
-      console.error('Sign in error:', error);
       return { data: null, error };
     }
   };
@@ -105,7 +121,6 @@ export const AuthProvider = ({ children }) => {
 
       return { data, error };
     } catch (error) {
-      console.error('Google sign in error:', error);
       return { data: null, error };
     }
   };
@@ -120,7 +135,6 @@ export const AuthProvider = ({ children }) => {
       }
       return { error };
     } catch (error) {
-      console.error('Sign out error:', error);
       return { error };
     }
   };

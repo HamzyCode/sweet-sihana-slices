@@ -2,75 +2,62 @@
 import { supabase } from "./client";
 import { Database } from "./types";
 
-// Function to check if a user has admin role
+// Function to check if a user has admin role using the secure database function
 export const checkIsAdmin = async (userId: string): Promise<boolean> => {
   try {
-    // Using maybeSingle to avoid errors when no profile is found
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', userId)
-      .maybeSingle();
+    const { data, error } = await supabase.rpc('get_current_user_admin_status');
     
     if (error) {
       console.error('Error checking admin status:', error);
       return false;
     }
     
-    return data?.role === 'admin';
+    return data || false;
   } catch (error) {
     console.error('Error in checkIsAdmin function:', error);
     return false;
   }
 };
 
-// Function to set admin role for a specific email
-export const setAdminForEmail = async (email: string): Promise<boolean> => {
+// Function to safely get user profile
+export const getUserProfile = async (userId: string) => {
   try {
-    console.log('Setting admin role for email:', email);
-    
-    // First check if user exists in profiles table
-    const { data: existingProfile, error: selectError } = await supabase
+    const { data, error } = await supabase
       .from('profiles')
-      .select('id, role')
-      .eq('email', email)
+      .select('*')
+      .eq('id', userId)
       .maybeSingle();
-
-    if (selectError) {
-      console.error('Error checking existing profile:', selectError);
-      return false;
-    }
-
-    if (existingProfile) {
-      console.log('Found existing profile:', existingProfile);
-      // Update existing profile to admin
-      const { error: updateError } = await supabase
-        .from('profiles')
-        .update({ role: 'admin' })
-        .eq('email', email);
-      
-      if (updateError) {
-        console.error('Error setting admin role:', updateError);
-        return false;
-      }
-      console.log('Successfully updated profile to admin');
-    } else {
-      console.log('No existing profile found for email:', email);
+    
+    if (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
     }
     
-    return true;
+    return data;
   } catch (error) {
-    console.error('Error in setAdminForEmail function:', error);
-    return false;
+    console.error('Error in getUserProfile function:', error);
+    return null;
   }
 };
 
-// Function to ensure admin setup for specific email
-export const ensureAdminSetup = async (email: string): Promise<void> => {
+// Function to safely update user profile
+export const updateUserProfile = async (userId: string, updates: Partial<Database['public']['Tables']['profiles']['Update']>) => {
   try {
-    console.log('Ensuring admin setup for:', email);
-    await setAdminForEmail(email);
+    const { data, error } = await supabase
+      .from('profiles')
+      .update(updates)
+      .eq('id', userId)
+      .select()
+      .maybeSingle();
+    
+    if (error) {
+      console.error('Error updating user profile:', error);
+      return { data: null, error };
+    }
+    
+    return { data, error: null };
   } catch (error) {
-    console.error('Error in ensureAdminSetup:', error);
+    console.error('Error in updateUserProfile function:', error);
+    return { data: null, error };
   }
 };

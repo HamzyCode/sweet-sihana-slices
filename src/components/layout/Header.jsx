@@ -36,18 +36,16 @@ const Header = () => {
   };
 
   const handleSignOut = async () => {
-    console.log('Header: Sign out clicked');
     try {
       const { error } = await signOut();
       if (error) {
-        console.error('Sign out failed:', error);
+        console.error('Sign out failed');
       } else {
-        console.log('Sign out successful, redirecting...');
         setIsMenuOpen(false); // Close mobile menu
         navigate('/');
       }
     } catch (err) {
-      console.error('Sign out error:', err);
+      console.error('Sign out error');
     }
   };
 
@@ -128,8 +126,6 @@ const Header = () => {
               <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>Menu</Link>
               <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
               <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
-              
-              
               
               {user ? (
                 <>
