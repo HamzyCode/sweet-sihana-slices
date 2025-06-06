@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/admin/AdminLayout';
-import { supabase } from '../../integrations/supabase/client';
+import { products } from '../../utils/productData.js';
 import './Products.css';
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [displayProducts, setDisplayProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -34,54 +35,33 @@ const Products = () => {
   
   const fetchProducts = async () => {
     try {
-      console.log('Fetching products...');
+      console.log('Loading products from productData...');
       setLoading(true);
       
-      // Check if products table exists, if not create some sample data
-      const { data, error } = await supabase
-        .from('products')
-        .select('*, categories(name)')
-        .limit(1);
-
-      if (error) {
-        console.error('Products table error:', error);
-        // If table doesn't exist, create sample products
-        setProducts([
-          {
-            id: 1,
-            name: 'Chocolate Birthday Cake',
-            description: 'Delicious chocolate cake perfect for birthdays',
-            image: '/assets/images/products/IMG_1842-Photoroom.jpg',
-            price: 25.99,
-            categories: { name: 'Birthday Cakes' }
-          },
-          {
-            id: 2,
-            name: 'Vanilla Wedding Cake',
-            description: 'Elegant vanilla cake for special occasions',
-            image: '/assets/images/products/IMG_1863-Photoroom.jpg',
-            price: 89.99,
-            categories: { name: 'Wedding Cakes' }
-          }
-        ]);
-      } else {
-        console.log('Products fetched:', data);
-        setProducts(data || []);
-      }
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setError('Could not load products. Using sample data.');
-      // Fallback to sample data
-      setProducts([
-        {
-          id: 1,
-          name: 'Chocolate Birthday Cake',
-          description: 'Delicious chocolate cake perfect for birthdays',
-          image: '/assets/images/products/IMG_1842-Photoroom.jpg',
-          price: 25.99,
-          categories: { name: 'Birthday Cakes' }
+      // Transform products from productData.js to match admin structure
+      const transformedProducts = products.map(product => ({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        long_description: product.longDescription || product.description,
+        image: product.image,
+        price: product.price || Math.floor(Math.random() * 50) + 20, // Random price if not set
+        ingredients: product.ingredients || [],
+        category_id: product.category,
+        frosting_type: product.frostingType || '',
+        cake_shape: product.shape || '',
+        occasion: product.occasion || '',
+        categories: { 
+          name: product.category.charAt(0).toUpperCase() + product.category.slice(1) 
         }
-      ]);
+      }));
+      
+      console.log('Products loaded:', transformedProducts.length);
+      setDisplayProducts(transformedProducts);
+      setError(null);
+    } catch (error) {
+      console.error('Error loading products:', error);
+      setError('Could not load products from data file.');
     } finally {
       setLoading(false);
     }
@@ -89,32 +69,20 @@ const Products = () => {
   
   const fetchCategories = async () => {
     try {
-      console.log('Fetching categories...');
-      const { data, error } = await supabase
-        .from('categories')
-        .select('*');
-
-      if (error) {
-        console.error('Categories table error:', error);
-        // If table doesn't exist, create sample categories
-        setCategories([
-          { id: 1, name: 'Birthday Cakes' },
-          { id: 2, name: 'Wedding Cakes' },
-          { id: 3, name: 'Custom Cakes' }
-        ]);
-      } else {
-        console.log('Categories fetched:', data);
-        setCategories(data || []);
-      }
+      console.log('Loading categories...');
+      
+      // Extract unique categories from products
+      const uniqueCategories = [...new Set(products.map(p => p.category))];
+      const categoryList = uniqueCategories.map((cat, index) => ({
+        id: index + 1,
+        name: cat.charAt(0).toUpperCase() + cat.slice(1)
+      }));
+      
+      console.log('Categories loaded:', categoryList);
+      setCategories(categoryList);
     } catch (error) {
-      console.error('Error fetching categories:', error);
-      setError('Could not load categories. Using sample data.');
-      // Fallback to sample categories
-      setCategories([
-        { id: 1, name: 'Birthday Cakes' },
-        { id: 2, name: 'Wedding Cakes' },
-        { id: 3, name: 'Custom Cakes' }
-      ]);
+      console.error('Error loading categories:', error);
+      setError('Could not load categories.');
     }
   };
   
@@ -174,6 +142,7 @@ const Products = () => {
   
   const handleOpenForm = (product = null) => {
     if (product) {
+      const category = categories.find(c => c.name.toLowerCase() === product.category_id);
       setFormData({
         id: product.id,
         name: product.name,
@@ -182,7 +151,7 @@ const Products = () => {
         image: product.image,
         price: product.price || '',
         ingredients: product.ingredients || [],
-        category_id: product.category_id || '',
+        category_id: category ? category.id : '',
         frosting_type: product.frosting_type || '',
         cake_shape: product.cake_shape || '',
         occasion: product.occasion || ''
@@ -204,17 +173,17 @@ const Products = () => {
     
     // In demo mode, just update local state
     if (formData.id) {
-      setProducts(products.map(p => p.id === formData.id ? { 
+      setDisplayProducts(displayProducts.map(p => p.id === formData.id ? { 
         ...formData, 
         categories: { name: categories.find(c => c.id === parseInt(formData.category_id))?.name || 'N/A' }
       } : p));
     } else {
       const newProduct = {
         ...formData,
-        id: Math.max(...products.map(p => p.id), 0) + 1,
+        id: Math.max(...displayProducts.map(p => p.id), 0) + 1,
         categories: { name: categories.find(c => c.id === parseInt(formData.category_id))?.name || 'N/A' }
       };
-      setProducts([...products, newProduct]);
+      setDisplayProducts([...displayProducts, newProduct]);
     }
     
     resetForm();
@@ -224,7 +193,7 @@ const Products = () => {
     if (!confirm('Are you sure you want to delete this product?')) return;
     
     console.log('Deleting product:', id);
-    setProducts(products.filter(p => p.id !== id));
+    setDisplayProducts(displayProducts.filter(p => p.id !== id));
     setSuccess('Product deleted successfully! (Demo mode)');
   };
   
@@ -432,7 +401,7 @@ const Products = () => {
           <div className="products-list">
             {loading ? (
               <div className="loading">Loading products...</div>
-            ) : products.length === 0 ? (
+            ) : displayProducts.length === 0 ? (
               <div className="no-products">
                 No products found. Click "Add New Product" to create one.
               </div>
@@ -448,7 +417,7 @@ const Products = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((product) => (
+                  {displayProducts.map((product) => (
                     <tr key={product.id}>
                       <td className="product-image-cell">
                         {product.image ? (
