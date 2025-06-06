@@ -4,7 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Index from './pages/Index';
 import Menu from './pages/Menu';
-import ProductDetail from './pages/ProductDetail';
+import Product from './pages/Product';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Dashboard from './pages/admin/Dashboard';
@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/menu" element={<Menu />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/product/:id" element={<Product />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route 
