@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Sihana's Cake. All rights reserved.</p>
+          <p>&copy; 2025 Sihana's Cake. All rights reserved.</p>
           <div className="social-icons">
             <a href="#" aria-label="Facebook">
               <Facebook size={20} />
