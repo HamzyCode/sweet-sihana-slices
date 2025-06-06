@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import LanguageSwitcher from '../common/LanguageSwitcher';
 import './Header.css';
 
 const Header = () => {
@@ -81,11 +80,6 @@ const Header = () => {
           </nav>
           
           <div className="action-buttons">
-            <div className="language-flags">
-              <button className="flag-button" title="Albanian">🇦🇱</button>
-              <button className="flag-button" title="Macedonian">🇲🇰</button>
-              <button className="flag-button" title="English">🇬🇧</button>
-            </div>
             {user ? (
               <>
                 <div className="user-menu-container">
@@ -135,11 +129,7 @@ const Header = () => {
               <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
               <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
               
-              <div className="mobile-language-flags">
-                <button className="flag-button" title="Albanian">🇦🇱</button>
-                <button className="flag-button" title="Macedonian">🇲🇰</button>
-                <button className="flag-button" title="English">🇬🇧</button>
-              </div>
+              
               
               {user ? (
                 <>

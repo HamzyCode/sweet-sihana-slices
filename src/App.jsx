@@ -1,7 +1,7 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+
 import Index from './pages/Index';
 import Menu from './pages/Menu';
 import Product from './pages/Product';
@@ -11,6 +11,8 @@ import Dashboard from './pages/admin/Dashboard';
 import Products from './pages/admin/Products';
 import Categories from './pages/admin/Categories';
 import Content from './pages/admin/Content';
+import Gallery from './pages/Gallery'; // ✅ Import the Gallery page
+
 import './App.css';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<Gallery />} /> {/* ✅ Add this route */}
             <Route path="/login" element={<Login />} />
             <Route 
               path="/admin" 
