@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import { products, getFrostingTypes } from '../utils/productData.js';
+import { useLanguage } from '../context/LanguageContext';
+import { t } from '../utils/translations';
 import './Gallery.css';
 
 const Gallery = () => {
+  const { language } = useLanguage();
   const [filter, setFilter] = useState('all');
   // Use frosting types for filters
   const frostingTypes = ['all', ...getFrostingTypes()];
@@ -27,9 +30,9 @@ const Gallery = () => {
         <section className="gallery-section">
           <div className="container">
             <div className="section-header">
-              <h1 className="section-title">Our Cake Gallery</h1>
+              <h1 className="section-title">{t('galleryTitle', language)}</h1>
               <p className="section-description">
-                Browse through our delicious creations by frosting type and get inspired for your next celebration.
+                {t('gallerySubtitle', language)}
               </p>
             </div>
             
@@ -40,7 +43,7 @@ const Gallery = () => {
                   className={`filter-button ${filter === frostingType ? 'active' : ''}`}
                   onClick={() => setFilter(frostingType)}
                 >
-                  {frostingType === 'all' ? 'All Frosting Types' : frostingType}
+                  {frostingType === 'all' ? t('allFrostingTypes', language) : frostingType}
                 </button>
               ))}
             </div>

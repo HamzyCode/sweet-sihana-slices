@@ -13,6 +13,32 @@ export const translations = {
     adminDashboard: 'Admin Dashboard',
     account: 'Account',
     
+    // Home Page
+    heroTitle: 'Delicious Cakes Made with Love',
+    heroSubtitle: 'Creating beautiful and delicious cakes for all your special moments',
+    featuredProducts: 'Featured Products',
+    aboutTitle: 'About Sihana\'s Cake',
+    aboutDescription: 'We are passionate about creating beautiful and delicious cakes for all your special occasions. From birthdays to weddings, we make every moment sweeter.',
+    customerReviews: 'Customer Reviews',
+    faq: 'Frequently Asked Questions',
+    callToAction: 'Ready to Order?',
+    
+    // Menu Page
+    menuTitle: 'Our Menu',
+    menuSubtitle: 'Browse our delicious selection of cakes',
+    allCategories: 'All Categories',
+    
+    // Gallery Page
+    galleryTitle: 'Our Cake Gallery',
+    gallerySubtitle: 'Browse through our delicious creations by frosting type and get inspired for your next celebration.',
+    allFrostingTypes: 'All Frosting Types',
+    
+    // Product Page
+    productDetails: 'Product Details',
+    description: 'Description',
+    ingredients: 'Ingredients',
+    orderThisProduct: 'Order This Product',
+    
     // Contact Page
     contactUs: 'Contact Us',
     contactSubtitle: "We'd love to hear from you! Get in touch with us for custom orders, questions, or just to say hello.",
@@ -47,10 +73,30 @@ export const translations = {
     developedBy: 'Developed by Balkan Digital Solutions',
     allRightsReserved: 'All rights reserved.',
     
+    // Auth Pages
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    forgotPassword: 'Forgot Password',
+    resetPassword: 'Reset Password',
+    password: 'Password',
+    confirmPassword: 'Confirm Password',
+    
     // Common
     optional: 'Optional',
     required: 'Required',
-    close: 'Close'
+    close: 'Close',
+    loading: 'Loading...',
+    error: 'Error',
+    success: 'Success',
+    cancel: 'Cancel',
+    save: 'Save',
+    edit: 'Edit',
+    delete: 'Delete',
+    back: 'Back',
+    next: 'Next',
+    previous: 'Previous',
+    viewMore: 'View More',
+    learnMore: 'Learn More'
   },
   mk: {
     // Header
@@ -64,6 +110,32 @@ export const translations = {
     signOut: 'Одјави се',
     adminDashboard: 'Админ панел',
     account: 'Профил',
+    
+    // Home Page
+    heroTitle: 'Вкусни торти направени со љубов',
+    heroSubtitle: 'Создаваме прекрасни и вкусни торти за сите ваши специјални моменти',
+    featuredProducts: 'Препорачани производи',
+    aboutTitle: 'За Сиханина торта',
+    aboutDescription: 'Ние сме страсни за создавање прекрасни и вкусни торти за сите ваши специјални прилики. Од родендени до свадби, ние го прават секој момент послаток.',
+    customerReviews: 'Рецензии на клиенти',
+    faq: 'Често поставувани прашања',
+    callToAction: 'Спремни за нарачка?',
+    
+    // Menu Page
+    menuTitle: 'Нашето мени',
+    menuSubtitle: 'Прегледајте го нашиот вкусен избор на торти',
+    allCategories: 'Сите категории',
+    
+    // Gallery Page
+    galleryTitle: 'Нашата галерија на торти',
+    gallerySubtitle: 'Прегледајте ги нашите вкусни креации по тип на глазура и инспирирајте се за вашата следна прослава.',
+    allFrostingTypes: 'Сите типови глазура',
+    
+    // Product Page
+    productDetails: 'Детали за производот',
+    description: 'Опис',
+    ingredients: 'Состојки',
+    orderThisProduct: 'Нарачај го овој производ',
     
     // Contact Page
     contactUs: 'Контактирај не',
@@ -99,10 +171,30 @@ export const translations = {
     developedBy: 'Развиено од Балкан Дигитал Солушнс',
     allRightsReserved: 'Сите права се задржани.',
     
+    // Auth Pages
+    signIn: 'Најави се',
+    signUp: 'Регистрирај се',
+    forgotPassword: 'Заборавена лозинка',
+    resetPassword: 'Ресетирај лозинка',
+    password: 'Лозинка',
+    confirmPassword: 'Потврди лозинка',
+    
     // Common
     optional: 'Опционално',
     required: 'Задолжително',
-    close: 'Затвори'
+    close: 'Затвори',
+    loading: 'Се вчитува...',
+    error: 'Грешка',
+    success: 'Успех',
+    cancel: 'Откажи',
+    save: 'Зачувај',
+    edit: 'Уреди',
+    delete: 'Избриши',
+    back: 'Назад',
+    next: 'Следно',
+    previous: 'Претходно',
+    viewMore: 'Види повеќе',
+    learnMore: 'Научи повеќе'
   },
   sq: {
     // Header
@@ -116,6 +208,32 @@ export const translations = {
     signOut: 'Çkyçu',
     adminDashboard: 'Paneli admin',
     account: 'Llogaria',
+    
+    // Home Page
+    heroTitle: 'Torta të shijshme të bëra me dashuri',
+    heroSubtitle: 'Krijojmë torta të bukura dhe të shijshme për të gjitha momentet tuaja të veçanta',
+    featuredProducts: 'Produktet e rekomanduara',
+    aboutTitle: 'Rreth Tortës së Sihanës',
+    aboutDescription: 'Ne jemi të apasionuar për krijimin e tortave të bukura dhe të shijshme për të gjitha rastet tuaja të veçanta. Nga ditëlindje në dasma, ne e bëjmë çdo moment më të ëmbël.',
+    customerReviews: 'Vlerësimet e klientëve',
+    faq: 'Pyetjet e bëra shpesh',
+    callToAction: 'Gati për të porositur?',
+    
+    // Menu Page
+    menuTitle: 'Menuja jonë',
+    menuSubtitle: 'Shikoni përzgjedhjen tonë të shijshme të tortave',
+    allCategories: 'Të gjitha kategoritë',
+    
+    // Gallery Page
+    galleryTitle: 'Galeria jonë e tortave',
+    gallerySubtitle: 'Shikoni krijimet tona të shijshme sipas llojit të kremit dhe frymëzohuni për festën tuaj të ardhshme.',
+    allFrostingTypes: 'Të gjitha llojet e kremit',
+    
+    // Product Page
+    productDetails: 'Detajet e produktit',
+    description: 'Përshkrimi',
+    ingredients: 'Përbërësit',
+    orderThisProduct: 'Porosit këtë produkt',
     
     // Contact Page
     contactUs: 'Na kontaktoni',
@@ -151,10 +269,30 @@ export const translations = {
     developedBy: 'Zhvilluar nga Balkan Digital Solutions',
     allRightsReserved: 'Të gjitha të drejtat e rezervuara.',
     
+    // Auth Pages
+    signIn: 'Kyçu',
+    signUp: 'Regjistrohu',
+    forgotPassword: 'Fjalëkalimi i harruar',
+    resetPassword: 'Rivendos fjalëkalimin',
+    password: 'Fjalëkalimi',
+    confirmPassword: 'Konfirmo fjalëkalimin',
+    
     // Common
     optional: 'Opsionale',
     required: 'E detyrueshme',
-    close: 'Mbyll'
+    close: 'Mbyll',
+    loading: 'Duke u ngarkuar...',
+    error: 'Gabim',
+    success: 'Sukses',
+    cancel: 'Anulo',
+    save: 'Ruaj',
+    edit: 'Ndrysho',
+    delete: 'Fshij',
+    back: 'Prapa',
+    next: 'Tjetër',
+    previous: 'I mëparshëm',
+    viewMore: 'Shiko më shumë',
+    learnMore: 'Mëso më shumë'
   }
 };
 

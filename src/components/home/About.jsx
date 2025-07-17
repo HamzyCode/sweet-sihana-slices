@@ -1,70 +1,21 @@
 
 import React from 'react';
-import './About.css';
+import { useLanguage } from '../../context/LanguageContext';
+import { t } from '../../utils/translations';
 
 const About = () => {
+  const { language } = useLanguage();
+
   return (
-    <section id="about" className="about-section">
-      <div className="container">
-        <div className="about-grid">
-          <div className="about-image">
-            <img 
-              src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-              alt="Beautiful cake display" 
-              className="rounded-image"
-            />
-          </div>
-          <div className="about-text">
-            <div className="about-header">
-              <span className="about-label">ABOUT US</span>
-              <h2 className="about-title">Crafting Sweet Memories Since 2010</h2>
-            </div>
-            <p className="about-description">
-              Welcome to Sihana's Cake, where every celebration becomes sweeter! Founded with passion and 
-              dedication, we specialize in creating extraordinary cakes that turn your special moments into 
-              unforgettable memories.
-            </p>
-            <p className="about-description">
-              Our talented team of bakers and decorators brings years of experience and creativity to every 
-              project. From intimate birthday celebrations to grand wedding receptions, we craft each cake 
-              with the finest ingredients and meticulous attention to detail.
-            </p>
-            
-            <div className="about-features">
-              <div className="feature-card">
-                <div className="feature-icon premium">
-                  <span>🏆</span>
-                </div>
-                <h4 className="feature-title">Premium Quality</h4>
-                <p className="feature-text">Only the finest ingredients</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon handmade">
-                  <span>👩‍🍳</span>
-                </div>
-                <h4 className="feature-title">Handmade</h4>
-                <p className="feature-text">Crafted with love and care</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon customers">
-                  <span>😊</span>
-                </div>
-                <h4 className="feature-title">Happy Customers</h4>
-                <p className="feature-text">Thousands of satisfied clients</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon love">
-                  <span>❤️</span>
-                </div>
-                <h4 className="feature-title">Made with Love</h4>
-                <p className="feature-text">Every cake tells a story</p>
-              </div>
-            </div>
-            
-            <a href="/contact" className="primary-button">
-              Order Your Custom Cake
-            </a>
-          </div>
+    <section id="about" className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900">
+            {t('aboutTitle', language)}
+          </h2>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            {t('aboutDescription', language)}
+          </p>
         </div>
       </div>
     </section>
