@@ -1,39 +1,62 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
-import { t } from '../../utils/translations';
-import { products } from '../../utils/productData';
+import './Featured.css';
+import { products } from '../../utils/productData.js';
+
+// Select 6 featured products from our product data (instead of 4)
+const featuredCakes = products.slice(0, 6).map(product => ({
+  id: product.id,
+  name: product.name,
+  description: product.description,
+  image: product.image,
+  category: product.category === 'chocolate' ? 'bestseller' : 
+           product.category === 'fruit' ? 'popular' : 'new'
+}));
 
 const Featured = () => {
-  const { language } = useLanguage();
-  const featuredProducts = products.slice(0, 3);
-
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-          {t('featuredProducts', language)}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredProducts.map((product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.id}`}
-              className="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-4">{product.description}</p>
-                <p className="text-2xl font-bold text-pink-500">{product.price}</p>
+    <section className="featured-section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">Our Featured Cakes</h2>
+          <p className="section-description">
+            Discover our most loved and popular cake creations, handcrafted with premium ingredients and a whole lot of love.
+          </p>
+        </div>
+        
+        <div className="cakes-grid">
+          {featuredCakes.map((cake) => (
+            <div key={cake.id} className="cake-card">
+              <div className="cake-image-container">
+                <img 
+                  src={cake.image} 
+                  alt={cake.name}
+                  className="cake-image"
+                />
+                {cake.category && (
+                  <div className={`cake-badge ${cake.category}`}>
+                    {cake.category}
+                  </div>
+                )}
               </div>
-            </Link>
+              <div className="cake-details">
+                <h3 className="cake-title">{cake.name}</h3>
+                <p className="cake-description">{cake.description}</p>
+                <div className="cake-bottom">
+                  <Link to={`/product/${cake.id}`} className="cake-link">
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            </div>
           ))}
+        </div>
+        
+        <div className="section-action">
+          <Link to="/menu" className="primary-button">
+            View All Cakes
+          </Link>
         </div>
       </div>
     </section>

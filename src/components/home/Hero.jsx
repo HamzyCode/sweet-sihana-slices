@@ -1,30 +1,50 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
-import { t } from '../../utils/translations';
+import './Hero.css';
 
 const Hero = () => {
-  const { language } = useLanguage();
-
   return (
-    <section className="hero bg-gradient-to-r from-pink-50 to-rose-50 py-20">
-      <div className="container mx-auto px-4 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 mb-6">
-          {t('heroTitle', language)}
-        </h1>
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          {t('heroSubtitle', language)}
-        </p>
-        <Link
-          to="/contact"
-          className="inline-block bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-pink-500 hover:to-pink-600 transition-all duration-300"
-        >
-          {t('orderNow', language)}
-        </Link>
+    <section className="hero-section">
+      <div className="container">
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1 className="hero-title">
+              Delicious Cakes<br />
+              <span className="highlight">Made with Love</span>
+            </h1>
+            <p className="hero-description">
+              Handcrafted premium quality cakes for all your special moments. 
+              Made with the finest ingredients since 2010.
+            </p>
+            <div className="hero-buttons">
+              <Link to="/menu" className="primary-button">
+                Explore Our Cakes
+                <ArrowRightIcon />
+              </Link>
+            </div>
+          </div>
+          
+          <div className="hero-image">
+            <img 
+              src="/assets/sihanasCakeLogo.png" 
+              alt="Sihana's Cake Logo" 
+              className="floating-image"
+            />
+          </div>
+        </div>
       </div>
+      
+      <div className="wave-divider"></div>
     </section>
   );
 };
+
+const ArrowRightIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+);
 
 export default Hero;
