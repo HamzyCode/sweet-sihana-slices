@@ -110,9 +110,20 @@
   }
 }
 
-.footer-bottom p {
+.footer-bottom-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-bottom-left p {
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
+}
+
+.developer-credit {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .social-icons {

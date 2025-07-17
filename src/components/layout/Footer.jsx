@@ -2,9 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { t } from '../../utils/translations';
 import './Footer.css';
 
 const Footer = () => {
+  const { language } = useLanguage();
+
   return (
     <footer className="footer">
       <div className="container">
@@ -16,28 +20,27 @@ const Footer = () => {
               className="logo"
             />
             <p>
-              Creating beautiful and delicious cakes for all your special moments. 
-              Made with love and the finest ingredients.
+              {t('footerDescription', language)}
             </p>
           </div>
           
           <div className="footer-links">
             <div className="link-group">
-              <h3>Quick Links</h3>
+              <h3>{t('quickLinks', language)}</h3>
               <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/#about">About</Link></li>
-                <li><Link to="/menu">Menu</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/">{t('home', language)}</Link></li>
+                <li><Link to="/#about">{t('about', language)}</Link></li>
+                <li><Link to="/menu">{t('menu', language)}</Link></li>
+                <li><Link to="/contact">{t('contact', language)}</Link></li>
               </ul>
             </div>
             
             <div className="link-group">
-              <h3>Services</h3>
+              <h3>{t('services', language)}</h3>
               <ul>
-                <li><Link to="/menu">Birthday Cakes</Link></li>
-                <li><Link to="/menu">Wedding Cakes</Link></li>
-                <li><Link to="/menu">Custom Designs</Link></li>
+                <li><Link to="/menu">{t('birthdayCakes', language)}</Link></li>
+                <li><Link to="/menu">{t('weddingCakes', language)}</Link></li>
+                <li><Link to="/menu">{t('customDesigns', language)}</Link></li>
                 <li>
                   <a 
                     href="https://wolt.com/mk/mkd/skopje/venue/sihanas-cake?utm_source=googlemapreserved&utm_campaign=sihanas-cake&utm_content=6810a0a648710a3bed1076f2&rwg_token=ACgRB3dY2Fp_xMTLD2LCy1VA_uc_96kB7x3AjLTDM_YhbrvlJHnR0AUakm1ClquML8kU9VzK1bFbh63E6QktpeDZe9IwaFau0UDRTqSaR5eAo2LMQejt1KY%3D"
@@ -50,14 +53,14 @@ const Footer = () => {
                       alt="Wolt" 
                       className="wolt-footer-logo"
                     />
-                    Order on Wolt
+                    {t('orderOnWolt', language)}
                   </a>
                 </li>
               </ul>
             </div>
             
             <div className="link-group">
-              <h3>Contact Info</h3>
+              <h3>{t('contactInfo', language)}</h3>
               <ul>
                 <li>
                   <a 
@@ -84,7 +87,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2025 Sihana's Cake. All rights reserved.</p>
+          <div className="footer-bottom-left">
+            <p>&copy; 2025 Sihana's Cake. {t('allRightsReserved', language)}</p>
+            <p className="developer-credit">{t('developedBy', language)}</p>
+          </div>
           <div className="social-icons">
             <a href="#" aria-label="Facebook">
               <Facebook size={20} />

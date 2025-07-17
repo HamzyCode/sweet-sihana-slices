@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { t } from '../../utils/translations';
+import LanguageToggle from '../LanguageToggle';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
+  const { language } = useLanguage();
   const navigate = useNavigate();
   
   const toggleMenu = () => {
@@ -41,7 +45,7 @@ const Header = () => {
       if (error) {
         console.error('Sign out failed');
       } else {
-        setIsMenuOpen(false); // Close mobile menu
+        setIsMenuOpen(false);
         navigate('/');
       }
     } catch (err) {
@@ -64,43 +68,52 @@ const Header = () => {
           </div>
           
           <nav className="desktop-nav">
-            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
+            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
+              {t('home', language)}
+            </Link>
             <a 
               href="/#about" 
               className={`nav-link ${location.hash === '#about' ? 'active' : ''}`}
               onClick={(e) => handleAnchorClick(e, 'about')}
             >
-              About
+              {t('about', language)}
             </a>
-            <Link to="/menu" className={`nav-link ${isActive('/menu') ? 'active' : ''}`}>Menu</Link>
-            <Link to="/gallery" className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}>Gallery</Link>
-            <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
+            <Link to="/menu" className={`nav-link ${isActive('/menu') ? 'active' : ''}`}>
+              {t('menu', language)}
+            </Link>
+            <Link to="/gallery" className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}>
+              {t('gallery', language)}
+            </Link>
+            <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
+              {t('contact', language)}
+            </Link>
           </nav>
           
           <div className="action-buttons">
+            <LanguageToggle />
             {user ? (
               <>
                 <div className="user-menu-container">
                   <div className="dropdown">
                     <button className="dropdown-button user-button">
-                      Account <span className="dropdown-icon">▼</span>
+                      {t('account', language)} <span className="dropdown-icon">▼</span>
                     </button>
                     <div className="dropdown-content user-dropdown">
                       {isAdmin && (
                         <Link to="/admin" className="dropdown-item">
-                          Admin Dashboard
+                          {t('adminDashboard', language)}
                         </Link>
                       )}
                       <button onClick={handleSignOut} className="dropdown-item sign-out">
-                        Sign Out
+                        {t('signOut', language)}
                       </button>
                     </div>
                   </div>
                 </div>
-                <Link to="/contact" className="primary-button">Order Now</Link>
+                <Link to="/contact" className="primary-button">{t('orderNow', language)}</Link>
               </>
             ) : (
-              <Link to="/login" className="primary-button">Log In</Link>
+              <Link to="/login" className="primary-button">{t('logIn', language)}</Link>
             )}
           </div>
           
@@ -112,7 +125,9 @@ const Header = () => {
         {isMenuOpen && (
           <div className="mobile-menu">
             <nav className="mobile-nav">
-              <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} onClick={toggleMenu}>Home</Link>
+              <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} onClick={toggleMenu}>
+                {t('home', language)}
+              </Link>
               <a 
                 href="/#about" 
                 className={`mobile-nav-link ${location.hash === '#about' ? 'active' : ''}`}
@@ -121,29 +136,39 @@ const Header = () => {
                   toggleMenu();
                 }}
               >
-                About
+                {t('about', language)}
               </a>
-              <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>Menu</Link>
-              <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>Gallery</Link>
-              <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>Contact</Link>
+              <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={toggleMenu}>
+                {t('menu', language)}
+              </Link>
+              <Link to="/gallery" className={`mobile-nav-link ${isActive('/gallery') ? 'active' : ''}`} onClick={toggleMenu}>
+                {t('gallery', language)}
+              </Link>
+              <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`} onClick={toggleMenu}>
+                {t('contact', language)}
+              </Link>
+              
+              <div style={{ padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
+                <LanguageToggle />
+              </div>
               
               {user ? (
                 <>
                   {isAdmin && (
                     <Link to="/admin" className="mobile-nav-link" onClick={toggleMenu}>
-                      Admin Dashboard
+                      {t('adminDashboard', language)}
                     </Link>
                   )}
                   <button onClick={() => { handleSignOut(); toggleMenu(); }} className="mobile-nav-link sign-out-mobile">
-                    Sign Out
+                    {t('signOut', language)}
                   </button>
                   <Link to="/contact" className="mobile-primary-button" onClick={toggleMenu}>
-                    Order Now
+                    {t('orderNow', language)}
                   </Link>
                 </>
               ) : (
                 <Link to="/login" className="mobile-primary-button" onClick={toggleMenu}>
-                  Log In
+                  {t('logIn', language)}
                 </Link>
               )}
             </nav>
