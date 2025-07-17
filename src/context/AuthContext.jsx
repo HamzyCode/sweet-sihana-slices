@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '../integrations/supabase/client';
+import { checkIsAdmin } from '../integrations/supabase/helper';
 
 const AuthContext = createContext({});
 
@@ -14,20 +15,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const checkAdminStatus = async (userId) => {
-    try {
-      const { data, error } = await supabase.rpc('get_current_user_admin_status');
-      if (error) {
-        console.error('Error checking admin status:', error);
-        return false;
-      }
-      return data || false;
-    } catch (error) {
-      console.error('Error in checkAdminStatus:', error);
-      return false;
-    }
-  };
-
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -36,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          const adminStatus = await checkAdminStatus(session.user.id);
+          const adminStatus = await checkIsAdmin(session.user.id);
           setIsAdmin(adminStatus);
         } else {
           setIsAdmin(false);
@@ -52,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        const adminStatus = await checkAdminStatus(session.user.id);
+        const adminStatus = await checkIsAdmin(session.user.id);
         setIsAdmin(adminStatus);
       }
       

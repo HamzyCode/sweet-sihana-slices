@@ -5,14 +5,24 @@ import { Database } from "./types";
 // Function to check if a user has admin role using the secure database function
 export const checkIsAdmin = async (userId: string): Promise<boolean> => {
   try {
-    const { data, error } = await supabase.rpc('get_current_user_admin_status');
+    // Get the current user's email first
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user?.email) {
+      return false;
+    }
+    
+    // Check if the user's email is in the admin list
+    const { data, error } = await supabase.rpc('is_admin', { 
+      user_email: user.email 
+    });
     
     if (error) {
       console.error('Error checking admin status:', error);
       return false;
     }
     
-    return data || false;
+    return Boolean(data);
   } catch (error) {
     console.error('Error in checkIsAdmin function:', error);
     return false;
