@@ -1,6 +1,8 @@
 
-import React, { useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
+import { t } from '../utils/translations';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import { getProductById, getRelatedProducts } from '../utils/productData.js';
@@ -8,134 +10,89 @@ import './Product.css';
 
 const Product = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  
-  // Scroll to top on component mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
-  // Find the current product
+  const { language } = useLanguage();
   const product = getProductById(id);
-  
-  // Handle case when product is not found
+  const relatedProducts = getRelatedProducts(id);
+
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">
-          <div className="container">
-            <div className="product-not-found">
-              <h1>Product Not Found</h1>
-              <p>Sorry, the product you're looking for doesn't exist.</p>
-              <button onClick={() => navigate('/menu')} className="back-button">
-                Back to Menu
-              </button>
-            </div>
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">{t('productNotFound', language)}</h1>
+            <p className="text-gray-600">{t('productNotFoundDescription', language)}</p>
           </div>
         </main>
         <Footer />
       </div>
     );
   }
-  
-  // Find related products (same category, excluding current product)
-  const relatedProducts = getRelatedProducts(id);
 
-  // Handle "Order Now" button click  
-  const handleOrderClick = () => {
-    // Save product info to session storage to be picked up by contact form
-    sessionStorage.setItem('selectedProduct', JSON.stringify({
-      id: product.id,
-      name: product.name
-    }));
-    navigate('/contact');
-  };
-    
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        <section className="product-section">
-          <div className="container">
-            <div className="product-details">
-              <div className="product-images">
-                <div className="main-image-container">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="main-image"
-                  />
-                </div>
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+              <p className="text-gray-600 mb-4">{product.description}</p>
+              {product.longDescription && (
+                <p className="text-gray-700 mb-6">{product.longDescription}</p>
+              )}
+              <div className="mb-6">
+                <span className="text-2xl font-bold text-pink-500">{product.price}</span>
               </div>
-              
-              <div className="product-info">
-                <h1 className="product-title">{product.name}</h1>
-                <div className="product-occasions">
-                  {product.occasions && product.occasions.map((occasion, index) => (
-                    <span key={index} className="product-occasion-tag">
-                      {occasion}
-                    </span>
-                  ))}
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-2">{t('category', language)}</h3>
+                <p className="text-gray-600">{product.category}</p>
+              </div>
+              {product.ingredients && (
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-2">{t('ingredients', language)}</h3>
+                  <ul className="text-gray-600">
+                    {product.ingredients.map((ingredient, index) => (
+                      <li key={index} className="mb-1">• {ingredient}</li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="product-description">
-                  <p>{product.description}</p>
-                </div>
-                
-                {/* Long Description Section */}
-                {product.longDescription && (
-                  <div className="product-long-description">
-                    <h3>About this Cake</h3>
-                    <p>{product.longDescription}</p>
+              )}
+              <button className="bg-gradient-to-r from-pink-400 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-pink-500 hover:to-pink-600 transition-all duration-300">
+                {t('orderNow', language)}
+              </button>
+            </div>
+          </div>
+          
+          {relatedProducts.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6">{t('relatedProducts', language)}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedProducts.map((relatedProduct) => (
+                  <div key={relatedProduct.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img
+                      src={relatedProduct.image}
+                      alt={relatedProduct.name}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold mb-2">{relatedProduct.name}</h3>
+                      <p className="text-gray-600 mb-2">{relatedProduct.description}</p>
+                      <p className="text-xl font-bold text-pink-500">{relatedProduct.price}</p>
+                    </div>
                   </div>
-                )}
-                
-                {/* Ingredients Section */}
-                <div className="product-ingredients">
-                  <h3>Ingredients:</h3>
-                  {product.ingredients && product.ingredients.length > 0 ? (
-                    <ul>
-                      {product.ingredients.map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="no-ingredients">Information coming soon.</p>
-                  )}
-                </div>
-                
-                <button onClick={handleOrderClick} className="order-button">
-                  Order Now
-                </button>
+                ))}
               </div>
             </div>
-            
-            {relatedProducts.length > 0 && (
-              <div className="related-products">
-                <h2 className="related-title">You May Also Like</h2>
-                <div className="related-grid">
-                  {relatedProducts.map(relatedProduct => (
-                    <div key={relatedProduct.id} className="related-item">
-                      <div className="related-image-container">
-                        <img 
-                          src={relatedProduct.image} 
-                          alt={relatedProduct.name}
-                          className="related-image"
-                        />
-                      </div>
-                      <div className="related-details">
-                        <h3>{relatedProduct.name}</h3>
-                        <Link to={`/product/${relatedProduct.id}`} className="view-button">
-                          View Details
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+          )}
+        </div>
       </main>
       <Footer />
     </div>
